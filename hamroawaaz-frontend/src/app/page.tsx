@@ -1,6 +1,11 @@
-import HomeDisplay from "../../components/system/home/homeDisplay";
+import HeaderAndFooterWrapper from "../../components/user/wrappers/headerAndFooterWrapper";
+import HomeDisplay from "../../components/user/home/homeDisplay";
 
 const Page=()=>{
-  return <HomeDisplay/>
+  return (
+    <HeaderAndFooterWrapper>
+      <HomeDisplay/>
+    </HeaderAndFooterWrapper>
+  )
 }
 export default Page;
