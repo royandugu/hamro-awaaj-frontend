@@ -1,4 +1,10 @@
+import Banner from "../../system/banner/banner";
+
 const HomeDisplay=()=>{
-    return <h5> Hello this is home page </h5>
+    return (
+        <>
+            <Banner title="Home page" route="Some route"/>
+        </>
+    )
 }
 export default HomeDisplay;
