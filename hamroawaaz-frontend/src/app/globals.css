@@ -6,14 +6,3 @@
   font-family: 'poppins-bold';
   src: url('../fonts/Poppins-Bold.ttf') format('ttf'), /* Modern Browsers */
 }
-.loginAndRegisterForm input{
-  height:50px;
-  border:1px solid grey;
-  padding-left:5px;
-  margin-top:5px;
-}
-.loginAndRegisterForm button{
-  background:rgb(230,230,230);
-  padding:10px;
-  margin-top:10px;
-}
