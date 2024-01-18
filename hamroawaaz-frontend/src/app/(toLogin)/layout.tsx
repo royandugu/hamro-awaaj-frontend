@@ -12,12 +12,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="flex justify-center items-center bg-none h-screen" style={{ background: 'url(/bgOne.jpg)' }}>
-                <div className="absolute bg-black opacity-60 inset-0 z-0" />
-                <div className="bg-white h-screen sm:h-[85%] p-10 lg:w-[50%] xl:w-[40%] overflow-auto rounded-xl z-1 shadow-2xl">
-                    {children}
+            <body style={{ background: 'url(/bgOne.jpg)' }}>
+                <div className='flex h-screen justify-center items-center'>
+                    <div className="fixed inset-0 bg-[rgba(0,0,0,.4)]"/>
+                    <div className="bg-white p-10 h-[85%] lg:w-[50%] xl:w-[40%] overflow-auto rounded-xl shadow-2xl z-999">
+                        {children}
+                    </div>
                 </div>
-
             </body>
         </html>
     )
