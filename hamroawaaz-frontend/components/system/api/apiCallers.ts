@@ -20,3 +20,5 @@ export const universalJSONPost = async (data:any,url:string) => {
         console.error('Error:', error);
     }
 }
+
+//http://localhost:3000
