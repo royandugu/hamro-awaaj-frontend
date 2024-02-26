@@ -1,3 +1,6 @@
 .clipPath{
     clip-path: polygon(0 0, 100% 0, 100% 65%, 0% 100%);
 }
+.bannerContentContainer h1, .bannerContentContainer p{
+    color:white;
+}

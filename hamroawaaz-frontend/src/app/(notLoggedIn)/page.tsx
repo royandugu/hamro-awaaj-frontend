@@ -1,4 +1,4 @@
-import HomeDisplay from "../../../components/user/home/homeDisplay";
+import HomeDisplay from "../../../components/user/pages/home/homeDisplay";
 
 const Page=()=>{
   return <HomeDisplay/>

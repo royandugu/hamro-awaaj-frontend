@@ -1,5 +1,5 @@
-import ClientHeader from '../../../components/user/header/header'
-import ClientFooter from '../../../components/user/footer/footer'
+import ClientHeader from '../../../components/user/sections/header/header'
+import ClientFooter from '../../../components/user/sections/footer/footer'
 
 export default function RootLayout({
     children,

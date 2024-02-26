@@ -1,6 +1,6 @@
-import Register from "../../../../components/user/register/register";
+import RegisterDisplay from "../../../../components/user/pages/register/registerDisplay";
 
 const Page=()=>{
-    return <Register/>
+    return <RegisterDisplay/>
 }
 export default Page; 

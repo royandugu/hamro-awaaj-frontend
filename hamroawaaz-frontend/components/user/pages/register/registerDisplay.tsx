@@ -1,9 +1,9 @@
 "use client"
 
 import { FormEvent, useState, useEffect, useContext } from "react";
-import { universalJSONPost } from "../../system/api/apiCallers";
+import { universalJSONPost } from "../../../system/api/apiCallers";
 
-import context from "../../system/context/context";
+import context from "../../../system/context/context";
 
 import "../user.css"
 
@@ -38,7 +38,7 @@ const Register = () => {
 
 
     return (
-        <>
+        <main>
             <h1 className="uppercase font-bold text-center mb-10 text-[30px]"> Create account </h1>
             <form className="loginAndRegisterForm" onSubmit={registerUser}>
                 <input type="text" value={fullName} placeholder="Enter username" className="applyInputDesign rounded-xl outline-none" onChange={(e) => setFullName(e.target.value)} /><br />
@@ -53,7 +53,7 @@ const Register = () => {
                 <button type="submit" className={`w-full bg-primary mt-10 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]"/> : contextContainer.loading === 1 ? 'Register user' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button>
             </form>
             <h1 className="text-center mt-15"> Already have an account ? <span className="underline font-bold cursor-pointer"> Login here </span></h1>
-        </>
+        </main>
     )
 } 
 export default Register;
