@@ -10,11 +10,13 @@
 section{
   padding-top:2.5rem;
   padding-bottom: 2.5rem;
+  padding-left:20%;
+  padding-right:20%;
 }
 .normalSection{
   margin-bottom: 7.5rem;
 }
-h1,h2{
+h1,h2,h5{
   font-weight: 800;
   line-height: 1.6;
   text-transform: uppercase; 
@@ -25,7 +27,9 @@ h1{
 h2{
   font-size:2rem;
 }
-
+h5{
+  font-size: 1rem;
+}
 p{
   margin-top:1.25rem;
   font-size: 16px;
