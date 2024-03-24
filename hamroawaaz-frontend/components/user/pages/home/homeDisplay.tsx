@@ -1,7 +1,9 @@
 import Banner from "../../../system/banner/banner";
-import About from "../../sections/about/about";
-import EasyToCustomize from "../../sections/easyToCustomize/easyToCustomize";
-import AwesomeFeatures from "../../sections/awesomeFeatures/awesomeFeatures";
+import About from "../../sections/home/about/about";
+import EasyToCustomize from "../../sections/home/easyToCustomize/easyToCustomize";
+import AwesomeFeatures from "../../sections/home/awesomeFeatures/awesomeFeatures";
+import LatestApp from "../../sections/home/latestApp/latestApp";
+import PricingPlan from "../../sections/home/pricingPlan/pricingPlan";
 
 const HomeDisplay=()=>{
     return (
@@ -10,6 +12,8 @@ const HomeDisplay=()=>{
             <About/>
             <EasyToCustomize/>
             <AwesomeFeatures/>
+            <LatestApp/>
+            <PricingPlan/>
         </main>
     )
 }
