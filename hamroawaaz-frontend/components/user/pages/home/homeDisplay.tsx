@@ -4,6 +4,7 @@ import EasyToCustomize from "../../sections/home/easyToCustomize/easyToCustomize
 import AwesomeFeatures from "../../sections/home/awesomeFeatures/awesomeFeatures";
 import LatestApp from "../../sections/home/latestApp/latestApp";
 import PricingPlan from "../../sections/home/pricingPlan/pricingPlan";
+import AppReviews from "../../sections/home/appReviews/appReviews";
 
 const HomeDisplay=()=>{
     return (
@@ -14,6 +15,7 @@ const HomeDisplay=()=>{
             <AwesomeFeatures/>
             <LatestApp/>
             <PricingPlan/>
+            <AppReviews/>
         </main>
     )
 }
