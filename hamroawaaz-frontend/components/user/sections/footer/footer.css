@@ -1,0 +1,30 @@
+footer{
+    background: url("https://torres-react.pages.dev/static/media/bg-image-2.4b2b6c28f0e02bd5dc25.jpg");
+    background-size: cover;
+    clip-path: polygon(0 40%, 100% 0, 100% 100%, 0% 100%);
+}
+footer .bg-primary{
+    padding-top:18rem;
+    padding-bottom: 2.5rem;
+    padding-left:20%;
+    padding-right:20%;
+}
+footer .bg-primary>*{
+    color:white;
+}
+footer .bg-primary .inputFormContainer input, footer .bg-primary .inputFormContainer textarea{
+    margin-top:10px;
+    background:transparent;
+    border:1px solid white;
+    padding:10px;
+    border-radius:10px;
+    width: 100%;
+}   
+footer .bg-primary .inputFormContainer textarea{
+    height:300px;
+}
+
+section, header, footer{
+    max-width: 2200px;
+    margin: 0 auto;
+}
