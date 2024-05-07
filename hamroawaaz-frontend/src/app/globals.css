@@ -4,7 +4,12 @@
 
 @font-face {
   font-family: 'poppins-bold';
-  src: url('../fonts/Poppins-Bold.ttf') format('ttf'), /* Modern Browsers */
+  src: url('../fonts/Poppins-Bold.woff2') format('woff2'), /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'poppins-regular';
+  src: url('../fonts/Poppins-Regular.woff2') format('woff2'), /* Modern Browsers */
 }
 
 section{
@@ -20,6 +25,7 @@ h1,h2,h5{
   font-weight: 800;
   line-height: 1.6;
   text-transform: uppercase; 
+  font-family: 'poppins-bold';
 }
 h1{
   font-size: 3rem; 
@@ -34,4 +40,5 @@ p{
   margin-top:1.25rem;
   font-size: 16px;
   color:#2d3e50;
+  font-family:'poppins-regular'; 
 }

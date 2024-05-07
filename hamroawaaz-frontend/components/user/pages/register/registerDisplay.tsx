@@ -5,6 +5,8 @@ import { universalJSONPost } from "../../../system/api/apiCallers";
 
 import context from "../../../system/context/context";
 
+import "../../user.css";
+
 const Register = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
