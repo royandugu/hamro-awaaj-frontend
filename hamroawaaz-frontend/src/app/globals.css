@@ -12,15 +12,7 @@
   src: url('../fonts/Poppins-Regular.woff2') format('woff2'), /* Modern Browsers */
 }
 
-section{
-  padding-top:2.5rem;
-  padding-bottom: 2.5rem;
-  padding-left:20%;
-  padding-right:20%;
-}
-.normalSection{
-  margin-bottom: 7.5rem;
-}
+
 h1,h2,h5{
   font-weight: 800;
   line-height: 1.6;
@@ -41,4 +33,13 @@ p{
   font-size: 16px;
   color:#2d3e50;
   font-family:'poppins-regular'; 
+}
+
+
+/* Media queries */
+@media (max-width: 1024px) {
+  section{
+    padding-left:10%;
+    padding-right:10%;
+  }
 }

@@ -17,11 +17,10 @@ const Banner = (props: Banner) => {
                         <h1><span className="text-secondary">With&nbsp;</span>&nbsp;Communication  </h1>
                         <p className="max-w-[650px]"> The project ”Hamro Aawaj” addresses the communication challenges faced by individuals with hearing and vocal impairments in Nepal by harnessing the power of hand gesture recognition, text conversion, and speech synthesis technologies. </p>
                         <div className="flex gap-5 mt-10">
-                            <PrimaryButton text="Download" />
-                            <SecondaryButton text="Know more"/>
+                            <PrimaryButton text="Register" />
+                            <SecondaryButton text="Log In"/>
                         </div>
                     </div>
-                    <img src="https://torres-react.pages.dev/static/media/banner-mobile.b19da15cea518032450f.png" className="w-full hidden xl:block mt-30"/>
                 </div>
             </section>
         </>
