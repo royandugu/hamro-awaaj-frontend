@@ -11,12 +11,12 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div style={{ background: 'url(/bgOne.jpg)' }}>
-            <div className='flex h-screen justify-center items-center'>
-                <div className="fixed inset-0 bg-[rgba(0,0,0,.4)]" />
-                <div className="bg-white p-10 h-[85%] lg:w-[50%] xl:w-[40%] overflow-auto rounded-xl shadow-2xl z-999">
-                    {children}
-                </div>
+        <div className='flex h-screen gap-20 items-center'>
+            <div className='w-1/2 h-screen bg-primary'>
+ 
+            </div>
+            <div className="bg-white w-1/2 max-w-xl">
+                {children}
             </div>
         </div>
 

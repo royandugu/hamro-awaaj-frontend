@@ -1,12 +1,11 @@
 .registerBackground{
   background:url("/public/brooke-cagle--uHVRvDr7pg-unsplash.jpg");
 }
-
+.loginAndRegisterForm>*{
+  font-family: poppins-regular;
+}
 .loginAndRegisterForm .applyInputDesign{
     height:60px;
-    border:1px solid rgb(225,225,225);
-    padding-left:5px;
-    margin-top:25px;
     width:100%;
     padding-left:15px
   }
@@ -14,5 +13,5 @@
     padding:10px;
     margin-top:10px;
     height:60px;
-    font-weight: bold;
+    font-family: poppins-regular;
   }
