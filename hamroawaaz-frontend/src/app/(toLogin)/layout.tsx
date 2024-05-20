@@ -11,11 +11,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className='flex h-screen gap-20 items-center'>
+        <div className='flex h-screen gap-10 xl:gap-20 items-center'>
             <div className='hidden md:block md:w-1/2 h-screen bg-primary'>
  
             </div>
-            <div className="bg-white w-full md:w-1/2 max-w-xl overflow-auto">
+            <div className="bg-white w-full md:w-1/2 max-w-xl overflow-auto p-10">
                 {children}
             </div>
         </div>
