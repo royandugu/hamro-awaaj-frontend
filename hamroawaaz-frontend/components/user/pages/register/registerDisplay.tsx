@@ -4,6 +4,7 @@ import { FormEvent, useState, useEffect, useContext } from "react";
 import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
+import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 
@@ -45,6 +46,8 @@ const Register = () => {
     const [formDetails, setFormDetails] = useState({ userName: [""], email: [""], password: [""], fullName: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
+
+    const router=useRouter();
 
     const contextContainer = useContext(context);
 
@@ -110,7 +113,10 @@ const Register = () => {
                 fullName: formDetails.fullName[0]
             }
             const res = await universalJSONPost(body, "user/register");
-            if (res?.ok) contextContainer.setLoading(2);
+            if (res?.ok) {
+                router.push("/user/upload");
+                contextContainer.setLoading(2);
+            }
             else contextContainer.setLoading(3);
         }
     }

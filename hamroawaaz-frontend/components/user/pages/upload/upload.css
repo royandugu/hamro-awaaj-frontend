@@ -1,0 +1,9 @@
+.dottedBorder{
+    border:2px dashed #2d3e50;
+}
+.dottedBorder h3{
+    font-family: poppins-regular;
+    text-transform: none;
+    font-size: 25px;
+    font-weight: 100;
+}
