@@ -1,5 +1,4 @@
 import ClientHeader from '../../../components/user/sections/header/header'
-import ClientFooter from '../../../components/user/sections/footer/footer'
 
 export default function RootLayout({
     children,
@@ -10,7 +9,6 @@ export default function RootLayout({
         <>
             <ClientHeader />
             {children}
-            <ClientFooter />
         </>
 
     )

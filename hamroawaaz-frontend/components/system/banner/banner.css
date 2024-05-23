@@ -1,17 +1,9 @@
-.bannerContentContainer h1, .bannerContentContainer p{
-    color:white;
-}
-@media (min-width: 768px) {
-    .clipPath{
-        clip-path: polygon(0 0, 100% 0, 100% 65%, 0% 100%);
-    }
-}
 .normalSection{
     margin-bottom:3rem;
 }
 section{
     padding-top:2.5rem;
     padding-bottom: 2.5rem;
-    padding-left:20%;
-    padding-right:20%;
-  }
+    padding-left:10%;
+    padding-right:10%;
+}
