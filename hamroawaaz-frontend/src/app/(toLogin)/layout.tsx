@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import DeafBanner from "../../../public/deafBanner.jpeg";
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -12,8 +14,8 @@ export default function RootLayout({
 }) {
     return (
         <div className='flex h-screen gap-10 xl:gap-20 items-center'>
-            <div className='hidden md:block md:w-1/2 h-screen bg-primary'>
- 
+            <div className='hidden md:block md:w-1/2 h-screen'>
+                <Image src={DeafBanner} className=' h-full w-full' objectFit='cover' alt='deaf-banner'/>
             </div>
             <div className="bg-white w-full md:w-1/2 max-w-xl overflow-auto p-10">
                 {children}

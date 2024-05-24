@@ -165,9 +165,8 @@ const Register = () => {
                     <input type="checkbox" className="cursor-pointer" />
                     <h3> I agree all statements in <span className="underline cursor-pointer"> Terms of service </span> </h3>
                 </div>
-                <button type="submit" className={`w-full bg-secondary flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button>
-                <button type="submit" className={`w-full bg-primary flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
-
+                <button type="submit" className={`w-full flex justify-center items-center bg-primary opacity-90 hover:opacity-100 ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'Registered sucesfully, redirecting ...' : 'User registration failed'} </button>
+                <button type="submit" className={`w-full bg-black flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
             </form>
             <Tooltip id="my-tooltip"/>
         

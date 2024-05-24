@@ -31,7 +31,7 @@ const registerData = [
 
 const Register = () => {
     const [formDetails, setFormDetails] = useState({ email: [""], password: [""] })
-    const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" }});
+    const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
 
     const contextContainer = useContext(context);
@@ -41,7 +41,7 @@ const Register = () => {
         const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         let noMistakes = true;
 
-        
+
         if (formDetails.email[0] === "") {
             noMistakes = false;
             setErrorDetails((prevState: any) => ({
@@ -104,22 +104,22 @@ const Register = () => {
                             {!passwordShown.password ? <FaRegEye className="text-[rgb(100,100,100)] cursor-pointer" /> : <FaRegEyeSlash className="text-[rgb(100,100,100)] cursor-pointer" />}
                         </div> : ""}
 
-                        <IoIosInformationCircle title={errorDetails[rd.name].message!==""?errorDetails[rd.name].message:"" ?? ""} size={30} className={`${errorDetails[rd.name].message === "" ? "invisible" : ""} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails[rd.name].error ? 'text-red-500' : ''}`} />
+                        <IoIosInformationCircle title={errorDetails[rd.name].message !== "" ? errorDetails[rd.name].message : "" ?? ""} size={30} className={`${errorDetails[rd.name].message === "" ? "invisible" : ""} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails[rd.name].error ? 'text-red-500' : ''}`} />
                     </div>
                 ))}
                 <div className="flex items-center gap-3 mt-5 mb-10">
                     <input type="checkbox" className="cursor-pointer" />
                     <h3> Remember me  </h3>
                 </div>
-                <button type="submit" className={`w-full bg-secondary flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button> 
-                <button type="submit" className={`w-full bg-primary flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
+                <button type="submit" className={`w-full bg-primary opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button>
+                <button type="submit" className={`w-full bg-black opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
                 <div className="flex mt-5 justify-between">
-                    <Link href="/register"><h3 className="text-primary"> Don't have an account ? </h3></Link>
-                    <h3 className="text-primary"> Forgot password ? </h3>
+                    <Link href="/register" className="hover:underline"><h3> Don't have an account ? </h3></Link>
+                    <h3 className="hover:underline cursor-pointer"> Forgot password ? </h3>
                 </div>
             </form>
-            <Tooltip id="my-tooltip"/>
-        
+            <Tooltip id="my-tooltip" />
+
         </>
     )
 }

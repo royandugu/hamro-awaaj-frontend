@@ -31,7 +31,7 @@ module.exports = {
         'bodydark': '#AEB7C0',
         'bodydark1': '#DEE4EE',
         'bodydark2': '#8A99AF',
-        'primary': '#a71642',
+        'primary': '#fe382f',
         'stroke': '#E2E8F0',
         'gray': '#EFF4FB',
         'graydark': '#333A48',
