@@ -7,9 +7,9 @@ import "./footer.css";
 const ClientFooter = () => {
     return (
         <footer> 
-            <div className="bg-primary bg-opacity-80 flex flex-col items-center">
+            <div className="footerContainer bg-[#1c2434] flex flex-col items-center pt-20 pb-20">
                 <h2> Get <span className="text-secondary">in touch</span> </h2>
-                <p className="max-w-2xl text-center"> There are many variations of passages of Lorem Ipsum available, but the majorityhave suffered alteration in some form, by injected humour,available. </p>
+                <p className="max-w-2xl text-center text-white"> There are many variations of passages of Lorem Ipsum available, but the majorityhave suffered alteration in some form, by injected humour,available. </p>
                 <div className="flex w-full justify-between pt-10">
                     <div className="inputFormContainer w-1/3">
                         <h5 className="mb-5 text-[1.5rem]"> Say hello ! </h5>

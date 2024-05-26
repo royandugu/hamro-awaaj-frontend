@@ -13,11 +13,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className='flex h-screen gap-10 xl:gap-20 items-center'>
-            <div className='hidden md:block md:w-1/2 h-screen'>
-                <Image src={DeafBanner} className=' h-full w-full' objectFit='cover' alt='deaf-banner'/>
+        <div className='flex lg:h-screen gap-10 xl:gap-20 justify-center lg:justify-normal items-center'>
+            <div className='lg:h-screen hidden lg:block md:w-1/2'>
+                <Image src={DeafBanner} className=' h-full w-full object-cover' alt='deaf-banner'/>
             </div>
-            <div className="bg-white w-full md:w-1/2 max-w-xl overflow-auto p-10">
+            <div className="bg-white w-full lg:w-1/2 max-w-xl overflow-auto p-5 sm:p-10">
                 {children}
             </div>
         </div>

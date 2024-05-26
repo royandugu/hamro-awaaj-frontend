@@ -2,8 +2,67 @@
     margin-bottom:3rem;
 }
 section{
-    padding-top:2.5rem;
-    padding-bottom: 2.5rem;
-    padding-left:10%;
-    padding-right:10%;
+    padding-left:15%;
+    padding-right:15%;
 }
+
+/* Requires filtering */
+
+h1{
+    font-size: 2rem; 
+}
+h2{
+    font-size:1rem;
+}
+h5{
+    font-size: 1rem;
+} 
+p{
+    font-size: 16px;
+}
+a{
+    font-family: "poppins-regular";
+}
+@media (max-width:400px){
+    .bannerContentContainer{
+        padding-top:30px;
+    }
+    h1{
+        font-size:30px;
+    }
+    p{
+        font-size:15px;
+    }
+}
+@media (min-width:1184px){
+    h1{
+        font-size: 2.5rem; 
+    }
+    h2{
+        font-size:1rem;
+    }
+    h5{
+        font-size: 1rem;
+    } 
+    p{
+        font-size: 16px;
+    }
+    
+}
+@media (min-width:1422px){
+    h1{
+        font-size: 3rem; 
+    }
+    h2{
+        font-size:2rem;
+    }
+    h5{
+        font-size: 1rem;
+    } 
+    p{
+        font-size: 16px;
+    }
+}
+
+
+/* Media queries */

@@ -22,3 +22,10 @@
 .loginButton {
   margin-top: 2.2rem !important;
 }
+
+
+@media (max-width:400px){
+  .fpAndNoAccountContainer>*{
+    font-size:13px;
+  }
+}

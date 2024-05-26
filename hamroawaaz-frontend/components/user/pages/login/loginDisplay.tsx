@@ -92,8 +92,8 @@ const Register = () => {
 
     return (
         <>
-            <h3 className="text-[30px] mb-5 font-bold"> Login your account </h3>
-            <form className="loginAndRegisterForm" onSubmit={registerUser}>
+            <h3 className="text-[30px] mb-5 font-bold text-center sm:text-left"> Login your account </h3>
+            <form className="loginAndRegisterForm" onSubmit={registerUser}> 
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
                         <input type={rd.type === "password" ? passwordShown.password ? "text" : "password" : rd.type} placeholder={rd.placeholder} name={rd.name} className={`${errorDetails[rd.name].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={handleChange} />
@@ -107,13 +107,13 @@ const Register = () => {
                         <IoIosInformationCircle title={errorDetails[rd.name].message !== "" ? errorDetails[rd.name].message : "" ?? ""} size={30} className={`${errorDetails[rd.name].message === "" ? "invisible" : ""} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails[rd.name].error ? 'text-red-500' : ''}`} />
                     </div>
                 ))}
-                <div className="flex items-center gap-3 mt-5 mb-10">
+                <div className="flex items-center gap-3 mt-5 mb-10 rememberMeContainer">
                     <input type="checkbox" className="cursor-pointer" />
                     <h3> Remember me  </h3>
                 </div>
                 <button type="submit" className={`w-full bg-primary opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button>
                 <button type="submit" className={`w-full bg-black opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
-                <div className="flex mt-5 justify-between">
+                <div className="flex mt-5 justify-between fpAndNoAccountContainer">
                     <Link href="/register" className="hover:underline"><h3> Don't have an account ? </h3></Link>
                     <h3 className="hover:underline cursor-pointer"> Forgot password ? </h3>
                 </div>

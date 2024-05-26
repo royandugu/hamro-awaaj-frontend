@@ -132,7 +132,8 @@ const Register = () => {
 
     return (
         <>
-            <h3 className="text-[30px] mb-5 font-bold"> Register your account </h3>
+            <h3 className="text-[30px] mt-5 sm:mt-0 mb-5 font-bold"> Register your account </h3>
+            
             <form className="loginAndRegisterForm" onSubmit={registerUser}>
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
@@ -165,8 +166,8 @@ const Register = () => {
                     <input type="checkbox" className="cursor-pointer" />
                     <h3> I agree all statements in <span className="underline cursor-pointer"> Terms of service </span> </h3>
                 </div>
-                <button type="submit" className={`w-full flex justify-center items-center bg-primary opacity-90 hover:opacity-100 ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'Registered sucesfully, redirecting ...' : 'User registration failed'} </button>
-                <button type="submit" className={`w-full bg-black flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
+                <button type="submit" className={`w-full flex justify-center items-center bg-primary ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : 'opacity-75 hover:opacity-100'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'Registered sucesfully, redirecting ...' : 'User registration failed'} </button>
+                <button type="submit" className={`w-full bg-black flex justify-center items-center ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none':"opacity-75 hover:opacity-100"} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
             </form>
             <Tooltip id="my-tooltip"/>
         

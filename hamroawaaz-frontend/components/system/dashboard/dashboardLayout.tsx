@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import Header from './header';
+
 import Sidebar from './sidebar';
 
 const DashboardLayout = ({
@@ -23,6 +24,7 @@ const DashboardLayout = ({
                 {children}
             </div>
           </main>
+          <footer/>
         </div>
       </div>
     </>
