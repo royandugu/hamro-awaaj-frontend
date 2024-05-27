@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, useState, useEffect, useContext } from "react";
+import { FormEvent, useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
 import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
@@ -41,7 +41,7 @@ const registerData = [
     }
 ]
 
-const Register = () => {
+const Register = ({setPopUpNumber}:{setPopUpNumber:Dispatch<SetStateAction<number>>}) => {
     const [retryPassword, setRetryPassword] = useState("");
     const [formDetails, setFormDetails] = useState({ userName: [""], email: [""], password: [""], fullName: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
@@ -170,7 +170,7 @@ const Register = () => {
                 <button type="submit" className={`w-full bg-black flex justify-center items-center ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none':"opacity-75 hover:opacity-100"} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
             </form>
             <Tooltip id="my-tooltip"/>
-        
+            <p> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={()=>setPopUpNumber(0)}> Login </span> </p>
         </>
     )
 }

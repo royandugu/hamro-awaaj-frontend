@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { FormEvent, useState, useEffect, useContext } from "react";
+import { FormEvent, useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
 import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
@@ -29,7 +29,7 @@ const registerData = [
     }
 ]
 
-const Register = () => {
+const Login = ({setPopUpNumber}:{setPopUpNumber?:Dispatch<SetStateAction<number>>}) => {
     const [formDetails, setFormDetails] = useState({ email: [""], password: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
@@ -113,8 +113,8 @@ const Register = () => {
                 </div>
                 <button type="submit" className={`w-full bg-primary opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'User registered sucesfully' : 'User registration failed'} </button>
                 <button type="submit" className={`w-full bg-black opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
-                <div className="flex mt-5 justify-between fpAndNoAccountContainer">
-                    <Link href="/register" className="hover:underline"><h3> Don't have an account ? </h3></Link>
+                <div className="flex mt-5 mb-5 justify-between fpAndNoAccountContainer">
+                    <h3 className="cursor-pointer hover:underline" onClick={()=>setPopUpNumber ? setPopUpNumber(1) : ''}> Don't have an account ? </h3>
                     <h3 className="hover:underline cursor-pointer"> Forgot password ? </h3>
                 </div>
             </form>
@@ -123,4 +123,4 @@ const Register = () => {
         </>
     )
 }
-export default Register;
+export default Login;

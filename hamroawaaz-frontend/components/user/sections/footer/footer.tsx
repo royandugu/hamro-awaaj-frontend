@@ -6,7 +6,7 @@ import "./footer.css";
 
 const ClientFooter = () => {
     return (
-        <footer> 
+        <footer id="contact"> 
             <div className="footerContainer bg-[#1c2434] flex flex-col items-center pt-20 pb-20">
                 <h2> Get <span className="text-secondary">in touch</span> </h2>
                 <p className="max-w-2xl text-center text-white"> There are many variations of passages of Lorem Ipsum available, but the majorityhave suffered alteration in some form, by injected humour,available. </p>

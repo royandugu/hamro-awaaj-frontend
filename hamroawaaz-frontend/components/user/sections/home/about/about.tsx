@@ -6,7 +6,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const About = () => {
     return (
-        <section className="pt-10 pb-10 sm:pt-20 sm:pb-20 relative overflow-hidden">
+        <section id="about" className="pt-10 pb-10 sm:pt-20 sm:pb-20 relative overflow-hidden">
             <div className="flex justify-center z-1">
                 <div className="max-w-4xl">
                     <h2 className="text-center"> About us </h2>
