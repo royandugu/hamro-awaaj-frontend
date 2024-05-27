@@ -1,68 +1,51 @@
-.normalSection{
-    margin-bottom:3rem;
+.normalSection {
+    margin-bottom: 3rem;
 }
-section{
-    padding-left:15%;
-    padding-right:15%;
+
+section {
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 /* Requires filtering */
 
-h1{
-    font-size: 2rem; 
-}
-h2{
-    font-size:1rem;
-}
-h5{
-    font-size: 1rem;
-} 
-p{
-    font-size: 16px;
+h1 {
+    
+    font-size: 2rem;
 }
 a{
     font-family: "poppins-regular";
 }
-@media (max-width:400px){
-    .bannerContentContainer{
-        padding-top:30px;
+
+@media (max-width:415px) {
+    section{
+        padding-left:8%;
+        padding-right:8%;
     }
-    h1{
-        font-size:30px;
-    }
-    p{
-        font-size:15px;
-    }
-}
-@media (min-width:1184px){
-    h1{
-        font-size: 2.5rem; 
-    }
-    h2{
-        font-size:1rem;
-    }
-    h5{
-        font-size: 1rem;
-    } 
-    p{
-        font-size: 16px;
-    }
-    
-}
-@media (min-width:1422px){
-    h1{
-        font-size: 3rem; 
-    }
-    h2{
-        font-size:2rem;
-    }
-    h5{
-        font-size: 1rem;
-    } 
-    p{
-        font-size: 16px;
+    h1 {
+        font-size:28px;
     }
 }
 
+@media (min-width: 1025px) {
+    p {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1430px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+    p {
+        font-size: 16px;
+    }
+}
 
 /* Media queries */

@@ -10,15 +10,8 @@ const ClientFooter = () => {
             <div className="footerContainer bg-[#1c2434] flex flex-col items-center pt-20 pb-20">
                 <h2> Get <span className="text-secondary">in touch</span> </h2>
                 <p className="max-w-2xl text-center text-white"> There are many variations of passages of Lorem Ipsum available, but the majorityhave suffered alteration in some form, by injected humour,available. </p>
-                <div className="flex w-full justify-between pt-10">
-                    <div className="inputFormContainer w-1/3">
-                        <h5 className="mb-5 text-[1.5rem]"> Say hello ! </h5>
-                        <input type="text" placeholder="Email" /><br />
-                        <input type="password" placeholder="Password" /><br />
-                        <textarea placeholder="Message" />
-                    </div>
-
-                    <div className="w-1/3">
+                <div className="flex w-full justify-center text-center pt-15">
+                    <div>
                         <h5 className="text-[1.5rem]"> Contact us </h5>
                         <div className="flex gap-5 items-center">
                             <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] mt-5 text-white">

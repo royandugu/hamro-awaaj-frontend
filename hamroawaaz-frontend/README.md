@@ -2,6 +2,8 @@ admin
 user
 system -- Common to both like home pag
 
+## To run the project 
+npm run dev
 
 ## Uniforms 
 heading 

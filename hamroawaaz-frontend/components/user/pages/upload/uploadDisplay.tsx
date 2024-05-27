@@ -55,7 +55,7 @@ const UploadDisplay = () => {
     }
 
     return (
-        <section className="h-screen bg-[rgb(220,220,220)] w-screen flex justify-center items-center overflow-clip">
+        <section className="pt-10 pb-10 bg-[rgb(220,220,220)] w-screen flex justify-center items-center overflow-clip">
             <div className="bg-white flex gap-10 rounded shadow-2xl p-10">
                 <div>
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">

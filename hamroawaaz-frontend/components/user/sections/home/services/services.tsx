@@ -1,6 +1,6 @@
 const Services = () => {
     return (
-        <section className="bg-[#eae9ee] pt-20 pb-20">
+        <section className="bg-[#eae9ee] pt-10 pb-10 sm:pt-20 sm:pb-20">
             <div className="flex justify-between">
                 <div>
                     <h2> Services </h2>

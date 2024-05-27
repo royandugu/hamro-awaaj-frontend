@@ -1,5 +1,4 @@
-import ClientHeader from '../../../components/user/sections/header/header'
-import ClientFooter from '../../../components/user/sections/footer/footer'
+import HeaderAndFooterLayout from "../../../components/user/layouts/headerAndFooterLayout"
 
 export default function RootLayout({
     children,
@@ -7,11 +6,8 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <>
-            <ClientHeader />
+        <HeaderAndFooterLayout >
             {children}
-            <ClientFooter/>
-        </>
-
+        </HeaderAndFooterLayout>
     )
 }

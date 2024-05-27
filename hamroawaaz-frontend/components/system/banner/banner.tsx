@@ -15,10 +15,11 @@ type Banner = {
 const Banner = (props: Banner) => {
     return ( 
         <section className="relative bg-[#eae9ee]">
-            <div className="flex justify-between items-center lg:h-[82vh] overflow-hidden">
-                <div className="bannerContentContainer">
+            <div className="flex justify-between items-center overflow-hidden">
+                <div className="bannerContentContainer pt-15 pb-15 sm:pt-20 sm:pb-20 lg:pt-0 lg:pb-0">
                     <h1> Bridging Silence </h1>
-                    <h1><span className="text-primary">With </span>Communication  </h1>
+                    <h1><span className="text-primary lg:whitespace-nowrap">With </span>Communication  </h1>
+                    
                     <p className="max-w-[650px] text-black"> The project ”Hamro Aawaj” addresses the communication challenges faced by individuals with hearing and vocal impairments in Nepal by harnessing the power of hand gesture recognition, text conversion, and speech synthesis technologies. </p>
                     <div className="flex gap-3 mt-10">
                         <Link href="/register"><PrimaryButton text="Register" classes="text-white" /></Link>

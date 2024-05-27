@@ -15,7 +15,6 @@ const HomeDisplay=()=>{
             <Banner title="Home page" route="Some route"/>
             <About/>
             <Services/>
-            <Contact/>
         </main>
     )
 }
