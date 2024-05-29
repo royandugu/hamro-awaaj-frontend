@@ -1,0 +1,23 @@
+footer .footerContainer{
+    padding-left:15%;
+    padding-right:15%;
+}
+footer>*{
+    color:white;
+}
+footer .inputFormContainer input, footer .inputFormContainer textarea{
+    margin-top:10px;
+    background:transparent;
+    border:1px solid white;
+    padding:10px;
+    border-radius:10px;
+    width: 100%;
+}   
+footer .bg-primary .inputFormContainer textarea{
+    height:300px;
+}
+
+section, header, footer{
+    max-width: 2200px;
+    margin: 0 auto;
+}
