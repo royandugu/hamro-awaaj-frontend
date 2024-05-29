@@ -1,10 +1,15 @@
+import ServicesBlob from "../../../../../public/blob.svg";
+import Image from "next/image";
+
 const Services = () => {
     return (
-        <section id="services" className="bg-[#eae9ee] pt-10 pb-10 sm:pt-20 sm:pb-20">
+        <section id="services" className="pt-10 pb-10 sm:pt-20 sm:pb-20">
             <div className="flex justify-between">
                 <div>
                     <h2> Services </h2>
-                    <p className="max-w-203"> We are a passionate group of students driven by the belief that AI holds the key to solving some of humanity's most pressing challenges. Through innovative projects and collaborations, we strive to make a positive impact on the world, one algorithm at a time. Join us on our journey to harness the potential of AI for the greater good. </p>
+                    <div className="flex flex-col lg:flex-row gap-20">
+                        <Image src={ServicesBlob} alt="services-blob" width={500}/>
+                    </div>
                 </div>
             </div>
         </section>

@@ -23,3 +23,7 @@ top-10
 bottom-10
 pl-[20%] just like menu
 pr-[20%] just like menu
+
+## Registered account
+royandugu@gmail.com
+hamroAwaaj@123

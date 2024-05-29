@@ -39,8 +39,8 @@ const HeaderAndFooterLayout = ({ children, isLoggedIn }: { children: ReactNode, 
 
             {/* Pop up section */}
             {popUpNumber !== -1 ? <section className="p-0 flex justify-center items-center">   
-                 <div className="fixed z-99 top-0 sm:top-[30px] overflow-auto">
-                    <div className="bg-white max-h-[100vh] p-5 pt-10 pb-10 sm:p-20 overflow-auto rounded">
+                 <div className="fixed z-99 bottom-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 overflow-auto">
+                    <div className="bg-white max-h-[100vh] p-5 pt-10 pb-10 sm:p-10 overflow-auto rounded">
                         {popUpNumber === 0 ? <Login setPopUpNumber={setPopUpNumber}/> : <Register setPopUpNumber={setPopUpNumber}/>}
                     </div>
                  </div>
