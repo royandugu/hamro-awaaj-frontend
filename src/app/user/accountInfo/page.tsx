@@ -1,7 +1,6 @@
-import AccountInfoDisplay from "../../../../components/user/pages/accountInfo/accountInfoDisplay"
-
+import AccountPage from "../../../../components/system/accountPage/accountPage";
 const Page=()=>{
-    return <AccountInfoDisplay/>
+    return <AccountPage/>
 }
 
 export default Page;
