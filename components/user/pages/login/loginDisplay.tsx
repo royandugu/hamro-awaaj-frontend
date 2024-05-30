@@ -6,6 +6,7 @@ import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import { RxCross1 } from "react-icons/rx";
+import { useRouter } from "next/navigation";
 
 
 import Image from "next/image";
@@ -35,6 +36,8 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
     const [formDetails, setFormDetails] = useState({ email: [""], password: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
+
+    const router=useRouter();
 
     const contextContainer = useContext(context);
 
@@ -79,9 +82,15 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
             }
             const res = await universalJSONPost(body, "loginCustom");
             const jsonResponse=await res?.json();
-            console.log(res);
-            console.log(jsonResponse);
-            if (res?.ok) contextContainer.setLoading(2);
+            
+            if (jsonResponse.response === "SUCCESS") {
+                contextContainer.setLoading(2);
+                if(localStorage) {
+                    localStorage.setItem("refreshToken", jsonResponse?.refreshToken ?? "");
+                    localStorage.setItem("jwt",jsonResponse?.jwt ?? "");
+                }
+                router.push("/user/upload");
+            }
             else contextContainer.setLoading(3);
         }
     }
