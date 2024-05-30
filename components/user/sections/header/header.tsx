@@ -9,7 +9,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
-const ClientHeader = ({ setIsSmallMenuOpen, setPopUpNumber }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, setPopUpNumber?:Dispatch<SetStateAction<number>> }) => {
+const ClientHeader = ({ setIsSmallMenuOpen, setPopUpNumber, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, setPopUpNumber?:Dispatch<SetStateAction<number>>, isLoggedIn?:boolean }) => {
 
     return (
         <>

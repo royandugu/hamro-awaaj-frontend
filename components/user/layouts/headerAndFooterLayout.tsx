@@ -20,7 +20,7 @@ const HeaderAndFooterLayout = ({ children, isLoggedIn }: { children: ReactNode, 
         <>
             {!isSmallMeuOpen ? (
                 <>
-                    <ClientHeader setIsSmallMenuOpen={setIsSmallMenuOpen} setPopUpNumber={setPopUpNumber}/>
+                    <ClientHeader setIsSmallMenuOpen={setIsSmallMenuOpen} setPopUpNumber={setPopUpNumber} isLoggedIn={isLoggedIn}/>
                     {children}
                     <ClientFooter />
                 </>

@@ -3,9 +3,19 @@ import CardTwo from './cards/cardTwo';
 import CardThree from './cards/cardThree';
 import CardFour from './cards/cardFour';
 
-import ChartOne from './charts/chartOne';
-import ChartTwo from './charts/chartTwo';
-import ChartThree from './charts/chartThree';
+import dynamic from 'next/dynamic';
+
+
+const ChartOne = dynamic(() => import('./charts/chartOne'), {
+  ssr: false,
+});
+const ChartTwo = dynamic(() => import('./charts/chartTwo'), {
+  ssr: false,
+});
+const ChartThree = dynamic(() => import('./charts/chartTwo'), {
+  ssr: false,
+});
+
 
 const DashboardDisplay = () => {
   return (
@@ -15,7 +25,7 @@ const DashboardDisplay = () => {
         <CardTwo />
         <CardThree />
         <CardFour />
-      </div>
+      </div> 
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         {(typeof window !== 'undefined') &&

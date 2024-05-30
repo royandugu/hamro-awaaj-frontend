@@ -1,8 +1,6 @@
 "use client"
 
-import dynamic from "next/dynamic";
-
-const DashboardDisplay = dynamic(() => import('../../../../components/system/dashboard/dashboardDisplay'), { ssr: false })
+import DashboardDisplay from "../../../../components/system/dashboard/dashboardDisplay";
 
 const Page=()=>{
     return <DashboardDisplay/>

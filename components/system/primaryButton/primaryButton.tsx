@@ -1,6 +1,6 @@
-const PrimaryButton=({text, customColor, classes}:{text:string, customColor?:string, classes?:string})=>{
+const PrimaryButton=({type,text, customColor, classes}:{type?:"submit" | "reset" | "button" | undefined, text:string, customColor?:string, classes?:string})=>{
     return(
-        <button className={`py-5 px-10 opacity-75 rounded hover:opacity-100 bg-${customColor ?? 'primary text-white'} ${classes} font-bold uppercase`}>{text}</button>
+        <button type={type ?? "submit"} className={`py-5 px-10 opacity-75 rounded hover:opacity-100 uppercase bg-${customColor ?? 'primary text-white'} ${classes} font-bold`}>{text}</button>
     )
 }
 

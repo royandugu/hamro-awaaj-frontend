@@ -78,6 +78,9 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
                 email: formDetails.email[0],
             }
             const res = await universalJSONPost(body, "loginCustom");
+            const jsonResponse=res?.json();
+            console.log(res);
+            console.log(jsonResponse);
             if (res?.ok) contextContainer.setLoading(2);
             else contextContainer.setLoading(3);
         }
