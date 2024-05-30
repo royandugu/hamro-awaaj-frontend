@@ -113,7 +113,7 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
                 email: formDetails.email[0],
                 fullName: formDetails.fullName[0]
             }
-            const res: any = await universalJSONPost(body, "user/register");
+            const res: any = await universalJSONPost(body, "register/user");
             const stringResponse = res.json();
 
             if (res === "SUCCESS") {
