@@ -1,7 +1,3 @@
-"use client"
-
-import DashboardLayout from "./dashboardLayout";
-
 import CardOne from "./cards/cardOne";
 import CardTwo from './cards/cardTwo';
 import CardThree from './cards/cardThree';
@@ -13,7 +9,7 @@ import ChartThree from './charts/chartThree';
 
 const DashboardDisplay = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardOne />
         <CardTwo />
@@ -30,7 +26,7 @@ const DashboardDisplay = () => {
           </>
         }
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

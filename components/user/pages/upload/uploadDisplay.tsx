@@ -10,6 +10,7 @@ import PrimaryButton from "../../../system/primaryButton/primaryButton";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
+import { GrDocumentMissing } from "react-icons/gr";
 
 import "./upload.css";
 
@@ -90,7 +91,7 @@ const UploadDisplay = () => {
                             <Link href={img} target="_blank"><FaArrowRight size={30} className="opacity-50 hover:opacity-100 cursor-pointer" /></Link>
 
                         </div>
-                    )) : <RiFileSearchFill size={150} className="text-[rgb(200,200,200)]" />}
+                    )) : <GrDocumentMissing size={150} className="text-[rgb(200,200,200)]" />}
                 </div>
             </div>
             <FaArrowUp size={30} className="absolute bottom-[10px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" onClick={()=>setShowPopUp(true)}/>
