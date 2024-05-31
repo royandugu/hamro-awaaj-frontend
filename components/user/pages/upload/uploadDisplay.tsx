@@ -46,10 +46,11 @@ const UploadDisplay = () => {
                 formData.append('files', uploadedPictures[i]);
             }
             try {
-                const res = await universalFilePost("getSL", formData);
+                const res = await universalFilePost("getSl", formData);
                 if (res?.ok) {
                     const responseData = await res.text();
                     const boundary = responseData.split('\n')[0].trim();
+
                     console.log("boundry is ", boundary);
                     const parts = responseData.split(boundary);
                     console.log("Parts is ", parts);
