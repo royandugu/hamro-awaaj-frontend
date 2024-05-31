@@ -91,11 +91,11 @@ const UploadDisplay = () => {
                 if (contentType && contentType?.includes('multipart')) {
                     const parts = await parseMultipartResponse(res);
 
-                    const textPart = parts[0];
-                    const audioPart = parts[1];
+                    const audioPart = parts[0];
+                    const textPart = parts[1];
 
-                    console.log(textPart);
-                    console.log(audioPart);
+                    console.log("Text part is ", textPart);
+                    console.log("Audio part is", audioPart);
 
                     const text = await textPart.text();
                     contextContainer.setText(text);
