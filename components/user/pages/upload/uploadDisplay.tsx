@@ -38,39 +38,6 @@ const UploadDisplay = () => {
         return text;
     };
 
-    const parseMultipartResponse = async (response: any) => {
-        const contentType = response.headers.get('Content-Type');
-        const boundary = contentType.split('boundary=')[1];
-        const reader = response.body.getReader();
-
-        let done = false;
-        let currentPart = '';
-        let parts = [];
-
-        while (!done) {
-            const { value, done: readerDone } = await reader.read();
-            done = readerDone;
-
-            const chunk = new TextDecoder('utf-8').decode(value);
-            currentPart += chunk;
-
-            let boundaryIndex = currentPart.indexOf(`--${boundary}`);
-            while (boundaryIndex !== -1) {
-                const part = currentPart.slice(0, boundaryIndex);
-                parts.push(new Response(part, { headers: { 'Content-Type': 'text/plain' } }));
-
-                currentPart = currentPart.slice(boundaryIndex);
-                const nextBoundaryIndex = currentPart.indexOf(`--${boundary}`, 2);
-                if (nextBoundaryIndex === -1) {
-                    break;
-                }
-                currentPart = currentPart.slice(nextBoundaryIndex);
-                boundaryIndex = currentPart.indexOf(`--${boundary}`);
-            }
-        }
-
-        return parts;
-    };
 
     const submitImages = async () => {
         if (uploadedPictures.length > 0) {
