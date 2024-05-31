@@ -24,7 +24,7 @@ const UploadDisplay = () => {
     const [showPopUp, setShowPopUp] = useState(false);
     const contextContainer = useContext(context);
 
-    const router=useRouter();
+    const router = useRouter();
 
     useEffect(() => {
         contextContainer.setLoading(1);
@@ -81,37 +81,32 @@ const UploadDisplay = () => {
             }
             try {
                 const res = await universalFilePost("getSL", formData);
-                if (!res?.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (res?.ok) {
+                    const responseData = await res.text();
+                    const boundary = responseData.split('\n')[0].trim();
+                    console.log("boundry is ", boundary);
+                    const parts = responseData.split(boundary);
+                    console.log("Parts is ", parts);
+                    parts.forEach(part => {
+                        if (part.includes('filename="audio.wav"')) {
+                            const audioData = part.split('\r\n\r\n')[1].trim();
+                            const audioBlob = new Blob([audioData], { type: 'audio/wav' });
+                            console.log("audio is",audioBlob)
+                            const audioUrl = URL.createObjectURL(audioBlob);
+                            console.log("audio url is",audioUrl)
+                            contextContainer.setAudio(audioUrl);
+                        } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                            const textData = part.split('\r\n\r\n')[1].trim();
+                            console.log("textData is",textData);
+                            contextContainer.setText(textData);
+                        }
+                    });
+                    router.push("/user/output")
 
-                const contentType = res?.headers.get('Content-Type');
-                console.log("is content type",contentType);
-                console.log("contains multipart",contentType?.includes('multipart'))
-                if (contentType && contentType?.includes('multipart')) {
-                    const parts = await parseMultipartResponse(res);
-
-                    const audioPart = parts[0];
-                    const textPart = parts[1];
-
-                    console.log("Text part is ", textPart);
-                    console.log("Audio part is", audioPart);
-
-                    const text = await textPart.text();
-                    contextContainer.setText(text);
-
-                    const audioBlob = await audioPart.blob();
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    contextContainer.setAudio(audioUrl);
-
-                    
-                    
-                    router.push("/user/output");
                 }
             }
             catch (err) {
-                console.log("error is");
-                console.log(err);
+                console.log(err)
             }
 
         }
