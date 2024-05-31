@@ -22,8 +22,7 @@ const Banner = (props: Banner) => {
                     
                     <p className="max-w-[650px] text-black"> The project ”Hamro Aawaj” addresses the communication challenges faced by individuals with hearing and vocal impairments in Nepal by harnessing the power of hand gesture recognition, text conversion, and speech synthesis technologies. </p>
                     <div className="flex flex-col lg:flex-row gap-3 mt-10">
-                        <Link href="/register"><PrimaryButton text="Our&nbsp;Services" classes="text-white w-full lg:w-auto" /></Link>
-                        <Link href="/login"><PrimaryButton text="Guest&nbsp;login" customColor="black" classes="text-white w-full lg:w-auto" /></Link>
+                        <Link href="#services"><PrimaryButton text="Our&nbsp;Services" classes="text-white w-full lg:w-auto" /></Link>
                     </div>
                 </div>
                 <div className="relative hidden h-full lg:block xl:pb-20 pt-20">

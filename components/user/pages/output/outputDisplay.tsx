@@ -1,3 +1,5 @@
+"use client"
+import { useRef, useEffect } from "react";
 import { IoVolumeHigh } from "react-icons/io5";
 import { FaPlay } from "react-icons/fa6";
 import OutputBlob from "../../../../public/outputDisplayBlob.svg";
@@ -5,8 +7,15 @@ import OutputBlob2 from "../../../../public/outputDisplayBlob2.svg";
 import { FaPlayCircle } from "react-icons/fa";
 import Image from "next/image";
 import PrimaryButton from "../../../system/primaryButton/primaryButton";
+import { useContext } from "react";
+import context from "../../../system/context/context";
 
 const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
+    const contextContainer=useContext(context);
+
+    console.log("context is below")
+    console.log(contextContainer);
+
     return (
         <>
             <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 ${noMaxWidth ? '':'max-w-screen-2xl'}`}>
@@ -25,10 +34,11 @@ const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
 
                     <div className="border-[1px] border-[#eae9ee] shadow-2xl bg-opacity-50 p-8 rounded mt-10 lg:mt-0 lg:w-1/2">
                         <div className="h-[200px] overflow-auto">
-                            <p className="mt-0"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit porro cumque quod quo, ullam laboriosam odio aliquam, excepturi impedit consequatur pariatur. Obcaecati optio cumque ipsa consequuntur nobis! Optio, minus explicabo! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit porro cumque quod quo, ullam laboriosam odio aliquam, excepturi impedit consequatur pariatur. Obcaecati optio cumque ipsa consequuntur nobis! </p>
+                            <p className="mt-0"> {contextContainer.text} </p>
                         </div>
                         <div className="border-t-[2px] border-[#eae9ee] mt-5 pt-5">
-                            <audio controls className="rounded w-full" />
+                            <audio src={contextContainer.audio} controls className="rounded w-full">
+                            </audio>
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ const UploadDisplay = () => {
     const [uploadedPicturesDisplay, setUploadedPicturesDisplay] = useState<string[]>([]);
     const [showPopUp, setShowPopUp] = useState(false);
     const contextContainer=useContext(context);
+    
 
     useEffect(()=>{
         contextContainer.setLoading(1);
@@ -44,7 +45,15 @@ const UploadDisplay = () => {
             }
             const res=await universalFilePost("getSL",formData);
             const jsonRes=await res?.json();
-            console.log(res);
+            console.log("response is",res);
+            console.log("Json response is",jsonRes);
+            const audioData = jsonRes.audio;
+            const textData = jsonRes.text;
+            const audioBlob = new Blob([audioData], { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            contextContainer.setAudio(audioUrl);
+            contextContainer.setText(textData);
+            
         }
     }
 

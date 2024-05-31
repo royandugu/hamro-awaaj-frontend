@@ -22,6 +22,10 @@ const DetailsFetcher = ({ children }: { children: ReactNode }) => {
             contextContainer.setUserDetails(jsonResponse);
             setLoading(false);
         }
+        else if (jsonResponse?.role && jsonResponse?.role === "ADMIN") {
+            contextContainer.setUserDetails(jsonResponse);
+            router.push("/admin/dashboard");
+        }
         else router.push("/");
     }
 

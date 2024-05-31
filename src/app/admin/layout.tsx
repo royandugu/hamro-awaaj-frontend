@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import DashboardLayout from '../../../components/system/dashboard/dashboardLayout'
+import AdminValidator from '../../../components/admin/validator/validator'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,9 +17,11 @@ export default function RootLayout({
 }) {
     return (
         <main>
-            <DashboardLayout>
-                {children}
-            </DashboardLayout>
+            <AdminValidator>
+                <DashboardLayout>
+                    {children}
+                </DashboardLayout>
+            </AdminValidator>
         </main>
     )
 }
