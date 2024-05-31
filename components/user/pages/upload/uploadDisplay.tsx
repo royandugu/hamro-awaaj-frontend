@@ -44,7 +44,9 @@ const UploadDisplay = () => {
                 formData.append('files', uploadedPictures[i]);
             }
             const res=await universalFilePost("getSL",formData);
+            console.log("Break point one");
             const jsonRes=await res?.json();
+            console.log("Break point two");
             console.log("response is",res);
             console.log("Json response is",jsonRes);
             const audioData = jsonRes.audio;
