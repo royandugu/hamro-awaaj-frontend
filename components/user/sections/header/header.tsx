@@ -24,18 +24,34 @@ const ClientHeader = ({ setIsSmallMenuOpen, setPopUpNumber, isLoggedIn }: { setI
                 <div className="py-4 flex bg-white justify-center">
                     <h2> Hamro <span className="text-[#ff9c85]">Awaaj</span> </h2>
                 </div>
-                <div className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
+                {!isLoggedIn ? <div className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
                     <Link href="#hero" className="mt-0 hover:text-primary"> Home </Link>
                     <Link href="#about" className="mt-0 hover:text-primary"> About </Link>
-                    <Link href="#services" className="mt-0 hover:text-primary"> Services </Link>
                     <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
-                    <Link href="#" className="mt-0 hover:text-primary"> 
-                        <div className="flex gap-2 items-center" onClick={()=>setPopUpNumber ? setPopUpNumber(0) : ''}>
+                    <Link href="#services" className="mt-0 hover:text-primary"> Services </Link>
+                    <Link href="" className="mt-0 hover:text-primary"> 
+                        <div className="flex gap-2 items-center" onClick={(e)=>{
+                            e.preventDefault();
+                            setPopUpNumber ? setPopUpNumber(0) : ''
+                        }}>
                             <FaRegUserCircle/>
                             Account 
                         </div>
                     </Link>
-                </div>
+                </div> : 
+                    <div className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
+                    <Link href="/user/upload" className="mt-0 hover:text-primary"> Upload </Link>
+                    <Link href="/user/realTime" className="mt-0 hover:text-primary"> Realtime </Link>
+                    <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
+                    <Link href="/user/accountInfo" className="mt-0 hover:text-primary"> 
+                        <div className="flex gap-2 items-center">
+                            <FaRegUserCircle/>
+                            Account 
+                        </div>
+                    </Link>
+                    
+                </div> 
+                }
 
                 <div className="md:hidden w-full py-3 px-5 border-t-[2px] border-[#e7e7e7] cursor-pointer" onClick={() => setIsSmallMenuOpen ? setIsSmallMenuOpen(true) : ""}>
                     <RxHamburgerMenu size={30} />

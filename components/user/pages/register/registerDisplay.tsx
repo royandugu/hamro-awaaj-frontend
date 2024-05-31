@@ -55,6 +55,7 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
     const validateForm = () => {
 
         const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
         let noMistakes = true;
 
         if (formDetails.fullName[0] === "") {
@@ -78,11 +79,11 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
                 email: { error: true, message: "You must enter your email" }
             }));
         }
-        if (formDetails.password[0] === "") {
+        if (formDetails.password[0] === "" || formDetails.password[0].length<8) {
             noMistakes = false;
             setErrorDetails((prevState: any) => ({
                 ...prevState,
-                password: { error: true, message: "Make sure your password contains a capital letter, a small letter, a number and special symbols reaching minimum of 8 characters" }
+                password: { error: true, message: "Make sure your passwords have minimum of 8 characters" }
             }));
         }
         if (formDetails.userName[0] === "") {
@@ -114,18 +115,15 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
                 fullName: formDetails.fullName[0]
             }
             const res: any = await universalJSONPost(body, "register/user");
-            const stringResponse = res.json();
+            const jsonResponse = await res.json();
 
-            if (res === "SUCCESS") {
-                router.push("/user/upload");
-                contextContainer.setLoading(2);
+            
+            if (jsonResponse === "SUCCESS") {
+                setPopUpNumber ? setPopUpNumber(0) : "";
+                contextContainer.setLoading(1);
             }
             else contextContainer.setLoading(3);
-            // if (res?.ok) {
-            //     router.push("/user/upload");
-            //     contextContainer.setLoading(2);
-            // }
-            //else contextContainer.setLoading(3);
+            
         }
     }
 

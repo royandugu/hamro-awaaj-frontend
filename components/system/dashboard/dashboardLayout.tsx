@@ -15,17 +15,15 @@ const DashboardLayout = ({
   const [loading, setLoading] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    if (typeof localStorage !== undefined) {
-      const jwt = localStorage.getItem("jwt");
-      if(jwt && jwt.length>0) setLoading(2);
-      else setLoading(1); 
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (typeof localStorage !== undefined) {
+  //     const jwt = localStorage.getItem("jwt");
+  //     if(jwt && jwt.length>0) setLoading(2);
+  //     else setLoading(1); 
+  //   }
+  // }, [])
 
-  if (loading === 0) return <h5> Spinner </h5>
-  else if (loading === 1) return <h5> You are not authenticated </h5>
-  else {
+  
     return (
       <>
         <div className="flex h-screen overflow-hidden">
@@ -43,6 +41,6 @@ const DashboardLayout = ({
       </>
     );
   }
-};
+
 
 export default DashboardLayout;

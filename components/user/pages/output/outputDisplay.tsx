@@ -6,10 +6,10 @@ import { FaPlayCircle } from "react-icons/fa";
 import Image from "next/image";
 import PrimaryButton from "../../../system/primaryButton/primaryButton";
 
-const OutputDisplay = () => {
+const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
     return (
         <>
-            <section className=" pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 max-w-screen-2xl">
+            <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 ${noMaxWidth ? '':'max-w-screen-2xl'}`}>
                 {/* <div className="">
                 <Image src={OutputBlob2} alt="output-blob" width={500} className="absolute top-0 left-[100px]"/>
             

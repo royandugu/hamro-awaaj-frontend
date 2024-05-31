@@ -3,7 +3,7 @@ import OutputDisplay from "../../../../components/user/pages/output/outputDispla
 
 const Page = () => {
     return (
-        <HeaderAndFooterLayout>
+        <HeaderAndFooterLayout isLoggedIn>
             <OutputDisplay />
         </HeaderAndFooterLayout>
     )

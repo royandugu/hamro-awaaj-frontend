@@ -1,14 +1,11 @@
 "use client"
 
-import Link from "next/link";
 import { FormEvent, useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
 import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import { RxCross1 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
-
-
 import Image from "next/image";
 
 import GoogleIcon from "../../../../public/Google_Icons-09-512.webp";
@@ -19,7 +16,7 @@ import context from "../../../system/context/context";
 
 import "../../user.css";
 
-const registerData = [
+const registerData = [ 
     {
         placeholder: "Enter your Email",
         name: "email",
@@ -73,9 +70,10 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
 
 
     const loginUser = async (e: FormEvent) => {
+        contextContainer.setLoading(0);
+            
         e.preventDefault();
         if (validateForm()) {
-            contextContainer.setLoading(0);
             const body = {
                 password: formDetails.password[0],
                 email: formDetails.email[0],
@@ -102,7 +100,7 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
 
     useEffect(() => {
         contextContainer.setLoading(1);
-    }, [contextContainer])
+    }, [])
 
     return (
         <>

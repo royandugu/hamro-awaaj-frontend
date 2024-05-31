@@ -3,7 +3,7 @@
 import { FaFileImage } from "react-icons/fa6";
 import { IoCloudUploadOutline } from "react-icons/io5"
 import { MdDelete } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChangeEvent } from "react";
 import { RiFileSearchFill } from "react-icons/ri";
 import PrimaryButton from "../../../system/primaryButton/primaryButton";
@@ -11,6 +11,9 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import { GrDocumentMissing } from "react-icons/gr";
+import { universalFilePost } from "../../../system/api/apiCallers";
+import context from "../../../system/context/context";
+import { useContext } from "react";
 
 import "./upload.css";
 
@@ -18,6 +21,11 @@ const UploadDisplay = () => {
     const [uploadedPictures, setUploadedPictures] = useState<File[]>([])
     const [uploadedPicturesDisplay, setUploadedPicturesDisplay] = useState<string[]>([]);
     const [showPopUp, setShowPopUp] = useState(false);
+    const contextContainer=useContext(context);
+
+    useEffect(()=>{
+        contextContainer.setLoading(1);
+    },[])
 
     const trimText = (text: string, trimLimit:number) => {
         // Ensure the text is at least 10 characters
@@ -26,6 +34,19 @@ const UploadDisplay = () => {
         }
         return text;
     };
+
+    const submitImages=async ()=>{
+        if(uploadedPictures.length>0){
+            contextContainer.setLoading(0);
+            const formData=new FormData();
+            for (let i = 0; i < uploadedPictures.length; i++) {
+                formData.append('files', uploadedPictures[i]);
+            }
+            const res=await universalFilePost("getSL",formData);
+            const jsonRes=await res?.json();
+            console.log(res);
+        }
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files;
@@ -56,8 +77,8 @@ const UploadDisplay = () => {
     }
 
     return (
-        <section className="pt-10 pb-10 bg-[rgb(220,220,220)] w-screen flex justify-center items-center overflow-clip">
-            <div className="bg-white flex gap-10 rounded shadow-2xl p-10">
+        <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
+            <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
                 <div>
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">
                         <input type="file" accept="image/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
@@ -67,7 +88,7 @@ const UploadDisplay = () => {
                     </div>
                     <div>
 
-                        <div className="mt-10 rounded-2xl bg-[rgb(240,240,240)] p-5 flex justify-between items-center">
+                        <div className="mt-10 rounded bg-[rgb(240,240,240)] p-5 flex justify-between items-center">
                             <FaFileImage size={30} />
                             <div className="flex gap-5 items-center">
                                 <p className="mt-0 hidden sm:block"> {uploadedPicturesDisplay.length === 0 ? "- No files selected -" : `- ${uploadedPicturesDisplay.length} ${uploadedPicturesDisplay.length === 1 ? 'picture' : 'pictures'} selected -`}  </p>
@@ -79,13 +100,13 @@ const UploadDisplay = () => {
                         </div>
 
                     </div>
-                    <div className="flex justify-center mt-10">
-                        <PrimaryButton text="Submit" customColor="[#1c2434]" classes={`text-white ${uploadedPicturesDisplay.length === 0 ? "opacity-50 pointer-events-none cursor-pointer" : ""}`} />
+                    <div className="flex justify-center mt-5">
+                        <div className="w-full" onClick={submitImages}><button type="submit" className={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} bg-[#1c2434] opacity-75 hover:opacity-100 ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? 'Submit' : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </button></div>
                     </div>
                 </div>
                 <div className={`hidden lg:flex flex-col items-center ${uploadedPicturesDisplay.length > 0 ? '' : 'p-30 items-center'} max-w-[390px]`}>
                     {uploadedPicturesDisplay.length > 0 ? uploadedPicturesDisplay.map((img, index) => (
-                        <div key={index} className={`${index > 0 ? 'mt-2' : ''} rounded-2xl h-[70px] min-w-[400px] bg-[rgb(240,240,240)] p-5 flex justify-between items-center relative`}>
+                        <div key={index} className={`${index > 0 ? 'mt-2' : ''} rounded h-[70px] min-w-[400px] bg-[rgb(240,240,240)] p-5 flex justify-between items-center relative`}>
                             <MdDelete size={30} className="hover:text-red-400 cursor-pointer" onClick={() => deleteImage(index)} />
                             <p className="mt-0"> {trimText(uploadedPictures[index]?.name, 20)}  </p>
                             <Link href={img} target="_blank"><FaArrowRight size={30} className="opacity-50 hover:opacity-100 cursor-pointer" /></Link>
@@ -94,10 +115,10 @@ const UploadDisplay = () => {
                     )) : <GrDocumentMissing size={150} className="text-[rgb(200,200,200)]" />}
                 </div>
             </div>
-            <FaArrowUp size={30} className="absolute bottom-[10px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" onClick={()=>setShowPopUp(true)}/>
+            <FaArrowUp size={30} className="absolute bottom-[60px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" onClick={()=>setShowPopUp(true)}/>
             <div className={`smallScreenImagesPopUp rounded block bg-white z-9 lg:hidden ${showPopUp ? 'active' : ''}`}>
                 {uploadedPicturesDisplay.length > 0 ? uploadedPicturesDisplay.map((img, index) => (
-                    <div key={index} className={`${index > 0 ? 'mt-2' : ''} rounded-2xl h-[70px] bg-[rgb(240,240,240)] p-5 flex justify-between items-center relative`}>
+                    <div key={index} className={`${index > 0 ? 'mt-2' : ''} rounded h-[70px] bg-[rgb(240,240,240)] p-5 flex justify-between items-center relative`}>
                         <MdDelete size={30} className="hover:text-red-400 cursor-pointer" onClick={() => deleteImage(index)} />
                         <p className="mt-0 text-[14px]"> {trimText(uploadedPictures[index]?.name,10)}  </p>
                         <Link href={img} target="_blank"><FaArrowRight size={30} className="opacity-50 hover:opacity-100 cursor-pointer" /></Link>

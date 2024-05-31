@@ -1,3 +1,4 @@
+import LoggedInNavigator from "../../../components/system/loggedInNavigator/loggedInNavigator"
 import HeaderAndFooterLayout from "../../../components/user/layouts/headerAndFooterLayout"
 
 /* 
@@ -19,8 +20,12 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <HeaderAndFooterLayout >
-            {children}
-        </HeaderAndFooterLayout>
+        <LoggedInNavigator>
+
+            <HeaderAndFooterLayout >
+                {children}
+            </HeaderAndFooterLayout>
+        </LoggedInNavigator>
+
     )
 }

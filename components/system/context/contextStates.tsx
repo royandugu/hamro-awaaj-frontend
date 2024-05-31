@@ -6,10 +6,13 @@ import Context from "./context";
 
 const ContextState=(props:any)=>{
     const [loading,setLoading]=useState(1);
+    const [userDetails,setUserDetails]=useState<{email:string,username:string,fullName:string,role:string} | null>(null);
 
     const collection={
         loading:loading,
-        setLoading:setLoading
+        setLoading:setLoading,
+        userDetails:userDetails,
+        setUserDetails:setUserDetails
     }
 
     return(
