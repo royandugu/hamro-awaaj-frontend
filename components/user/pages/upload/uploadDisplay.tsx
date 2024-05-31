@@ -14,6 +14,7 @@ import { GrDocumentMissing } from "react-icons/gr";
 import { universalFilePost } from "../../../system/api/apiCallers";
 import context from "../../../system/context/context";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 import "./upload.css";
 
@@ -21,14 +22,15 @@ const UploadDisplay = () => {
     const [uploadedPictures, setUploadedPictures] = useState<File[]>([])
     const [uploadedPicturesDisplay, setUploadedPicturesDisplay] = useState<string[]>([]);
     const [showPopUp, setShowPopUp] = useState(false);
-    const contextContainer=useContext(context);
-    
+    const contextContainer = useContext(context);
 
-    useEffect(()=>{
+    const router=useRouter();
+
+    useEffect(() => {
         contextContainer.setLoading(1);
-    },[])
+    }, [])
 
-    const trimText = (text: string, trimLimit:number) => {
+    const trimText = (text: string, trimLimit: number) => {
         // Ensure the text is at least 10 characters
         if (text.length > 10) {
             return text.slice(0, trimLimit) + "..";
@@ -36,26 +38,82 @@ const UploadDisplay = () => {
         return text;
     };
 
-    const submitImages=async ()=>{
-        if(uploadedPictures.length>0){
+    const parseMultipartResponse = async (response: any) => {
+        const contentType = response.headers.get('Content-Type');
+        const boundary = contentType.split('boundary=')[1];
+        const reader = response.body.getReader();
+
+        let done = false;
+        let currentPart = '';
+        let parts = [];
+
+        while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            done = readerDone;
+
+            const chunk = new TextDecoder('utf-8').decode(value);
+            currentPart += chunk;
+
+            let boundaryIndex = currentPart.indexOf(`--${boundary}`);
+            while (boundaryIndex !== -1) {
+                const part = currentPart.slice(0, boundaryIndex);
+                parts.push(new Response(part, { headers: { 'Content-Type': 'text/plain' } }));
+
+                currentPart = currentPart.slice(boundaryIndex);
+                const nextBoundaryIndex = currentPart.indexOf(`--${boundary}`, 2);
+                if (nextBoundaryIndex === -1) {
+                    break;
+                }
+                currentPart = currentPart.slice(nextBoundaryIndex);
+                boundaryIndex = currentPart.indexOf(`--${boundary}`);
+            }
+        }
+
+        return parts;
+    };
+
+    const submitImages = async () => {
+        if (uploadedPictures.length > 0) {
             contextContainer.setLoading(0);
-            const formData=new FormData();
+            const formData = new FormData();
             for (let i = 0; i < uploadedPictures.length; i++) {
                 formData.append('files', uploadedPictures[i]);
             }
-            const res=await universalFilePost("getSL",formData);
-            console.log("Break point one");
-            const jsonRes=await res?.json();
-            console.log("Break point two");
-            console.log("response is",res);
-            console.log("Json response is",jsonRes);
-            const audioData = jsonRes.audio;
-            const textData = jsonRes.text;
-            const audioBlob = new Blob([audioData], { type: 'audio/wav' });
-            const audioUrl = URL.createObjectURL(audioBlob);
-            contextContainer.setAudio(audioUrl);
-            contextContainer.setText(textData);
-            
+            try {
+                const res = await universalFilePost("getSL", formData);
+                if (!res?.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const contentType = res?.headers.get('Content-Type');
+                console.log("is content type",contentType);
+                console.log("contains multipart",contentType?.includes('multipart'))
+                if (contentType && contentType?.includes('multipart')) {
+                    const parts = await parseMultipartResponse(res);
+
+                    const textPart = parts[0];
+                    const audioPart = parts[1];
+
+                    console.log(textPart);
+                    console.log(audioPart);
+
+                    const text = await textPart.text();
+                    contextContainer.setText(text);
+
+                    const audioBlob = await audioPart.blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    contextContainer.setAudio(audioUrl);
+
+                    
+                    
+                    router.push("/user/output");
+                }
+            }
+            catch (err) {
+                console.log("error is");
+                console.log(err);
+            }
+
         }
     }
 
@@ -126,18 +184,18 @@ const UploadDisplay = () => {
                     )) : <GrDocumentMissing size={150} className="text-[rgb(200,200,200)]" />}
                 </div>
             </div>
-            <FaArrowUp size={30} className="absolute bottom-[60px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" onClick={()=>setShowPopUp(true)}/>
+            <FaArrowUp size={30} className="absolute bottom-[60px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" onClick={() => setShowPopUp(true)} />
             <div className={`smallScreenImagesPopUp rounded block bg-white z-9 lg:hidden ${showPopUp ? 'active' : ''}`}>
                 {uploadedPicturesDisplay.length > 0 ? uploadedPicturesDisplay.map((img, index) => (
                     <div key={index} className={`${index > 0 ? 'mt-2' : ''} rounded h-[70px] bg-[rgb(240,240,240)] p-5 flex justify-between items-center relative`}>
                         <MdDelete size={30} className="hover:text-red-400 cursor-pointer" onClick={() => deleteImage(index)} />
-                        <p className="mt-0 text-[14px]"> {trimText(uploadedPictures[index]?.name,10)}  </p>
+                        <p className="mt-0 text-[14px]"> {trimText(uploadedPictures[index]?.name, 10)}  </p>
                         <Link href={img} target="_blank"><FaArrowRight size={30} className="opacity-50 hover:opacity-100 cursor-pointer" /></Link>
 
                     </div>
                 )) : <RiFileSearchFill size={150} className="text-[rgb(200,200,200)]" />}
             </div>
-            <div className={`fixed top-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,.7)] ${showPopUp ? 'block' : 'hidden'}`} onClick={()=>setShowPopUp(false)}/>
+            <div className={`fixed top-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,.7)] ${showPopUp ? 'block' : 'hidden'}`} onClick={() => setShowPopUp(false)} />
         </section>
     )
 }
