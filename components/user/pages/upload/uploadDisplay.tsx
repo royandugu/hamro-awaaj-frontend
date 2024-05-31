@@ -38,7 +38,6 @@ const UploadDisplay = () => {
         return text;
     };
 
-
     const submitImages = async () => {
         if (uploadedPictures.length > 0) {
             contextContainer.setLoading(0);

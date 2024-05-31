@@ -16,6 +16,24 @@ const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
     console.log("context is below")
     console.log(contextContainer);
 
+    const downloadAudio = () => {
+        const anchor = document.createElement('a');
+        anchor.href = contextContainer.audio;
+        anchor.download = 'audio.wav';
+        anchor.click();
+    };
+
+    const downloadText = () => {
+        const textBlob = new Blob([contextContainer.text], { type: 'text/plain' });
+        const textUrl = URL.createObjectURL(textBlob);
+        const a = document.createElement('a');
+        a.href = textUrl;
+        a.download = 'transcript.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+
     return (
         <>
             <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 ${noMaxWidth ? '':'max-w-screen-2xl'}`}>
@@ -43,7 +61,10 @@ const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
                     </div>
                 </div>
                 <div className="bg-[#eae9ee] rounded p-10 mt-10">
-                    <PrimaryButton text="Download Transcript"/>
+                    <div onClick={()=>{
+                        downloadAudio();
+                        downloadText();
+                    }}><PrimaryButton text="Download Transcript"/></div>
                 </div>
 
             </section>
