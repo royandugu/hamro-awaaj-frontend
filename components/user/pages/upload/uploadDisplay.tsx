@@ -6,7 +6,6 @@ import { MdDelete } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { ChangeEvent } from "react";
 import { RiFileSearchFill } from "react-icons/ri";
-import PrimaryButton from "../../../system/primaryButton/primaryButton";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
@@ -57,6 +56,8 @@ const UploadDisplay = () => {
                     parts.forEach(part => {
                         if (part.includes('filename="audio.wav"')) {
                             const audioData = part.split('\r\n\r\n')[1].trim();
+                            console.log("Audio header is ", part.split('\r\n\r\n')[0].trim())
+                            console.log("Audio body is", part.split('\r\n\r\n')[1].trim())
                             const audioBlob = new Blob([audioData], { type: 'audio/wav' });
                             console.log("audio is",audioBlob)
                             const audioUrl = URL.createObjectURL(audioBlob);
