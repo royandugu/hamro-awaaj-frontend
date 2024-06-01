@@ -24,7 +24,7 @@ const LoggedInNavigator = ({ children }: { children: ReactNode }) => {
                 router.push("/admin/dashboard");
             }
         }
-        else router.push("/");
+        else setLoading(false);
     }
 
     useEffect(() => {

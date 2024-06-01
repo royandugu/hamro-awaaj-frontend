@@ -45,30 +45,47 @@ const UploadDisplay = () => {
                 formData.append('files', uploadedPictures[i]);
             }
             try {
-                const res = await universalFilePost("getSl", formData);
+                const res = await universalFilePost("getSLTest", formData);
+                console.log(res);
                 if (res?.ok) {
-                    const responseData = await res.text();
-                    const boundary = responseData.split('\n')[0].trim();
-
-                    console.log("boundry is ", boundary);
-                    const parts = responseData.split(boundary);
-                    console.log("Parts is ", parts);
-                    parts.forEach(part => {
-                        if (part.includes('filename="audio.wav"')) {
-                            const audioData = part.split('\r\n\r\n')[1].trim();
-                            console.log("Audio header is ", part.split('\r\n\r\n')[0].trim())
-                            console.log("Audio body is", part.split('\r\n\r\n')[1].trim())
-                            const audioBlob = new Blob([audioData], { type: 'audio/wav' });
-                            console.log("audio is",audioBlob)
-                            const audioUrl = URL.createObjectURL(audioBlob);
-                            console.log("audio url is",audioUrl)
-                            contextContainer.setAudio(audioUrl);
-                        } else if (part.includes('Content-Disposition: form-data; name="text"')) {
-                            const textData = part.split('\r\n\r\n')[1].trim();
-                            console.log("textData is",textData);
-                            contextContainer.setText(textData);
-                        }
-                    });
+                    const data = await res.json();
+                    
+                    contextContainer.setText(data.text);
+                    // const responseData = await res.text();
+                    // const boundary = responseData.split('\n')[0].trim();
+                    const base64Audio = data.audio;
+                    console.log("base 64 audio is",base64Audio);
+                    const binaryString = atob(base64Audio);
+                    console.log("binary string is ",binaryString);
+                    const len = binaryString.length;
+                    const bytes = new Uint8Array(len);
+                    for (let i = 0; i < len; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    const audioBuffer = bytes.buffer;
+                     // Create a Blob and Object URL
+                    const blob = new Blob([audioBuffer], { type: data.contentType });
+                    
+                    
+                    const url = URL.createObjectURL(blob);
+                     // Set the audio URL state
+                    contextContainer.setAudio(url);
+                    // const parts = responseData.split(boundary);
+                    // console.log("Parts is ", parts);
+                    // parts.forEach(part => {
+                    //     if (part.includes('filename="audio.wav"')) {
+                    //         const audioData = part.split('\r\n\r\n')[1].trim();
+                        
+                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+                    //         console.log(audioBlob);
+                    //         const audioUrl = URL.createObjectURL(audioBlob);
+                    //         contextContainer.setAudio(audioUrl);
+                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                    //         const textData = part.split('\r\n\r\n')[1].trim();
+                    //         console.log("textData is",textData);
+                    //         contextContainer.setText(textData);
+                    //     }
+                    // });
                     router.push("/user/output")
 
                 }

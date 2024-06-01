@@ -46,7 +46,7 @@ const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
                 <div className="flex flex-col lg:flex-row mt-5">
                     <div className="lg:w-1/3 flex-1 lg:pr-10 flex-grow">
                         <h2> Your Generated Output: </h2>
-                        <p className="text-[#808191]"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, qui dolor commodi exercitationem, nesciunt laborum cupiditate enim necessitatibus, ut ipsa ratione vitae facere nisi! Error porro ducimus temporibus eius explicabo. </p>
+                        <p className="text-[#808191]"> This is the generated text and audio by our model. Feel free to download the transcript .. </p>
 
                     </div>
 
