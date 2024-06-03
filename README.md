@@ -102,3 +102,5 @@ royandugu
   "email":"jenish@gmail.com",
   "password":"jennyBa@123"
 }
+
+royan@gmail.com
