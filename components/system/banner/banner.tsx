@@ -7,12 +7,7 @@ import Symbol from "../../../public/Designer.png";
 
 import "./banner.css";
 
-type Banner = {
-    title: string,
-    route: string
-}
-
-const Banner = (props: Banner) => {
+const Banner = () => {
     return ( 
         <section id="hero" className="relative bg-[#eae9ee]">
             <div className="flex justify-between items-center overflow-hidden">

@@ -8,8 +8,11 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import context from "../../../system/context/context";
+import { useContext } from "react";
 
-const ClientHeader = ({ setIsSmallMenuOpen, setPopUpNumber, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, setPopUpNumber?:Dispatch<SetStateAction<number>>, isLoggedIn?:boolean }) => {
+const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, isLoggedIn?:boolean }) => {
+    const contextContainer=useContext(context);
 
     return (
         <>
@@ -32,7 +35,7 @@ const ClientHeader = ({ setIsSmallMenuOpen, setPopUpNumber, isLoggedIn }: { setI
                     <Link href="" className="mt-0 hover:text-primary"> 
                         <div className="flex gap-2 items-center" onClick={(e)=>{
                             e.preventDefault();
-                            setPopUpNumber ? setPopUpNumber(0) : ''
+                            contextContainer.setPopUpNumber(0);
                         }}>
                             <FaRegUserCircle/>
                             Account 

@@ -12,7 +12,7 @@ import Contact from "../../sections/home/contact/contact";
 const HomeDisplay=()=>{
     return (
         <main>
-            <Banner title="Home page" route="Some route"/>
+            <Banner/>
             <About/>
             <Services/>
         </main>

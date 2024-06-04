@@ -1,0 +1,1 @@
+## This folder consist of system components, this system components includes components which are common for both user and admin or components that don't belong to both of these entities 

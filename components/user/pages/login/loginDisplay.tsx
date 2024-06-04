@@ -29,7 +29,7 @@ const registerData = [
     }
 ]
 
-const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<number>> }) => {
+const Login = () => {
     const [formDetails, setFormDetails] = useState({ email: [""], password: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
@@ -106,7 +106,7 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
         <>
             <div className="relative">
                 <div className=" float-right absolute top-[-15px] right-[-15px]">
-                    <RxCross1 size={30} className=" cursor-pointer hover:text-red-400" onClick={() => setPopUpNumber ? setPopUpNumber(-1) : ""} />
+                    <RxCross1 size={30} className=" cursor-pointer hover:text-red-400" onClick={() => contextContainer.setPopUpNumber(-1)} />
                 </div>
             </div>
 
@@ -133,7 +133,7 @@ const Login = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<nu
                 <button type="submit" className={`w-full bg-primary opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Logged in sucesfully, redirecting ...' : 'Login failed'} </button>
                 <button type="submit" className={`w-full bg-black opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
                 <div className="flex mt-5 mb-5 justify-between fpAndNoAccountContainer">
-                    <h3 className="cursor-pointer hover:underline" onClick={() => setPopUpNumber ? setPopUpNumber(1) : ''}> Don&apos;t have an account ? </h3>
+                    <h3 className="cursor-pointer hover:underline" onClick={() => contextContainer.setPopUpNumber(1)}> Don&apos;t have an account ? </h3>
                     <h3 className="hover:underline cursor-pointer"> Forgot password ? </h3>
                 </div>
             </form>

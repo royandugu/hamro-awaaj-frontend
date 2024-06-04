@@ -9,6 +9,7 @@ const ContextState=(props:any)=>{
     const [userDetails,setUserDetails]=useState<{email:string,username:string,fullName:string,role:string} | null>(null);
     const [audio,setAudio]=useState("");
     const [text,setText]=useState("loading");
+    const [popUpNumber,setPopUpNumber]=useState(-1);
 
     const collection={
         loading:loading,
@@ -18,7 +19,9 @@ const ContextState=(props:any)=>{
         audio:audio,
         setAudio:setAudio,
         text:text,
-        setText:setText
+        setText:setText,
+        popUpNumber:popUpNumber,
+        setPopUpNumber:setPopUpNumber
     }
 
     return(

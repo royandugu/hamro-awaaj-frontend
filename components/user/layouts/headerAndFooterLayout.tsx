@@ -20,7 +20,7 @@ const HeaderAndFooterLayout = ({ children, isLoggedIn }: { children: ReactNode, 
         <>
             {!isSmallMeuOpen ? (
                 <>
-                    <ClientHeader setIsSmallMenuOpen={setIsSmallMenuOpen} setPopUpNumber={setPopUpNumber} isLoggedIn={isLoggedIn}/>
+                    <ClientHeader setIsSmallMenuOpen={setIsSmallMenuOpen} isLoggedIn={isLoggedIn}/>
                     {children}
                     <ClientFooter />
                 </>
@@ -36,16 +36,6 @@ const HeaderAndFooterLayout = ({ children, isLoggedIn }: { children: ReactNode, 
             <section className={`smallMenu p-0 fixed inset-0 bg-[#1c2434] ${isSmallMeuOpen ? 'active' : ''}`}>
                 <SmallMenuDesign setIsSmallMenuOpen={setIsSmallMenuOpen} setPopUpNumber={setPopUpNumber}/>
             </section>
-
-            {/* Pop up section */}
-            {popUpNumber !== -1 ? <section className="p-0 flex justify-center items-center">   
-                 <div className="fixed z-99 bottom-0 sm:bottom-auto sm:top-1/2 sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:-translate-y-1/2 overflow-auto">
-                    <div className="bg-white max-h-[100vh] p-5 pt-10 pb-10 sm:p-10 overflow-auto rounded">
-                        {popUpNumber === 0 ? <Login setPopUpNumber={setPopUpNumber}/> : <Register setPopUpNumber={setPopUpNumber}/>}
-                    </div>
-                 </div>
-                 <div className="bg-[rgba(0,0,0,.7)] fixed inset-0" onClick={()=>setPopUpNumber(-1)}></div>
-            </section> : ''}
         </>
     )
 }

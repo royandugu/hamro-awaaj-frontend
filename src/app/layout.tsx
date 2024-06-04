@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ContextState from '../../components/system/context/contextStates'
+import GlobalComponentsLayout from '../../components/system/globalComponentsLayout/globalComponentsLayout'
 
 import './globals.css'
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ContextState>
-          {children}
+          <GlobalComponentsLayout>
+            {children}
+          </GlobalComponentsLayout>
         </ContextState>
       </body>
     </html>

@@ -9,6 +9,8 @@ type ContextType={
     setAudio:React.Dispatch<React.SetStateAction<any>>,
     text:string,
     setText:React.Dispatch<React.SetStateAction<any>>
+    popUpNumber:number,
+    setPopUpNumber:React.Dispatch<React.SetStateAction<number>>
 }
 
 const defaultValue:ContextType={
@@ -19,7 +21,9 @@ const defaultValue:ContextType={
     audio:"",
     setAudio:()=>{},
     text:"loading",
-    setText:()=>{}
+    setText:()=>{},
+    popUpNumber:-1,
+    setPopUpNumber:()=>{}
 }
 
 const context=createContext(defaultValue);
