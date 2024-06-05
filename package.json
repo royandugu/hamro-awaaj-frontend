@@ -11,16 +11,13 @@
   "dependencies": {
     "apexcharts": "^3.45.0",
     "dotenv": "^16.4.5",
-    "js-cookie": "^3.0.5",
     "next": "14.0.4",
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
-    "react-slick": "^0.30.2",
-    "react-tooltip": "^5.26.4",
-    "slick-carousel": "^1.8.1"
+    "react-tooltip": "^5.26.4"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

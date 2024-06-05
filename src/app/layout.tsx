@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ContextState from '../../components/system/context/contextStates'
 import GlobalComponentsLayout from '../../components/system/globalComponentsLayout/globalComponentsLayout'
+import Provider from './sessionProvider'
 
 import './globals.css'
 
@@ -20,9 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+
         <ContextState>
           <GlobalComponentsLayout>
-            {children}
+            <Provider>
+              {children}
+            </Provider>
           </GlobalComponentsLayout>
         </ContextState>
       </body>

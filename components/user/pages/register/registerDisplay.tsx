@@ -5,7 +5,6 @@ import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
 import { useRouter } from "next/navigation";
-import { RxCross1 } from "react-icons/rx";
 
 import Image from "next/image";
 
@@ -42,7 +41,7 @@ const registerData = [
     }
 ]
 
-const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction<number>> }) => {
+const Register = () => {
     const [retryPassword, setRetryPassword] = useState("");
     const [formDetails, setFormDetails] = useState({ userName: [""], email: [""], password: [""], fullName: [""] })
     const [errorDetails, setErrorDetails] = useState<any>({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
@@ -119,7 +118,6 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
 
             
             if (jsonResponse === "SUCCESS") {
-                setPopUpNumber ? setPopUpNumber(0) : "";
                 contextContainer.setLoading(1);
             }
             else contextContainer.setLoading(3);
@@ -138,12 +136,6 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
 
     return (
         <>
-            <div className="relative">
-                <div className=" float-right absolute top-[-15px] right-[-15px]">
-                    <RxCross1 size={30} className=" cursor-pointer hover:text-red-400" onClick={() => setPopUpNumber ? setPopUpNumber(-1) : ""} />
-                </div>
-            </div>
-
             <h3 className="text-[30px] mt-5 sm:mt-0 mb-5 font-bold"> Register&nbsp;your&nbsp;account </h3>
 
             <form className="loginAndRegisterForm" onSubmit={registerUser}>
@@ -182,7 +174,7 @@ const Register = ({ setPopUpNumber }: { setPopUpNumber?: Dispatch<SetStateAction
                 <button type="submit" className={`w-full bg-black flex justify-center items-center ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : "opacity-75 hover:opacity-100"} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
             </form>
             <Tooltip id="my-tooltip" />
-            <p> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={() => setPopUpNumber ? setPopUpNumber(0) : ""}> Login </span> </p>
+            <p> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={() => contextContainer.setPopUpNumber(0)}> Login </span> </p>
         </>
     )
 }

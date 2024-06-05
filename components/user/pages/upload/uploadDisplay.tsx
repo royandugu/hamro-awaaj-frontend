@@ -46,7 +46,6 @@ const UploadDisplay = () => {
             }
             try {
                 const res = await universalFilePost("getSLTest", formData);
-                console.log(res);
                 if (res?.ok) {
                     const data = await res.json();
                     
@@ -54,9 +53,7 @@ const UploadDisplay = () => {
                     // const responseData = await res.text();
                     // const boundary = responseData.split('\n')[0].trim();
                     const base64Audio = data.audio;
-                    console.log("base 64 audio is",base64Audio);
                     const binaryString = atob(base64Audio);
-                    console.log("binary string is ",binaryString);
                     const len = binaryString.length;
                     const bytes = new Uint8Array(len);
                     for (let i = 0; i < len; i++) {

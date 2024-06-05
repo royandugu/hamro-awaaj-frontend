@@ -38,60 +38,60 @@ const Login = () => {
 
     const contextContainer = useContext(context);
 
-    const validateForm = () => {
+    // const validateForm = () => {
 
-        const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        let noMistakes = true;
-
-
-        if (formDetails.email[0] === "") {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                email: { error: true, message: "You must enter your email" }
-            }));
-        }
-        if (!emailRegEx.test(formDetails.email[0])) {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                email: { error: true, message: "You must enter your email" }
-            }));
-        }
-        if (formDetails.password[0] === "") {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                password: { error: true, message: "Make sure your password contains a capital letter, a small letter, a number and special symbols reaching minimum of 8 characters" }
-            }));
-        }
-        return noMistakes;
-    }
+    //     const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //     let noMistakes = true;
 
 
-    const loginUser = async (e: FormEvent) => {
-        contextContainer.setLoading(0);
+    //     if (formDetails.email[0] === "") {
+    //         noMistakes = false;
+    //         setErrorDetails((prevState: any) => ({
+    //             ...prevState,
+    //             email: { error: true, message: "You must enter your email" }
+    //         }));
+    //     }
+    //     if (!emailRegEx.test(formDetails.email[0])) {
+    //         noMistakes = false;
+    //         setErrorDetails((prevState: any) => ({
+    //             ...prevState,
+    //             email: { error: true, message: "You must enter your email" }
+    //         }));
+    //     }
+    //     if (formDetails.password[0] === "") {
+    //         noMistakes = false;
+    //         setErrorDetails((prevState: any) => ({
+    //             ...prevState,
+    //             password: { error: true, message: "Make sure your password contains a capital letter, a small letter, a number and special symbols reaching minimum of 8 characters" }
+    //         }));
+    //     }
+    //     return noMistakes;
+    // }
+
+
+    // const loginUser = async (e: FormEvent) => {
+    //     contextContainer.setLoading(0);
             
-        e.preventDefault();
-        if (validateForm()) {
-            const body = {
-                password: formDetails.password[0],
-                email: formDetails.email[0],
-            }
-            const res = await universalJSONPost(body, "loginCustom");
-            const jsonResponse=await res?.json();
+    //     e.preventDefault();
+    //     if (validateForm()) {
+    //         const body = {
+    //             password: formDetails.password[0],
+    //             email: formDetails.email[0],
+    //         }
+    //         const res = await universalJSONPost(body, "loginCustom");
+    //         const jsonResponse=await res?.json();
             
-            if (jsonResponse.response === "SUCCESS") {
-                contextContainer.setLoading(2);
-                if(localStorage) {
-                    localStorage.setItem("refreshToken", jsonResponse?.refreshToken ?? "");
-                    localStorage.setItem("jwt",jsonResponse?.jwt ?? "");
-                }
-                router.push("/user/upload");
-            }
-            else contextContainer.setLoading(3);
-        }
-    }
+    //         if (jsonResponse.response === "SUCCESS") {
+    //             contextContainer.setLoading(2);
+    //             if(localStorage) {
+    //                 localStorage.setItem("refreshToken", jsonResponse?.refreshToken ?? "");
+    //                 localStorage.setItem("jwt",jsonResponse?.jwt ?? "");
+    //             }
+    //             router.push("/user/upload");
+    //         }
+    //         else contextContainer.setLoading(3);
+    //     }
+    // }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setErrorDetails({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
@@ -104,15 +104,8 @@ const Login = () => {
 
     return (
         <>
-            <div className="relative">
-                <div className=" float-right absolute top-[-15px] right-[-15px]">
-                    <RxCross1 size={30} className=" cursor-pointer hover:text-red-400" onClick={() => contextContainer.setPopUpNumber(-1)} />
-                </div>
-            </div>
-
-
             <h3 className="text-[30px] mb-5 font-bold text-center mt-5 sm:text-left"> Login your account </h3>
-            <form className="loginAndRegisterForm" onSubmit={loginUser}>
+            <form className="loginAndRegisterForm">
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
                         <input type={rd.type === "password" ? passwordShown.password ? "text" : "password" : rd.type} placeholder={rd.placeholder} name={rd.name} className={`${errorDetails[rd.name].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={handleChange} />
@@ -138,7 +131,6 @@ const Login = () => {
                 </div>
             </form>
             <Tooltip id="my-tooltip" />
-
         </>
     )
 }

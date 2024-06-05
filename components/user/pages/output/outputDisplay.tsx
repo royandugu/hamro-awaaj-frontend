@@ -12,10 +12,7 @@ import context from "../../../system/context/context";
 
 const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
     const contextContainer=useContext(context);
-
-    console.log("context is below")
-    console.log(contextContainer);
-
+    
     const downloadAudio = () => {
         const anchor = document.createElement('a');
         anchor.href = contextContainer.audio;
