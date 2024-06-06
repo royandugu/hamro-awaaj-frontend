@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import DetailsFetcher from '../../../components/user/detailsFetcher/detailsFetcher'
+import ClientHeader from '../../../components/user/sections/header/header'
+import ClientFooter from '../../../components/user/sections/footer/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,9 @@ export default function RootLayout({
 }) {
     return (
         <DetailsFetcher>
-            {children}
+            <ClientHeader isLoggedIn/>
+                {children}
+            <ClientFooter/>
         </DetailsFetcher>
 
     )

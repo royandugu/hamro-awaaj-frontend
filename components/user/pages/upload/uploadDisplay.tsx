@@ -125,7 +125,7 @@ const UploadDisplay = () => {
     return (
         <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
             <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
-                <div>
+                <div> 
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">
                         <input type="file" accept="image/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
 

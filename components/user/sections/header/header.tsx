@@ -44,7 +44,7 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                 </div> : 
                     <div className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
                     <Link href="/user/upload" className="mt-0 hover:text-primary"> Upload </Link>
-                    <Link href="/user/realTime" className="mt-0 pointer-events-none"> Realtime </Link>
+                    <Link href="/user/videoRecorder" className="mt-0 hover:text-primary"> Realtime </Link>
                     <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
                     <Link href="/user/accountInfo" className="mt-0 hover:text-primary"> 
                         <div className="flex gap-2 items-center">
