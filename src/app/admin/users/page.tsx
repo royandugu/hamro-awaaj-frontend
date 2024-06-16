@@ -1,5 +1,6 @@
-import TableDesign from "../../../../components/admin/tableDesign/tableDesign";
+import UserList from "../../../../components/admin/pages/userList/userList";
+
 const Page = () => {
-    return <TableDesign title="All users" tableRows={["Name", "Username", "Email", "Age", "Gender"]} dataKeys={["banner", "title", "location", "startDate", "endDate"]} />
+    return <UserList/>
 }
 export default Page;

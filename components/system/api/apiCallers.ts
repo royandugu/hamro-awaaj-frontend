@@ -1,4 +1,4 @@
-import { baseUrl } from "../constants/strings"
+import { baseUrl } from "../statics/strings"
 
 export const universalJSONPost = async (data:any,url:string, jwt?:string) => {
     const requestOptions = {

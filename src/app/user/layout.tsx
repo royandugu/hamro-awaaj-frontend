@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import DetailsFetcher from '../../../components/user/detailsFetcher/detailsFetcher'
-import ClientHeader from '../../../components/user/sections/header/header'
-import ClientFooter from '../../../components/user/sections/footer/footer'
+import DetailsFetcher from '../../../components/user/components/wrappers/detailsFetcher/detailsFetcher'
+import ClientHeader from '../../../components/user/sections/global/header/header'
+import ClientFooter from '../../../components/user/sections/global/footer/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 

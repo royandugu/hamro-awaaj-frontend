@@ -13,5 +13,5 @@ export default withAuth(function middleware(request: NextRequestWithAuth) {
 })
 
 export const config = {
-  matcher: ["/admin/:path*"]
+  matcher: ["/get/:path*"]
 }

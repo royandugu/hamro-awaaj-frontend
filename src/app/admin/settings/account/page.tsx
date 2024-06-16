@@ -1,4 +1,4 @@
-import AccountPage from "../../../../../components/system/accountPage/accountPage";
+import AccountPage from "../../../../../components/system/pages/accountPage/accountPage";
 
 const Page=()=>{
     return (

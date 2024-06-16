@@ -1,8 +1,8 @@
-"use client"
-
-import DashboardDisplay from "../../../../components/system/dashboard/dashboardDisplay";
+import DashboardDisplay from "../../../../components/admin/pages/dashboard/dashboardDisplay";
 
 const Page=()=>{
-    return <DashboardDisplay/>
+    return (
+        <DashboardDisplay/>
+    )
 }
 export default Page;

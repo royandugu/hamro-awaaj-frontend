@@ -1,4 +1,4 @@
-import PrefrencesDisplay from "../../../../../components/system/prefrencesDisplay/prefrencesDisplay";
+import PrefrencesDisplay from "../../../../../components/system/pages/prefrencesDisplay/prefrencesDisplay";
 
 const Prefrences=()=>{
     return <PrefrencesDisplay/>

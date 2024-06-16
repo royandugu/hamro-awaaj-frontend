@@ -1,9 +1,7 @@
-import ServicesBlob from "../../../../../public/blob.svg";
-
 import { MdSubdirectoryArrowLeft } from "react-icons/md";
 import { GoArrowDown } from "react-icons/go";
 
-
+import ServicesBlob from "../../../../../public/blob.svg";
 import Image from "next/image";
 
 const Services = () => {

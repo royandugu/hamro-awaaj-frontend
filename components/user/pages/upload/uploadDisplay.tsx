@@ -3,17 +3,15 @@
 import { FaFileImage } from "react-icons/fa6";
 import { IoCloudUploadOutline } from "react-icons/io5"
 import { MdDelete } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { ChangeEvent } from "react";
+import { useEffect, useState,ChangeEvent,useContext } from "react";
 import { RiFileSearchFill } from "react-icons/ri";
-import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
-import { FaArrowUp } from "react-icons/fa";
+import { FaArrowRight,FaArrowUp } from "react-icons/fa";
 import { GrDocumentMissing } from "react-icons/gr";
 import { universalFilePost } from "../../../system/api/apiCallers";
-import context from "../../../system/context/context";
-import { useContext } from "react";
 import { useRouter } from "next/navigation";
+
+import context from "../../../system/context/context";
+import Link from "next/link";
 
 import "./upload.css";
 

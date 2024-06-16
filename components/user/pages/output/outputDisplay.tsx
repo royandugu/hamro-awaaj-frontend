@@ -1,13 +1,8 @@
 "use client"
-import { useRef, useEffect } from "react";
-import { IoVolumeHigh } from "react-icons/io5";
-import { FaPlay } from "react-icons/fa6";
-import OutputBlob from "../../../../public/outputDisplayBlob.svg";
-import OutputBlob2 from "../../../../public/outputDisplayBlob2.svg";
-import { FaPlayCircle } from "react-icons/fa";
-import Image from "next/image";
-import PrimaryButton from "../../../system/primaryButton/primaryButton";
+
 import { useContext } from "react";
+
+import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import context from "../../../system/context/context";
 
 const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
@@ -61,7 +56,7 @@ const OutputDisplay = ({noMaxWidth}:{noMaxWidth?:boolean}) => {
                     <div onClick={()=>{
                         downloadAudio();
                         downloadText();
-                    }}><PrimaryButton text="Download Transcript"/></div>
+                    }}><PrimaryButton> Download Transcript </PrimaryButton></div>
                 </div>
 
             </section>

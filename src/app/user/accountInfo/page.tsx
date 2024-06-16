@@ -1,5 +1,4 @@
-import AccountPage from "../../../../components/system/accountPage/accountPage";
-import HeaderAndFooterLayout from "../../../../components/user/layouts/headerAndFooterLayout";
+import AccountPage from "../../../../components/system/pages/accountPage/accountPage";
 
 const Page = () => {
     return (

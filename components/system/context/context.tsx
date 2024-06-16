@@ -1,4 +1,4 @@
-import {Dispatch, createContext} from "react";
+import {createContext} from "react";
 
 type ContextType={
     loading:number,
@@ -22,7 +22,7 @@ const defaultValue:ContextType={
     setAudio:()=>{},
     text:"loading",
     setText:()=>{},
-    popUpNumber:-1,
+    popUpNumber:-1, 
     setPopUpNumber:()=>{}
 }
 
