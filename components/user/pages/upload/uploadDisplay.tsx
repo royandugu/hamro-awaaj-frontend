@@ -19,6 +19,7 @@ const UploadDisplay = () => {
     const [uploadedPictures, setUploadedPictures] = useState<File[]>([])
     const [uploadedPicturesDisplay, setUploadedPicturesDisplay] = useState<string[]>([]);
     const [showPopUp, setShowPopUp] = useState(false);
+    
     const contextContainer = useContext(context);
 
     const router = useRouter();

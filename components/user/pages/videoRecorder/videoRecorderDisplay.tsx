@@ -14,9 +14,6 @@ import Spinner from "../../../system/sections/spinner/spinner";
 import "./videoRecorderDisplay.css";
 
 const UploadDisplay = () => {
-  const contextContainer = useContext(context);
-  const canvasRef = useRef<any>(null);
-
   const [isCamOpen, setIsCamOpen] = useState(false);
   const [buttonSteps, setButtonSteps] = useState(0);
   const [mediaBlobUrl, setMediaBlobUrl] = useState<string>("");
@@ -24,9 +21,23 @@ const UploadDisplay = () => {
   const [hasPermission, setHasPermission] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const canvasRef = useRef<any>(null);
+  
+  const contextContainer = useContext(context);
+  
   useEffect(() => {
     contextContainer.setLoading(1);
   }, [])
+
+  useEffect(() => {
+    if (mediaBlobUrl) {
+      (async () => {
+        const frames = await extractFrames(mediaBlobUrl);
+        setVideoFrames(frames);
+        setLoading(false);
+      })();
+    }
+  }, [mediaBlobUrl]);
 
   const handleUserMediaError = (error: any) => {
     setIsCamOpen(false);
@@ -67,20 +78,11 @@ const UploadDisplay = () => {
     }
   };
 
-  useEffect(() => {
-    if (mediaBlobUrl) {
-      (async () => {
-        const frames = await extractFrames(mediaBlobUrl);
-        setVideoFrames(frames);
-        setLoading(false);
-      })();
-    }
-  }, [mediaBlobUrl]);
 
   return (
     <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
       <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
-        <div className="w-[]">
+        <div>
           <ReactMediaRecorder
 
             video={

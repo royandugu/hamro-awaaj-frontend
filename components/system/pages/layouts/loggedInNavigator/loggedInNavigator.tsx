@@ -7,8 +7,10 @@ import Spinner from "../../../sections/spinner/spinner";
 import { universalJsonPostNoBody } from "../../../api/apiCallers";
 
 const LoggedInNavigator = ({ children }: { children: ReactNode }) => {
-    const router = useRouter();
     const [loading, setLoading] = useState(false);
+    
+    const router = useRouter();
+    
     const contextContainer = useContext(context);
 
     // const getUserInfo = async (token: string) => {

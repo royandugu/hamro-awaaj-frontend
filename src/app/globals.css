@@ -22,6 +22,11 @@ p{
   font-family:'poppins-regular'; 
 }
 
+section{
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
 .dashedInputContainer input{
   background: transparent;
   border-bottom: 2px solid #eae9ee;

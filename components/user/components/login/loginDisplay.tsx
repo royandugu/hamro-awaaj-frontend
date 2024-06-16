@@ -32,9 +32,10 @@ const Login = () => {
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
 
+    const contextContainer = useContext(context);
+    
     const router=useRouter();
 
-    const contextContainer = useContext(context);
 
     // const validateForm = () => {
 
@@ -90,15 +91,16 @@ const Login = () => {
     //         else contextContainer.setLoading(3);
     //     }
     // }
-
+    
+    useEffect(() => {
+        contextContainer.setLoading(1);
+    }, [])
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setErrorDetails({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
         setFormDetails({ ...formDetails, [e.target.name]: [e.target.value] });
     }
 
-    useEffect(() => {
-        contextContainer.setLoading(1);
-    }, [])
 
     return (
         <>

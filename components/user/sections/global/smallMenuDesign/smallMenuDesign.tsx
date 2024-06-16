@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const SmallMenuDesign = ({ setIsSmallMenuOpen, setPopUpNumber }: { setIsSmallMenuOpen: Dispatch<SetStateAction<boolean>>, setPopUpNumber?:Dispatch<SetStateAction<number>> }) => {
     return (
-        <>
+        <section className="smallMenu p-0 fixed inset-0 bg-[#1c2434]">
             <div className="flex justify-end p-10 border-b-[2px] border-[#e7e7e7]">
                 <RxCross2 size={30} className="text-white cursor-pointer" onClick={() => setIsSmallMenuOpen(false)} />
             </div>
@@ -16,7 +16,7 @@ const SmallMenuDesign = ({ setIsSmallMenuOpen, setPopUpNumber }: { setIsSmallMen
                 <Link href="#contact" className="mt-5 text-white hover:text-primary"> Contact </Link>
                 <Link href="#" className="mt-5 text-white hover:text-primary" onClick={()=>setPopUpNumber ? setPopUpNumber(0) : ''}> Account </Link>
             </ul>
-        </>
+        </section>
     )
 }
 export default SmallMenuDesign;

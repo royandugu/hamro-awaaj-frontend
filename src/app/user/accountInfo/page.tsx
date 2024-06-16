@@ -2,9 +2,9 @@ import AccountPage from "../../../../components/system/pages/accountPage/account
 
 const Page = () => {
     return (
-        <div className="pt-15 pb-15">
+        <section className="pt-15 pb-15">
             <AccountPage />
-        </div>
+        </section>
     )
 }
 

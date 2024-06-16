@@ -3,7 +3,7 @@ import PrimaryButton from "../../components/wrappers/primaryButton/primaryButton
 
 const PrefrencesDisplay = () => {
     return (
-        <section className="border-[2px] border-[#eae9ee] rounded p-10 accountDisplay capitalize max-w-lg m-auto">
+        <div className="border-[2px] border-[#eae9ee] rounded p-10 accountDisplay capitalize max-w-lg m-auto">
             <h6> Admin Prefrences : </h6>
             <form className="mt-10">
                 <label> Choose model: </label><br />
@@ -14,7 +14,7 @@ const PrefrencesDisplay = () => {
                 <PrimaryButton type="submit" classes="capitalize w-full mt-10"> Save Changes </PrimaryButton>
                 <PrimaryButton type="submit" classes="capitalize w-full mt-10"> Revert to default </PrimaryButton>
             </form>
-        </section>
+        </div>
     )
 }
 export default PrefrencesDisplay

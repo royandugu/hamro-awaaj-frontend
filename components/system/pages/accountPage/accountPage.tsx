@@ -16,7 +16,7 @@ const AccountPage = () => {
     }
 
     return (
-        <section className="border-[2px] border-[#eae9ee] rounded p-10 accountDisplay capitalize max-w-lg m-auto">
+        <div className="border-[2px] border-[#eae9ee] rounded p-10 accountDisplay capitalize max-w-lg m-auto">
             <h6 className="text-[20px]"> Account details : </h6> 
             <form className="mt-10 dashedInputContainer">
                 <label> Full name : </label><br />
@@ -31,7 +31,7 @@ const AccountPage = () => {
                     </SecondaryButton>
                 </div>
             </form>
-        </section>
+        </div>
     )
 }
 export default AccountPage;

@@ -11,9 +11,10 @@ import context from "../../../../system/context/context";
 import Spinner from "../../../../system/sections/spinner/spinner";
 
 const AdminValidator=({children}:{children:ReactNode})=>{
-    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const contextContainer = useContext(context);
+    
+    const router = useRouter();
 
     // const getUserInfo = async (token: string) => {
     //     const res = await universalJsonPostNoBody("user/getDetails", token);

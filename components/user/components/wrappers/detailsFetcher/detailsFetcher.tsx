@@ -8,8 +8,9 @@ import context from "../../../../system/context/context";
 import Spinner from "../../../../system/sections/spinner/spinner";
 
 const DetailsFetcher = ({ children }: { children: ReactNode }) => {
-    const contextContainer = useContext(context);
     const [loading, setLoading] = useState(false);
+    
+    const contextContainer = useContext(context);
 
     const router = useRouter();
 
