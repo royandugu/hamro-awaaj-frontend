@@ -12,8 +12,6 @@ import Image from "next/image";
 import GoogleIcon from "../../../../public/Google_Icons-09-512.webp";
 import context from "../../../system/context/context";
 
-import "../../user.css";
-
 const registerData = [ 
     {
         placeholder: "Enter your Email",
@@ -105,7 +103,7 @@ const Login = () => {
     return (
         <>
             <h3 className="text-[30px] mb-5 font-bold text-center mt-5 sm:text-left"> Login your account </h3>
-            <form className="loginAndRegisterForm">
+            <form className="normalInputContainer">
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
                         <input type={rd.type === "password" ? passwordShown.password ? "text" : "password" : rd.type} placeholder={rd.placeholder} name={rd.name} className={`${errorDetails[rd.name].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={handleChange} />

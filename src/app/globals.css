@@ -27,6 +27,32 @@ section{
   padding-right: 15%;
 }
 
+.normalInputContainer input {
+  height: 60px;
+  width: 100%;
+  padding-left: 15px
+}
+
+.primaryButton,.secondaryButton{
+  color:white;
+  padding:20px 30px;
+  opacity: 0.8;
+  font-size:1.2rem;
+  text-transform: capitalize;
+}
+
+.primaryButton{
+  background-color:#95adbe;
+}
+
+.secondaryButton{
+  background-color:#1c2434;
+}
+
+.primaryButton:hover{
+  opacity: 1;
+}
+
 .dashedInputContainer input{
   background: transparent;
   border-bottom: 2px solid #eae9ee;

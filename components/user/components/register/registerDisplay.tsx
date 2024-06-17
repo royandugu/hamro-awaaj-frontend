@@ -13,8 +13,6 @@ import SecondaryButton from "../../../system/components/wrappers/secondaryButton
 import GoogleIcon from "../../../../public/Google_Icons-09-512.webp";
 import context from "../../../system/context/context";
 
-import "../../user.css";
-
 const registerData = [
     {
         placeholder: "Enter your full name",

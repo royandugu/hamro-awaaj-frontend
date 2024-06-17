@@ -6,8 +6,8 @@ import GlobalComponentsLayout from '../../components/system/pages/layouts/global
 import Provider from './sessionProvider'
 
 import './tailwindImport.css'
-import './fonts.css'
 import './globals.css'
+import './fonts.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
