@@ -42,9 +42,6 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                     <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
                 </li>
                 <li>
-                    <Link href="#services" className="mt-0 hover:text-primary"> Services </Link>
-                </li>
-                <li>
                     <Link href="" className="mt-0 hover:text-primary">
                         <span className="flex gap-2 items-center" onClick={(e) => {
                             e.preventDefault();

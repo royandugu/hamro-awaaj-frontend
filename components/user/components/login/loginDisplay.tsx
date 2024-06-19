@@ -1,15 +1,13 @@
 "use client"
 
-import { FormEvent, useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
-import { universalJSONPost } from "../../../system/api/apiCallers";
+import { FormEvent, useState, useEffect, useContext } from "react";
+import { useRouter } from "next/navigation";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
-import { RxCross1 } from "react-icons/rx";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
-import Image from "next/image";
-import GoogleIcon from "../../../../public/Google_Icons-09-512.webp";
+import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import context from "../../../system/context/context";
 
 const registerData = [ 
@@ -26,7 +24,7 @@ const registerData = [
 ]
 
 const Login = () => {
-    const [formDetails, setFormDetails] = useState({ email: [""], password: [""] })
+    const [formDetails, setFormDetails] = useState({ email: "", password: "" })
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
 
@@ -34,6 +32,14 @@ const Login = () => {
     
     const router=useRouter();
 
+    const sendLoginRequest = async (e: FormEvent) => {
+        e.preventDefault();
+        contextContainer.setLoading(0);
+        const response=await signIn("credentials",{
+           redirect:false, ...formDetails
+        })
+        if (response?.ok) router.push("/admin/dashboard");
+    }
 
     // const validateForm = () => {
 
@@ -96,13 +102,13 @@ const Login = () => {
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setErrorDetails({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
-        setFormDetails({ ...formDetails, [e.target.name]: [e.target.value] });
+        setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
     }
 
 
     return (
-        <>
-            <h3 className="text-[30px] mb-5 font-bold text-center mt-5 sm:text-left"> Login your account </h3>
+        <div className="popUpForms">
+            <h5 className="mb-5 text-center sm:text-left"> Login your account ... </h5>
             <form className="normalInputContainer">
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
@@ -117,19 +123,20 @@ const Login = () => {
                         <IoIosInformationCircle title={errorDetails[rd.name].message !== "" ? errorDetails[rd.name].message : "" ?? ""} size={30} className={`${errorDetails[rd.name].message === "" ? "invisible" : ""} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails[rd.name].error ? 'text-red-500' : ''}`} />
                     </div>
                 ))}
-                <div className="flex items-center gap-3 mt-5 mb-10 rememberMeContainer">
+                <div className="flex items-center gap-3 my-5 mb-10">
                     <input type="checkbox" className="cursor-pointer" />
-                    <h3> Remember me  </h3>
+                    <p> Remember me  </p>
                 </div>
-                <button type="submit" className={`w-full bg-primary opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Logged in sucesfully, redirecting ...' : 'Login failed'} </button>
-                <button type="submit" className={`w-full bg-black opacity-75 hover:opacity-100 flex justify-center items-center ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  Login with google </button>
+                <PrimaryButton type="submit" classes="w-full" onClick={sendLoginRequest}>
+                {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Logged in sucesfully, redirecting ...' : 'Login failed'} 
+                </PrimaryButton>
+                
                 <div className="flex mt-5 mb-5 justify-between fpAndNoAccountContainer">
-                    <h3 className="cursor-pointer hover:underline" onClick={() => contextContainer.setPopUpNumber(1)}> Don&apos;t have an account ? </h3>
-                    <h3 className="hover:underline cursor-pointer"> Forgot password ? </h3>
+                    <p className="cursor-pointer hover:underline" onClick={() => contextContainer.setPopUpNumber(1)}> Don&apos;t have an account ? </p>
                 </div>
             </form>
             <Tooltip id="my-tooltip" />
-        </>
+        </div>
     )
 }
 export default Login;

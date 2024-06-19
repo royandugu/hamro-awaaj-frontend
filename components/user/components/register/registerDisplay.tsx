@@ -116,8 +116,7 @@ const Register = () => {
             }
             const res: any = await universalJSONPost(body, "register/user");
             const jsonResponse = await res.json();
-
-
+            
             if (jsonResponse === "SUCCESS") {
                 contextContainer.setLoading(1);
             }
@@ -134,7 +133,7 @@ const Register = () => {
 
     return (
         <>
-            <h3 className="text-[30px] mt-5 sm:mt-0 mb-5 font-bold"> Register&nbsp;your&nbsp;account </h3>
+            <h5 className="text-[30px] mt-5 sm:mt-0 mb-5 font-bold"> Register&nbsp;your&nbsp;account </h5>
 
             <form className="loginAndRegisterForm" onSubmit={registerUser}>
                 {registerData.map((rd, index) => (

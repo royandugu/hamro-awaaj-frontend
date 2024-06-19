@@ -1,6 +1,5 @@
 import Banner from "../../sections/home/banner/banner";
 import About from "../../sections/home/about/about";
-import Services from "../../sections/home/services/services";
 import UpArrow from "../../sections/global/upArrow/upArrow";
 
 const HomeDisplay=()=>{
@@ -8,7 +7,6 @@ const HomeDisplay=()=>{
         <main>
             <Banner/>
             <About/>
-            <Services/>
             <UpArrow/>
         </main>
     )

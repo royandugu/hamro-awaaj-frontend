@@ -2,8 +2,7 @@ html{
   scroll-behavior: smooth;
 }
 
-h1,h2,h3,h4,h5{
-  line-height: 1.6;
+h1,h2,h3,h4{
   text-transform: uppercase; 
   font-family: 'poppins-bold';
 }
@@ -16,7 +15,6 @@ h5 { font-size: 1.5rem; }
 h6 { font-size: 1.25rem; }
 
 p{
-  margin-top:1.25rem;
   font-size: 1rem;
   color:#2d3e50;
   font-family:'poppins-regular'; 
@@ -27,17 +25,16 @@ section{
   padding-right: 15%;
 }
 
-.normalInputContainer input {
+.normalInputContainer input:not([type="checkbox"]) {
   height: 60px;
   width: 100%;
-  padding-left: 15px
+  padding-left: 15px;
+  outline:none;
 }
 
 .primaryButton,.secondaryButton{
   color:white;
   padding:20px 30px;
-  opacity: 0.8;
-  font-size:1.2rem;
   text-transform: capitalize;
 }
 
