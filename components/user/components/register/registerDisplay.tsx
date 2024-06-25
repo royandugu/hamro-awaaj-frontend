@@ -133,9 +133,8 @@ const Register = () => {
 
     return (
         <>
-            <h5 className="text-[30px] mt-5 sm:mt-0 mb-5 font-bold"> Register&nbsp;your&nbsp;account </h5>
-
-            <form className="loginAndRegisterForm" onSubmit={registerUser}>
+            <h4 className="mb-5 text-center sm:text-left normal-case"> Register your account </h4>
+            <form className="normalInputContainer" onSubmit={registerUser}>
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
                         <input type={rd.type === "password" ? passwordShown.password ? "text" : "password" : rd.type} placeholder={rd.placeholder} name={rd.name} className={`${errorDetails[rd.name].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={handleChange} />
@@ -165,21 +164,18 @@ const Register = () => {
                 </div>
                 <div className="flex items-center gap-3 mt-10 mb-10">
                     <input type="checkbox" className="cursor-pointer" />
-                    <h3> I agree all statements in <span className="underline cursor-pointer"> Terms of service </span> </h3>
+                    <p className="smallPara"> I agree all statements in <span className="underline cursor-pointer"> Terms of service </span> </p>
                 </div>
-                <PrimaryButton type="submit" classes={`w-full flex justify-center items-center ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : 'opacity-75 hover:opacity-100'}`}>
+                <PrimaryButton type="submit" classes={`w-full flex justify-center items-center mb-3 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
                     {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'Registered sucesfully, redirecting ...' : 'User registration failed'}
                 </PrimaryButton>
-                <SecondaryButton type="submit" classes={`w-full flex justify-center items-center ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : 'opacity-75 hover:opacity-100'}`}>
-                    <div className="flex justify-center items-center">
-                        <Image src={GoogleIcon} alt="google-icon" className="w-[50px]" />  
-                        Login with google
-                    </div>
+                <SecondaryButton type="submit" classes={`w-full mb-5 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
+                    Login with google
                 </SecondaryButton>
 
             </form>
             <Tooltip id="my-tooltip" />
-            <p> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={() => contextContainer.setPopUpNumber(0)}> Login </span> </p>
+            <p className="smallPara"> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={() => contextContainer.setPopUpNumber(0)}> Login </span> </p>
         </>
     )
 }

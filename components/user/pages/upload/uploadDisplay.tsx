@@ -26,6 +26,7 @@ const UploadDisplay = () => {
 
     useEffect(() => {
         contextContainer.setLoading(1);
+        contextContainer.setPopUpNumber(-1);
     }, [])
 
     const trimText = (text: string, trimLimit: number) => {

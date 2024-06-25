@@ -1,3 +1,8 @@
+"use client"
+
+import { useEffect, useContext } from "react";
+
+import context from "../../../system/context/context";
 import CardOne from "../../components/cards/cardOne";
 import CardTwo from '../../components/cards/cardTwo';
 import CardThree from '../../components/cards/cardThree';
@@ -16,6 +21,12 @@ const ChartThree = dynamic(() => import('../../components/charts/chartTwo'), {
 });
 
 const DashboardDisplay = () => {
+  const contextContainer=useContext(context);
+
+  useEffect(()=>{
+    contextContainer.setPopUpNumber(-1);
+  },[])
+
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">

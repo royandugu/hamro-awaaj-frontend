@@ -13,9 +13,10 @@ import context from "../../../../system/context/context";
 const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, isLoggedIn?: boolean }) => {
     const contextContainer = useContext(context);
 
+    
     return (
         <header id="header" className="z-9 shadow-xl">
-            <div className="w-full flex justify-between bg-black py-3 px-[15%]">
+            <div className="w-full flex justify-between bg-black py-3 haSection">
                 <ul className="flex items-center gap-2">
                     <li>
                         <TiSocialFacebook className="text-white" size={20} />
@@ -58,13 +59,13 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                         <Link href="/user/upload" className="mt-0 hover:text-primary"> Upload </Link>
                     </li>
                     <li>
-                        <Link href="/user/videoRecorder" className="mt-0 hover:text-primary"> Realtime </Link>
+                        <Link href="/user/video-recorder" className="mt-0 hover:text-primary"> Realtime </Link>
                     </li>
                     <li>
                         <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
                     </li>
                     <li>
-                        <Link href="/user/accountInfo" className="mt-0 hover:text-primary">
+                        <Link href="/user/account-info" className="mt-0 hover:text-primary">
                             <span className="flex gap-2 items-center">
                                 <FaRegUserCircle />
                                 Account

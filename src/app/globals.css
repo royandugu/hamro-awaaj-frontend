@@ -15,14 +15,19 @@ h5 { font-size: 1.5rem; }
 h6 { font-size: 1.25rem; }
 
 p{
-  font-size: 1rem;
+  font-size: 1.1rem;
   color:#2d3e50;
   font-family:'poppins-regular'; 
 }
 
-section{
-  padding-left: 15%;
-  padding-right: 15%;
+.smallPara{
+  font-size: 1rem;
+  font-family: 'poppins-regular';
+}
+
+.haSection{
+  padding-left: 12%;
+  padding-right: 12%;
 }
 
 .normalInputContainer input:not([type="checkbox"]) {
@@ -59,4 +64,8 @@ section{
   padding-bottom: 0;
   margin-top: 10px;
   color: rgb(150, 150, 150);
+}
+
+.not-found-section h1{
+  text-transform: unset;
 }

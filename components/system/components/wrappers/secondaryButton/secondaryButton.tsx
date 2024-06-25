@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
-const SecondaryButton=({type,children, classes}:{type?:"submit" | "reset" | "button" | undefined, children:ReactNode, classes?:string})=>{
+const SecondaryButton=({type,children, classes, onClick}:{type?:"submit" | "reset" | "button" | undefined, children:ReactNode, classes?:string, onClick?:(e:any)=>{}})=>{
     return(
-        <button type={type ?? "submit"} className={`bg-[#1c2434] opacity-75 hover:opacity-100 text-white rounded py-3 px-5 ${classes}`}>{children}</button>
+        <button type={type ?? "submit"} className={`secondaryButton text-white rounded py-3 px-5 ${classes}`} onClick={onClick}>{children}</button>
     )
 }
 

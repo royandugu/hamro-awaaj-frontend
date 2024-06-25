@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-import LoggedInNavigator from "../../../components/system/pages/layouts/loggedInNavigator/loggedInNavigator"
 import HeaderAndFooterLayout from "../../../components/user/pages/layouts/headerAndFooterLayout"
+import SessionCheckers from "../../../components/system/components/wrappers/sessionCheckers/sessionCheckers";
 
 export const metadata: Metadata = {
     title: 'Hamro Awaaj - Bridging Silence with Communication',
@@ -32,11 +32,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <LoggedInNavigator>
+        <SessionCheckers>
             <HeaderAndFooterLayout >
                 {children}
             </HeaderAndFooterLayout>
-        </LoggedInNavigator>
+        </SessionCheckers>
 
     )
 }

@@ -49,4 +49,25 @@ export const universalFilePost=async (url:string,data:any)=>{
     }
 }
 
+export const universalProtectedGet=async (url:string, token:string)=>{
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    };
+
+    const fullUrl=`${baseUrl}/${url}`
+    try{
+        const response=await fetch(fullUrl,requestOptions);
+        const data=await response.json();
+        console.log(data);
+        return response;
+    }
+    catch(err){
+        console.log("Error :", err);
+    }
+}
+
 //http://localhost:3000

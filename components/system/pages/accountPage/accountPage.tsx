@@ -1,18 +1,22 @@
 "use client"
 
 import { useContext } from "react";
-import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 import SecondaryButton from "../../components/wrappers/secondaryButton/secondaryButton";
 import context from "../../context/context";
 
 const AccountPage = () => {
     const contextContainer=useContext(context);
-    const router=useRouter();
 
-    const logout=()=>{
-        // localStorage.removeItem("jwt");
-        // router.push("/");
+    const logout=async (e:any)=>{
+        try{
+            e.preventDefault();
+            await signOut({callbackUrl:"/"});
+        }
+        catch(err){
+            console.log(err);
+        }
     }
 
     return (
@@ -26,8 +30,8 @@ const AccountPage = () => {
                 <label> Email : </label><br />
                 <input value={contextContainer?.userDetails?.email} type="text" className="rounded" disabled/><br />
                 <div onClick={logout}>
-                    <SecondaryButton>
-                        Logout
+                    <SecondaryButton classes="w-full" onClick={logout}>
+                        Logout 
                     </SecondaryButton>
                 </div>
             </form>

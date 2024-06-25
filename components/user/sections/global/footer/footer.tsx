@@ -12,20 +12,20 @@ const ClientFooter = () => {
                 <div className="flex w-full justify-center text-center pt-10">
                     <div>
                         <ul>
-                            <li className="flex gap-5 items-center">
-                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] mt-5 text-white">
+                            <li className="flex gap-5 items-center mt-5">
+                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] text-white">
                                     <FaPhoneAlt />
                                 </span>
                                 <p className="text-white"> 9851212321 </p>
                             </li>
-                            <li className="flex gap-5 items-center">
-                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] mt-5 text-white">
+                            <li className="flex gap-5 items-center mt-5">
+                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] text-white">
                                     <FaEarthEurope className=" text-10" />
                                 </span>
                                 <p className="text-white"> hamroawaaj.com.np </p>
                             </li>
-                            <li className="flex gap-5 items-center">
-                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] mt-5 text-white">
+                            <li className="flex gap-5 items-center mt-5">
+                                <span className=" rounded-full bg-secondary flex justify-center items-center h-15 w-15 text-[30px] text-white">
                                     <FaLocationDot className=" text-10" />
                                 </span>
                                 <p className="text-white"> Balkumari, Lalitpur </p>
