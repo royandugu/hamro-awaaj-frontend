@@ -51,6 +51,10 @@ p{
   background-color:#1c2434;
 }
 
+.redButton{
+  background-color: #f87171;
+}
+
 .primaryButton:hover{
   opacity: 1;
 }

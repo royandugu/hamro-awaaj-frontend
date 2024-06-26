@@ -6,22 +6,17 @@ import Context from "./context";
 
 const ContextState=(props:any)=>{
     const [loading,setLoading]=useState(1);
-    const [userDetails,setUserDetails]=useState<{email:string,username:string,fullName:string,role:string} | null>(null);
-    const [audio,setAudio]=useState("");
-    const [text,setText]=useState("loading");
     const [popUpNumber,setPopUpNumber]=useState(-1);
+    const [popMessage,setPopMessage]=useState({textMessage:"",buttonText:""});
 
     const collection={
         loading:loading,
         setLoading:setLoading,
-        userDetails:userDetails,
-        setUserDetails:setUserDetails,
-        audio:audio,
-        setAudio:setAudio,
-        text:text,
-        setText:setText,
         popUpNumber:popUpNumber,
-        setPopUpNumber:setPopUpNumber
+        setPopUpNumber:setPopUpNumber,
+        popMessage:popMessage,
+        setPopMessage:setPopMessage,
+        popButtonClickFunction:()=>{}
     }
 
     return(

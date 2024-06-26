@@ -62,8 +62,27 @@ export const universalProtectedGet=async (url:string, token:string)=>{
     try{
         const response=await fetch(fullUrl,requestOptions);
         const data=await response.json();
-        console.log(data);
-        return response;
+        return data;
+    }
+    catch(err){
+        console.log("Error :", err);
+    }
+}
+
+export const universalDelete=async (url:string, token:string)=>{
+    const requestOptions={
+        method:'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    };
+
+    const fullUrl=`${baseUrl}/${url}`
+    try{
+        const response=await fetch(fullUrl,requestOptions);
+        const data=await response.json();
+        return data;
     }
     catch(err){
         console.log("Error :", err);
