@@ -31,6 +31,8 @@ const Login = () => {
 
     const contextContainer = useContext(context);
 
+    const session: any = useSession();
+                
     const router = useRouter();
 
     const sendLoginRequest = async (e: FormEvent) => {
@@ -42,7 +44,6 @@ const Login = () => {
             })
             if (response?.ok) {
                 contextContainer.setLoading(2);
-                const session: any = useSession();
                 if (session?.data?.user?.role === "[ADMIN]") router.push("/admin/dashboard");
                 else if (session?.data?.user?.role === "[USER]") router.push("/user/upload");
             }
@@ -82,8 +83,8 @@ const Login = () => {
                 <div className="flex items-center gap-3 my-5 mb-10">
                     <p className="smallPara cursor-pointer hover:underline"> Forgot password </p>
                 </div>
-                <PrimaryButton type="submit" classes="w-full mb-3" onClick={sendLoginRequest}>
-                    {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Logged in sucesfully, redirecting ...' : 'Login failed'}
+                <PrimaryButton type="submit" classes="w-full mb-3 flex justify-center items-center h-[64px]" onClick={sendLoginRequest}>
+                    {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Redirecting you...' : 'Login failed'}
                 </PrimaryButton>
                 <SecondaryButton type="submit" classes={`w-full mb-5 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
                     Login with google

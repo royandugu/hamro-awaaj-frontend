@@ -7,7 +7,8 @@ type ContextType={
     setPopUpNumber:React.Dispatch<React.SetStateAction<number>>,
     popMessage:{textMessage:string,buttonText:string},
     setPopMessage:React.Dispatch<React.SetStateAction<{textMessage:string,buttonText:string}>>
-    popButtonClickFunction:any
+    popButtonLabel:{actionNumber:number,actionData:any}
+    setPopButtonLabel:React.Dispatch<React.SetStateAction<{actionNumber:number,actionData:any}>>
 }
 
 const defaultValue:ContextType={
@@ -17,7 +18,8 @@ const defaultValue:ContextType={
     setPopUpNumber:()=>{},
     popMessage:{textMessage:"",buttonText:""},
     setPopMessage:()=>{},
-    popButtonClickFunction:()=>{}
+    popButtonLabel:{actionNumber:0,actionData:""},
+    setPopButtonLabel:()=>{}
 }
 
 const context=createContext(defaultValue);

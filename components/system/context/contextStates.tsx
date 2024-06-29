@@ -8,6 +8,7 @@ const ContextState=(props:any)=>{
     const [loading,setLoading]=useState(1);
     const [popUpNumber,setPopUpNumber]=useState(-1);
     const [popMessage,setPopMessage]=useState({textMessage:"",buttonText:""});
+    const [popButtonLabel,setPopButtonLabel]=useState<{actionNumber:number,actionData:any}>({actionNumber:0,actionData:""});
 
     const collection={
         loading:loading,
@@ -16,7 +17,8 @@ const ContextState=(props:any)=>{
         setPopUpNumber:setPopUpNumber,
         popMessage:popMessage,
         setPopMessage:setPopMessage,
-        popButtonClickFunction:()=>{}
+        popButtonLabel:popButtonLabel,
+        setPopButtonLabel:setPopButtonLabel
     }
 
     return(

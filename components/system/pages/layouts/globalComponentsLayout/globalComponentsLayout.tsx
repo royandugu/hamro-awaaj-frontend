@@ -11,7 +11,6 @@ import PopMessage from "../../../../user/components/popMessage/popMessage";
 const GlobalComponentsLayout=({children}:{children:ReactNode})=>{
     const contextContainer=useContext(context);
 
-    console.log(contextContainer.popUpNumber)
     return(
         <>
             {children}

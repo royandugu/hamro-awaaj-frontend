@@ -10,6 +10,6 @@ export type Table = {
     setSelectedData?:React.Dispatch<React.SetStateAction<any>>;
     updateDestination?:string
     eye?:boolean
-    deletionClick?:()=>void
+    deletionClick?:(param:any)=>void
     focusItem?:string
   }

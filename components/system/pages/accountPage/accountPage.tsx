@@ -24,11 +24,11 @@ const AccountPage = () => {
             <h6 className="text-[20px]"> Account details : </h6> 
             <form className="mt-10 dashedInputContainer">
                 <label> Full name : </label><br />
-                <input value={contextContainer?.userDetails?.fullName} type="text" className="rounded" disabled/><br />
+                <input type="text" className="rounded" disabled/><br />
                 <label> Username : </label><br />
-                <input value={contextContainer?.userDetails?.username} type="text" className="rounded" disabled/><br />
+                <input type="text" className="rounded" disabled/><br />
                 <label> Email : </label><br />
-                <input value={contextContainer?.userDetails?.email} type="text" className="rounded" disabled/><br />
+                <input type="text" className="rounded" disabled/><br />
                 <div onClick={logout}>
                     <SecondaryButton classes="w-full" onClick={logout}>
                         Logout 

@@ -41,6 +41,8 @@ export const universalFilePost=async (url:string,data:any)=>{
         body: data
     };
     const fullUrl=`${baseUrl}/${url}`
+    console.log(data);
+    console.log(fullUrl);
     try {
         const response=await fetch(fullUrl, requestOptions);
         return response;

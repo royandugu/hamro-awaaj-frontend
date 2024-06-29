@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: 'Hamro Awaaj - Bridging Silence with Communication',
   description: 'Hamro Awaaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
   keywords: 'Hamro Awaaj, Nepal Sign Language, NSL, deaf communication, AI hand sign detection, text and voice output, assistive technology',
-  authors: {name:"Hamro Awaaj team",url:""},
+  authors: { name: "Hamro Awaaj team", url: "" },
   openGraph: {
     title: 'Hamro Awaaj - Bridging Silence with Communication',
     description: 'Hamro Awaaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
@@ -42,13 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ContextState>
-          <GlobalComponentsLayout>
-            <Provider>
+        <Provider>
+          <ContextState>
+            <GlobalComponentsLayout>
               {children}
-            </Provider>
-          </GlobalComponentsLayout>
-        </ContextState>
+            </GlobalComponentsLayout>
+          </ContextState>
+        </Provider>
       </body>
     </html>
   )

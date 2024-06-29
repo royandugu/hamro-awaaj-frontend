@@ -49,7 +49,7 @@ const UploadDisplay = () => {
                 if (res?.ok) {
                     const data = await res.json();
                     
-                    contextContainer.setText(data.text);
+                    //contextContainer.setText(data.text);
                     // const responseData = await res.text();
                     // const boundary = responseData.split('\n')[0].trim();
                     const base64Audio = data.audio;
@@ -66,7 +66,7 @@ const UploadDisplay = () => {
                     
                     const url = URL.createObjectURL(blob);
                      // Set the audio URL state
-                    contextContainer.setAudio(url);
+                    //contextContainer.setAudio(url);
                     // const parts = responseData.split(boundary);
                     // console.log("Parts is ", parts);
                     // parts.forEach(part => {
