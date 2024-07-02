@@ -4,9 +4,15 @@ import CardTwo from "../../../system/components/dashboard/cards/cardTwo";
 import CardThree from "../../../system/components/dashboard/cards/cardThree";
 import CardFour from "../../../system/components/dashboard/cards/cardFour";
 
-import ChartOne from "../../../system/components/dashboard/charts/chartOne";
-import ChartTwo from "../../../system/components/dashboard/charts/chartTwo";
+import dynamic from "next/dynamic";
 
+const ChartOne = dynamic(() => import('../../../system/components/dashboard/charts/chartOne'), {
+    ssr: false,
+});
+const ChartTwo = dynamic(() => import('../../../system/components/dashboard/charts/chartTwo'), {
+    ssr: false,
+});
+ 
 const Dashboard = () => {
     return (
         <section className="haSection pt-10 pb-20">
