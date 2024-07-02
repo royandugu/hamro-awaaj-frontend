@@ -9,6 +9,7 @@ export const universalJSONPost = async (data:any,url:string, jwt?:string) => {
         body: JSON.stringify(data)
     };
     const fullUrl=`${baseUrl}/${url}`
+    console.log(fullUrl);
     try {
         const response=await fetch(fullUrl, requestOptions);
         return response;
@@ -62,9 +63,11 @@ export const universalProtectedGet=async (url:string, token:string)=>{
     };
 
     const fullUrl=`${baseUrl}/${url}`
+    console.log(fullUrl);
     try{
-        const response=await fetch(fullUrl,requestOptions);
+        const response=await fetch(fullUrl, requestOptions);
         const data=await response.json();
+        console.log(data);
         return data;
     }
     catch(err){
@@ -77,7 +80,6 @@ export const universalDelete=async (url:string, token:string)=>{
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
         },
     };
 

@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { MdFileUpload } from "react-icons/md";
 
 import context from "../../../system/context/context";
+import userContext from "../../context/context";
 
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import Link from "next/link";
@@ -24,6 +25,7 @@ const UploadDisplay = () => {
     const [showPopUp, setShowPopUp] = useState(false);
     
     const contextContainer = useContext(context);
+    const userContextContainer=useContext(userContext);
 
     const router = useRouter();
 
@@ -40,7 +42,7 @@ const UploadDisplay = () => {
         return text;
     };
 
-    const submitImages = async () => {
+    const submitVideo = async () => {
         if (uploadedPictures.length > 0) {
             contextContainer.setLoading(0);
             const formData = new FormData();
@@ -48,13 +50,13 @@ const UploadDisplay = () => {
                 formData.append('files', uploadedPictures[i]);
             }
             try {
-                const res = await universalFilePost("getSLTest", formData);
+                const res = await universalFilePost("videoToAudio", formData);
                 if (res?.ok) {
                     const data = await res.json();
                     
-                    contextContainer.setText(data.text);
-                    const responseData = await res.text();
-                    const boundary = responseData.split('\n')[0].trim();
+                    userContextContainer.setText(data.text);
+                    // const responseData = await res.text();
+                    // const boundary = responseData.split('\n')[0].trim();
                     const base64Audio = data.audio;
                     const binaryString = atob(base64Audio);
                     const len = binaryString.length;
@@ -68,24 +70,83 @@ const UploadDisplay = () => {
                     
                     
                     const url = URL.createObjectURL(blob);
+                    userContextContainer.setAudio(url);
                      // Set the audio URL state
-                    contextContainer.setAudio(url);
-                    const parts = responseData.split(boundary);
-                    console.log("Parts is ", parts);
-                    parts.forEach(part => {
-                        if (part.includes('filename="audio.wav"')) {
-                            const audioData = part.split('\r\n\r\n')[1].trim();
+                    //contextContainer.setAudio(url);
+                    // const parts = responseData.split(boundary);
+                    // console.log("Parts is ", parts);
+                    // parts.forEach(part => {
+                    //     if (part.includes('filename="audio.wav"')) {
+                    //         const audioData = part.split('\r\n\r\n')[1].trim();
                         
-                            const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
-                            console.log(audioBlob);
-                            const audioUrl = URL.createObjectURL(audioBlob);
-                            contextContainer.setAudio(audioUrl);
-                        } else if (part.includes('Content-Disposition: form-data; name="text"')) {
-                            const textData = part.split('\r\n\r\n')[1].trim();
-                            console.log("textData is",textData);
-                            contextContainer.setText(textData);
-                        }
-                    });
+                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+                    //         console.log(audioBlob);
+                    //         const audioUrl = URL.createObjectURL(audioBlob);
+                    //         contextContainer.setAudio(audioUrl);
+                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                    //         const textData = part.split('\r\n\r\n')[1].trim();
+                    //         console.log("textData is",textData);
+                    //         contextContainer.setText(textData);
+                    //     }
+                    // });
+                    router.push("/user/output")
+
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+
+        }
+    }
+
+    const submitImages = async () => {
+        if (uploadedPictures.length > 0) {
+            contextContainer.setLoading(0);
+            const formData = new FormData();
+            for (let i = 0; i < uploadedPictures.length; i++) {
+                formData.append('files', uploadedPictures[i]);
+            }
+            try {
+                const res = await universalFilePost("imgToAudio", formData);
+                if (res?.ok) {
+                    const data = await res.json();
+                    
+                    userContextContainer.setText(data.text);
+                    // const responseData = await res.text();
+                    // const boundary = responseData.split('\n')[0].trim();
+                    const base64Audio = data.audio;
+                    const binaryString = atob(base64Audio);
+                    const len = binaryString.length;
+                    const bytes = new Uint8Array(len);
+                    for (let i = 0; i < len; i++) {
+                        bytes[i] = binaryString.charCodeAt(i);
+                    }
+                    const audioBuffer = bytes.buffer;
+                     // Create a Blob and Object URL
+                    const blob = new Blob([audioBuffer], { type: data.contentType });
+                    
+                    
+                    const url = URL.createObjectURL(blob);
+                    userContextContainer.setAudio(url);
+                     // Set the audio URL state
+                    //contextContainer.setAudio(url);
+                    // const parts = responseData.split(boundary);
+                    // console.log("Parts is ", parts);
+                    // parts.forEach(part => {
+                    //     if (part.includes('filename="audio.wav"')) {
+                    //         const audioData = part.split('\r\n\r\n')[1].trim();
+                        
+                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+                    //         console.log(audioBlob);
+                    //         const audioUrl = URL.createObjectURL(audioBlob);
+                    //         contextContainer.setAudio(audioUrl);
+                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                    //         const textData = part.split('\r\n\r\n')[1].trim();
+                    //         console.log("textData is",textData);
+                    //         contextContainer.setText(textData);
+                    //     }
+                    // });
                     router.push("/user/output")
 
                 }
@@ -132,7 +193,7 @@ const UploadDisplay = () => {
             <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
                 <div> 
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">
-                        <input type="file" accept="image/*,video/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
+                        <input type="file" accept="image/*, video/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
 
                         <IoCloudUploadOutline className="text-[#1c2434] text-[100px] md:text-[150px]" />
                         <h3 className="mt-5 uploadText text-center"> Browse files to upload </h3>
@@ -150,8 +211,9 @@ const UploadDisplay = () => {
                         </div>
 
                     </div>
-                    <div className="flex justify-center mt-5">
-                        <div className="w-full" onClick={submitImages}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
+                    <div className="flex flex-col gap-2 justify-center mt-5">
+                        <div className="w-full" onClick={submitImages}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit Image</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
+                        <div className="w-full" onClick={submitVideo}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit Video</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
                     </div>
                 </div>
                 <div className={`hidden lg:flex flex-col items-center ${uploadedPicturesDisplay.length > 0 ? '' : 'p-30 items-center'} max-w-[390px]`}>

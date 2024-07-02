@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { universalFilePost } from "../../../system/api/apiCallers";
+import { useRouter } from "next/router";
 
 import { FaArrowUp } from "react-icons/fa";
 import { RiFileSearchFill } from "react-icons/ri";
@@ -11,13 +12,14 @@ import { IoStopSharp } from "react-icons/io5";
 import { LuWebcam } from "react-icons/lu";
 import { IoMdRecording } from "react-icons/io";
 
+import userContext from "../../context/context";
 import context from "../../../system/context/context";
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import SecondaryButton from "../../../system/components/wrappers/secondaryButton/secondaryButton";
 
 import "../upload/upload.css";
 import PrimaryButtonFlexFormat from "../../../system/components/wrappers/primaryButton/primaryButtonFlexFormat";
-import { text } from "stream/consumers";
+import { json, text } from "stream/consumers";
 
 const VideoRecorderPipeline = () => {
   const [mediaStream, setMediaStream] = useState<any>(null);
@@ -32,7 +34,7 @@ const VideoRecorderPipeline = () => {
   const videoRef = useRef<any>(null);
   const mediaRecorderRef = useRef<any>(null);
 
-  const contextContainer = useContext(context);
+  const userContextContainer=useContext(userContext);
 
   useEffect(() => {
     const initializeVideoCapture = async () => {
@@ -119,10 +121,11 @@ const VideoRecorderPipeline = () => {
 
       const url = URL.createObjectURL(blob);
       // Set the audio URL state
-      setAudio(url);
-      console.log(jsonResponse);
-      console.log("Video uploaded successfully.");
-    } catch (error) {
+      //contextContainer.setAudio(url);
+      //contextContainer.setText(jsonResponse.text);
+      userContextContainer.setAudio(url);
+      userContextContainer.setText(jsonResponse.text);
+      } catch (error) {
       console.error("Error uploading video:", error);
     }
   };

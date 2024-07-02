@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import SessionValidators from '../../../components/system/components/wrappers/sessionValidators/sessionValidators';
 import ClientHeader from '../../../components/user/sections/global/header/header'
 import ClientFooter from '../../../components/user/sections/global/footer/footer'
+import QueryClientWrapper from '../../../components/system/components/wrappers/queryClient/queryClient';
 
 export const metadata: Metadata = {
   title: 'User Dashboard - Hamro Awaaj',
@@ -35,9 +36,11 @@ export default function RootLayout({
   return (
     <SessionValidators roleToValidate='[USER]'>
       <ClientHeader isLoggedIn />
-      <main>
-        {children}
-      </main>
+      <QueryClientWrapper>
+        <main>
+          {children}
+        </main>
+      </QueryClientWrapper>
       <ClientFooter />
     </SessionValidators>
   )

@@ -9,10 +9,6 @@ type ContextType={
     setPopMessage:React.Dispatch<React.SetStateAction<{textMessage:string,buttonText:string}>>
     popButtonLabel:{actionNumber:number,actionData:any}
     setPopButtonLabel:React.Dispatch<React.SetStateAction<{actionNumber:number,actionData:any}>>
-    audio:string,
-    setAudio:React.Dispatch<React.SetStateAction<string>>
-    text:string,
-    setText:React.Dispatch<React.SetStateAction<string>>
 }
 
 
@@ -25,10 +21,6 @@ const defaultValue:ContextType={
     setPopMessage:()=>{},
     popButtonLabel:{actionNumber:0,actionData:""},
     setPopButtonLabel:()=>{},
-    text:"",
-    setText:()=>{},
-    audio:"",
-    setAudio:()=>{}
 }
 
 const context=createContext(defaultValue);

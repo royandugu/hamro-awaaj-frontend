@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Spinner from "../../../sections/spinner/spinner";
 
 const SessionValidators = ({ children, roleToValidate }: { children: ReactNode, roleToValidate: string }) => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
     const session: any = useSession();
 

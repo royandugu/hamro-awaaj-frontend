@@ -1,1 +1,1 @@
-export const baseUrl="https://c9bb-2400-1a00-b060-df22-74b8-fec3-619c-d220.ngrok-free.app"
+export const baseUrl="http://110.44.121.73:2592"

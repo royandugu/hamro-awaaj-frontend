@@ -4,19 +4,21 @@
 
  import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
  import context from "../../../system/context/context";
+ import userContext from "../../context/context";
 
  const OutputDisplay = ({ noMaxWidth }: { noMaxWidth?: boolean }) => {
      const contextContainer = useContext(context);
+     const userContextContainer=useContext(userContext);
 
      const downloadAudio = () => {
          const anchor = document.createElement('a');
-         anchor.href = contextContainer.audio;
+         anchor.href = userContextContainer.audio;
          anchor.download = 'audio.wav';
          anchor.click();
      };
 
      const downloadText = () => {
-         const textBlob = new Blob([contextContainer.text], { type: 'text/plain' });
+         const textBlob = new Blob([userContextContainer.text], { type: 'text/plain' });
          const textUrl = URL.createObjectURL(textBlob);
          const a = document.createElement('a');
          a.href = textUrl;
@@ -43,10 +45,10 @@
 
                  <div className="border-[1px] border-[#eae9ee] shadow-2xl bg-opacity-50 p-8 rounded mt-10 lg:mt-0 lg:w-1/2">
                      <div className="h-[200px] overflow-auto">
-                         <p className="mt-0"> {contextContainer.text} </p>
+                         <p className="mt-0"> {userContextContainer.text} </p>
                      </div>
                      <div className="border-t-[2px] border-[#eae9ee] mt-5 pt-5">
-                         <audio src={contextContainer.audio} controls className="rounded w-full">
+                         <audio src={userContextContainer.audio} controls className="rounded w-full">
                          </audio>
                      </div>
                  </div>
