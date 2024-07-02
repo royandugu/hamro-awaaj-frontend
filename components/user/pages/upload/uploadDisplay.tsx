@@ -9,8 +9,11 @@ import { FaArrowRight,FaArrowUp } from "react-icons/fa";
 import { GrDocumentMissing } from "react-icons/gr";
 import { universalFilePost } from "../../../system/api/apiCallers";
 import { useRouter } from "next/navigation";
+import { MdFileUpload } from "react-icons/md";
 
 import context from "../../../system/context/context";
+
+import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import Link from "next/link";
 
 import "./upload.css";
@@ -49,9 +52,9 @@ const UploadDisplay = () => {
                 if (res?.ok) {
                     const data = await res.json();
                     
-                    //contextContainer.setText(data.text);
-                    // const responseData = await res.text();
-                    // const boundary = responseData.split('\n')[0].trim();
+                    contextContainer.setText(data.text);
+                    const responseData = await res.text();
+                    const boundary = responseData.split('\n')[0].trim();
                     const base64Audio = data.audio;
                     const binaryString = atob(base64Audio);
                     const len = binaryString.length;
@@ -66,23 +69,23 @@ const UploadDisplay = () => {
                     
                     const url = URL.createObjectURL(blob);
                      // Set the audio URL state
-                    //contextContainer.setAudio(url);
-                    // const parts = responseData.split(boundary);
-                    // console.log("Parts is ", parts);
-                    // parts.forEach(part => {
-                    //     if (part.includes('filename="audio.wav"')) {
-                    //         const audioData = part.split('\r\n\r\n')[1].trim();
+                    contextContainer.setAudio(url);
+                    const parts = responseData.split(boundary);
+                    console.log("Parts is ", parts);
+                    parts.forEach(part => {
+                        if (part.includes('filename="audio.wav"')) {
+                            const audioData = part.split('\r\n\r\n')[1].trim();
                         
-                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
-                    //         console.log(audioBlob);
-                    //         const audioUrl = URL.createObjectURL(audioBlob);
-                    //         contextContainer.setAudio(audioUrl);
-                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
-                    //         const textData = part.split('\r\n\r\n')[1].trim();
-                    //         console.log("textData is",textData);
-                    //         contextContainer.setText(textData);
-                    //     }
-                    // });
+                            const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+                            console.log(audioBlob);
+                            const audioUrl = URL.createObjectURL(audioBlob);
+                            contextContainer.setAudio(audioUrl);
+                        } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                            const textData = part.split('\r\n\r\n')[1].trim();
+                            console.log("textData is",textData);
+                            contextContainer.setText(textData);
+                        }
+                    });
                     router.push("/user/output")
 
                 }
@@ -122,12 +125,14 @@ const UploadDisplay = () => {
         setUploadedPicturesDisplay([]);
     }
 
+    
+
     return (
         <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
             <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
                 <div> 
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">
-                        <input type="file" accept="image/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
+                        <input type="file" accept="image/*,video/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
 
                         <IoCloudUploadOutline className="text-[#1c2434] text-[100px] md:text-[150px]" />
                         <h3 className="mt-5 uploadText text-center"> Browse files to upload </h3>
@@ -140,14 +145,13 @@ const UploadDisplay = () => {
                                 <p className="mt-0 hidden sm:block"> {uploadedPicturesDisplay.length === 0 ? "- No files selected -" : `- ${uploadedPicturesDisplay.length} ${uploadedPicturesDisplay.length === 1 ? 'picture' : 'pictures'} selected -`}  </p>
                                 <p className="mt-0 block sm:hidden text-[14px]"> {uploadedPicturesDisplay.length === 0 ? "0 selected" : `${uploadedPicturesDisplay.length} selected`}  </p>
                                 <MdDelete size={30} className="hover:text-red-400 cursor-pointer" onClick={deleteAll} />
-
                             </div>
 
                         </div>
 
                     </div>
                     <div className="flex justify-center mt-5">
-                        <div className="w-full" onClick={submitImages}><button type="submit" className={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} bg-[#1c2434] opacity-75 hover:opacity-100 ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? 'Submit' : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </button></div>
+                        <div className="w-full" onClick={submitImages}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
                     </div>
                 </div>
                 <div className={`hidden lg:flex flex-col items-center ${uploadedPicturesDisplay.length > 0 ? '' : 'p-30 items-center'} max-w-[390px]`}>

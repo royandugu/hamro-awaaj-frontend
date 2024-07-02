@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 
 import Context from "./context";
 
@@ -9,6 +9,8 @@ const ContextState=(props:any)=>{
     const [popUpNumber,setPopUpNumber]=useState(-1);
     const [popMessage,setPopMessage]=useState({textMessage:"",buttonText:""});
     const [popButtonLabel,setPopButtonLabel]=useState<{actionNumber:number,actionData:any}>({actionNumber:0,actionData:""});
+    const [audio,setAudio]=useState("");
+    const [text,setText]=useState("");
 
     const collection={
         loading:loading,
@@ -18,7 +20,11 @@ const ContextState=(props:any)=>{
         popMessage:popMessage,
         setPopMessage:setPopMessage,
         popButtonLabel:popButtonLabel,
-        setPopButtonLabel:setPopButtonLabel
+        setPopButtonLabel:setPopButtonLabel,
+        audio:audio,
+        setAudio:setAudio,
+        text:text,
+        setText:setText
     }
 
     return(

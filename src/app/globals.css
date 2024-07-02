@@ -1,3 +1,7 @@
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
 html {
   scroll-behavior: smooth;
 }
@@ -41,8 +45,11 @@ p {
 }
 
 .haSection {
-  padding-left: 12%;
-  padding-right: 12%;
+  padding-left:15%;
+  padding-right:15%;
+}
+.haContainer{
+  max-width: 1570px;
 }
 
 .normalInputContainer input:not([type="checkbox"]) {
@@ -88,6 +95,14 @@ p {
 
 .not-found-section h1 {
   text-transform: unset;
+}
+
+.dottedBorder{
+  border:2px dashed #2d3e50;
+}
+
+.flip-x{
+  transform:scaleX(-1);
 }
 
 @media (min-width:992px){

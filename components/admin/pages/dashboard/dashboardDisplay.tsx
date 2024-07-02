@@ -3,20 +3,21 @@
 import { useEffect, useContext } from "react";
 
 import context from "../../../system/context/context";
-import CardOne from "../../components/cards/cardOne";
-import CardTwo from '../../components/cards/cardTwo';
-import CardThree from '../../components/cards/cardThree';
-import CardFour from '../../components/cards/cardFour';
-
 import dynamic from 'next/dynamic';
 
-const ChartOne = dynamic(() => import('../../components/charts/chartOne'), {
+import CardOne from "../../../system/components/dashboard/cards/cardOne";
+import CardTwo from '../../../system/components/dashboard/cards/cardTwo';
+import CardThree from '../../../system/components/dashboard/cards/cardThree';
+import CardFour from '../../../system/components/dashboard/cards/cardFour';
+
+
+const ChartOne = dynamic(() => import('../../../system/components/dashboard/charts/chartOne'), {
   ssr: false,
 });
-const ChartTwo = dynamic(() => import('../../components/charts/chartTwo'), {
+const ChartTwo = dynamic(() => import('../../../system/components/dashboard/charts/chartTwo'), {
   ssr: false,
 });
-const ChartThree = dynamic(() => import('../../components/charts/chartTwo'), {
+const ChartThree = dynamic(() => import('../../../system/components/dashboard/charts/chartTwo'), {
   ssr: false,
 });
 

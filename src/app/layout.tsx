@@ -5,7 +5,7 @@ import ContextState from '../../components/system/context/contextStates'
 import GlobalComponentsLayout from '../../components/system/pages/layouts/globalComponentsLayout/globalComponentsLayout'
 import Provider from './sessionProvider'
 
-import './tailwindImport.css'
+//import './tailwindImport.css'
 import './globals.css'
 import './fonts.css'
 

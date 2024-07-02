@@ -26,6 +26,7 @@ export const universalJsonPostNoBody=async (url:string,jwt?:string)=>{
         },
     };
     const fullUrl=`${baseUrl}/${url}`
+    console.log(fullUrl);
     try {
         const response=await fetch(fullUrl, requestOptions);
 

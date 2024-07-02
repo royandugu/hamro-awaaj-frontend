@@ -13,24 +13,26 @@ import context from "../../../../system/context/context";
 const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, isLoggedIn?: boolean }) => {
     const contextContainer = useContext(context);
 
-    
+
     return (
         <header id="header" className="z-9 shadow-xl">
-            <div className="w-full flex justify-between bg-black py-3 haSection">
-                <ul className="flex items-center gap-2">
-                    <li>
-                        <TiSocialFacebook className="text-white" size={20} />
-                    </li>
-                    <li>
-                        <GrInstagram className="text-white" size={15} />
-                    </li>
-                    <li>
-                        <FaXTwitter className="text-white" size={15} />
-                    </li>
-                </ul>
+            <div className="w-full flex bg-black py-3 pl-[15%]">
+                <div className="haContainer">
+                    <ul className="flex items-center gap-2">
+                        <li>
+                            <TiSocialFacebook className="text-white" size={20} />
+                        </li>
+                        <li>
+                            <GrInstagram className="text-white" size={15} />
+                        </li>
+                        <li>
+                            <FaXTwitter className="text-white" size={15} />
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div className="py-4 flex bg-white justify-center">
-                <h2> Hamro <span className="text-[#ff9c85]">Awaaj</span> </h2>
+                <h2> Hamro <span className="text-[#ff9c85]">Aawaj</span> </h2>
             </div>
             {!isLoggedIn ? <ul className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
                 <li>
@@ -55,6 +57,9 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                 </li>
             </ul> :
                 <ul className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
+                    <li>
+                        <Link href="/user/dashboard" className="mt-0 hover:text-primary"> Dashboard </Link>
+                    </li>
                     <li>
                         <Link href="/user/upload" className="mt-0 hover:text-primary"> Upload </Link>
                     </li>
