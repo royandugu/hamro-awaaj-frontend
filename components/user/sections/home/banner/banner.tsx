@@ -1,14 +1,20 @@
+"use client"
+
 import { FaUserAlt } from "react-icons/fa";
 import { RiContactsBookFill } from "react-icons/ri";
+import { useContext } from "react";
 
 import PrimaryButton from "../../../../system/components/wrappers/primaryButton/primaryButton";
 import Blob from "../../../../../public/blob.svg";
 import Image from "next/image";
 import Symbol from "../../../../../public/Designer.png";
-import Link from "next/link";
 import SecondaryButton from "../../../../system/components/wrappers/secondaryButton/secondaryButton";
 
+import context from "../../../../system/context/context";
+
 const Banner = () => {
+    const contextContainer=useContext(context)
+
     return ( 
         <section id="hero" className="relative bg-[#eae9ee] haSection">
             <div className="flex justify-between items-center overflow-hidden">
@@ -18,9 +24,9 @@ const Banner = () => {
                     
                     <p className="max-w-[650px] text-black mb-10"> The project ”Hamro Aawaj” addresses the communication challenges faced by individuals with hearing and vocal impairments in Nepal by harnessing the power of hand gesture recognition, text conversion, and speech synthesis technologies. </p>
                     <div className="flex flex-col sm:flex-row gap-3">
-                        <Link href="#contact"><PrimaryButton classes="w-full sm:w-auto"> <span className="flex gap-3 items-center"><RiContactsBookFill className="text-white"/> Contact us</span> </PrimaryButton></Link>
-                        <Link href=""><SecondaryButton classes="w-full sm:w-auto"> <span className="flex gap-3 items-center"><FaUserAlt className="text-white"/> Guest Login</span> </SecondaryButton></Link>
-                    </div> 
+                        <PrimaryButton classes="w-full sm:w-auto" onClick={()=>contextContainer.setPopUpNumber(1)}> <span className="flex gap-3 items-center"><RiContactsBookFill className="text-white"/> Register </span> </PrimaryButton>
+                        <SecondaryButton classes="w-full sm:w-auto" onClick={()=>contextContainer.setPopUpNumber(0)}> <span className="flex gap-3 items-center"><FaUserAlt className="text-white"/> Sign in</span> </SecondaryButton>
+                    </div>  
                 </div>
                 <div className="relative hidden h-full lg:block xl:pb-20 pt-20">
                     <Image src={Blob} alt="blog-logo" height={600} width={600} className="opacity-70" />

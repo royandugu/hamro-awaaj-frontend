@@ -1,15 +1,16 @@
 "use client"
 
-import { FaFileImage } from "react-icons/fa6";
+import { FaFileImage, FaFileVideo } from "react-icons/fa6";
 import { IoCloudUploadOutline } from "react-icons/io5"
 import { MdDelete } from "react-icons/md";
-import { useEffect, useState,ChangeEvent,useContext } from "react";
+import { useEffect, useState, ChangeEvent, useContext } from "react";
 import { RiFileSearchFill } from "react-icons/ri";
-import { FaArrowRight,FaArrowUp } from "react-icons/fa";
+import { FaArrowRight, FaArrowUp } from "react-icons/fa";
 import { GrDocumentMissing } from "react-icons/gr";
 import { universalFilePost } from "../../../system/api/apiCallers";
 import { useRouter } from "next/navigation";
 import { MdFileUpload } from "react-icons/md";
+import { useSession } from "next-auth/react";
 
 import context from "../../../system/context/context";
 import userContext from "../../context/context";
@@ -23,9 +24,12 @@ const UploadDisplay = () => {
     const [uploadedPictures, setUploadedPictures] = useState<File[]>([])
     const [uploadedPicturesDisplay, setUploadedPicturesDisplay] = useState<string[]>([]);
     const [showPopUp, setShowPopUp] = useState(false);
-    
+    const [uploadMode, setUploadMode] = useState("image");
+
+    const session: any = useSession();
+
     const contextContainer = useContext(context);
-    const userContextContainer=useContext(userContext);
+    const userContextContainer = useContext(userContext);
 
     const router = useRouter();
 
@@ -42,7 +46,8 @@ const UploadDisplay = () => {
         return text;
     };
 
-    const submitVideo = async () => {
+
+    const submitData = async () => {
         if (uploadedPictures.length > 0) {
             contextContainer.setLoading(0);
             const formData = new FormData();
@@ -50,108 +55,54 @@ const UploadDisplay = () => {
                 formData.append('files', uploadedPictures[i]);
             }
             try {
-                const res = await universalFilePost("videoToAudio", formData);
-                if (res?.ok) {
-                    const data = await res.json();
-                    
-                    userContextContainer.setText(data.text);
-                    // const responseData = await res.text();
-                    // const boundary = responseData.split('\n')[0].trim();
-                    const base64Audio = data.audio;
-                    const binaryString = atob(base64Audio);
-                    const len = binaryString.length;
-                    const bytes = new Uint8Array(len);
-                    for (let i = 0; i < len; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    const audioBuffer = bytes.buffer;
-                     // Create a Blob and Object URL
-                    const blob = new Blob([audioBuffer], { type: data.contentType });
-                    
-                    
-                    const url = URL.createObjectURL(blob);
-                    userContextContainer.setAudio(url);
-                     // Set the audio URL state
-                    //contextContainer.setAudio(url);
-                    // const parts = responseData.split(boundary);
-                    // console.log("Parts is ", parts);
-                    // parts.forEach(part => {
-                    //     if (part.includes('filename="audio.wav"')) {
-                    //         const audioData = part.split('\r\n\r\n')[1].trim();
-                        
-                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
-                    //         console.log(audioBlob);
-                    //         const audioUrl = URL.createObjectURL(audioBlob);
-                    //         contextContainer.setAudio(audioUrl);
-                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
-                    //         const textData = part.split('\r\n\r\n')[1].trim();
-                    //         console.log("textData is",textData);
-                    //         contextContainer.setText(textData);
-                    //     }
-                    // });
-                    router.push("/user/output")
+                if (session && session?.data?.accessToken) {
+                    const res = await universalFilePost(uploadMode === "image" ? "imgToAudio/1" : "videoToAudio/1", formData, session?.data?.accessToken);
+                    if (res?.ok) {
+                        const data = await res.json();
 
+                        userContextContainer.setText(data.text);
+                        // const responseData = await res.text();
+                        // const boundary = responseData.split('\n')[0].trim();
+                        const base64Audio = data.audio;
+                        const binaryString = atob(base64Audio);
+                        const len = binaryString.length;
+                        const bytes = new Uint8Array(len);
+                        for (let i = 0; i < len; i++) {
+                            bytes[i] = binaryString.charCodeAt(i);
+                        }
+                        const audioBuffer = bytes.buffer;
+                        // Create a Blob and Object URL
+                        const blob = new Blob([audioBuffer], { type: data.contentType });
+
+
+                        const url = URL.createObjectURL(blob);
+                        userContextContainer.setAudio(url);
+                        // Set the audio URL state
+                        //contextContainer.setAudio(url);
+                        // const parts = responseData.split(boundary);
+                        // console.log("Parts is ", parts);
+                        // parts.forEach(part => {
+                        //     if (part.includes('filename="audio.wav"')) {
+                        //         const audioData = part.split('\r\n\r\n')[1].trim();
+
+                        //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
+                        //         console.log(audioBlob);
+                        //         const audioUrl = URL.createObjectURL(audioBlob);
+                        //         contextContainer.setAudio(audioUrl);
+                        //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
+                        //         const textData = part.split('\r\n\r\n')[1].trim();
+                        //         console.log("textData is",textData);
+                        //         contextContainer.setText(textData);
+                        //     }
+                        // });
+                        router.push("/user/output")
+
+                    }
+                    else contextContainer.setLoading(3);
                 }
             }
             catch (err) {
-                console.log(err)
-            }
-
-        }
-    }
-
-    const submitImages = async () => {
-        if (uploadedPictures.length > 0) {
-            contextContainer.setLoading(0);
-            const formData = new FormData();
-            for (let i = 0; i < uploadedPictures.length; i++) {
-                formData.append('files', uploadedPictures[i]);
-            }
-            try {
-                const res = await universalFilePost("imgToAudio", formData);
-                if (res?.ok) {
-                    const data = await res.json();
-                    
-                    userContextContainer.setText(data.text);
-                    // const responseData = await res.text();
-                    // const boundary = responseData.split('\n')[0].trim();
-                    const base64Audio = data.audio;
-                    const binaryString = atob(base64Audio);
-                    const len = binaryString.length;
-                    const bytes = new Uint8Array(len);
-                    for (let i = 0; i < len; i++) {
-                        bytes[i] = binaryString.charCodeAt(i);
-                    }
-                    const audioBuffer = bytes.buffer;
-                     // Create a Blob and Object URL
-                    const blob = new Blob([audioBuffer], { type: data.contentType });
-                    
-                    
-                    const url = URL.createObjectURL(blob);
-                    userContextContainer.setAudio(url);
-                     // Set the audio URL state
-                    //contextContainer.setAudio(url);
-                    // const parts = responseData.split(boundary);
-                    // console.log("Parts is ", parts);
-                    // parts.forEach(part => {
-                    //     if (part.includes('filename="audio.wav"')) {
-                    //         const audioData = part.split('\r\n\r\n')[1].trim();
-                        
-                    //         const audioBlob = new Blob([audioData], { type: 'audio/mp3' });
-                    //         console.log(audioBlob);
-                    //         const audioUrl = URL.createObjectURL(audioBlob);
-                    //         contextContainer.setAudio(audioUrl);
-                    //     } else if (part.includes('Content-Disposition: form-data; name="text"')) {
-                    //         const textData = part.split('\r\n\r\n')[1].trim();
-                    //         console.log("textData is",textData);
-                    //         contextContainer.setText(textData);
-                    //     }
-                    // });
-                    router.push("/user/output")
-
-                }
-            }
-            catch (err) {
+                contextContainer.setLoading(3);
                 console.log(err)
             }
 
@@ -186,22 +137,28 @@ const UploadDisplay = () => {
         setUploadedPicturesDisplay([]);
     }
 
-    
+
 
     return (
         <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
-            <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
-                <div> 
+            <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10 ">
+                <div>
+                    <select className="mb-5 p-5 rounded cursor-pointer" onChange={(e) => {
+                        deleteAll();
+                        setUploadMode(e.target.value)
+                    }}>
+                        <option value="image"> Image mode </option>
+                        <option value="video"> Video mode </option>
+                    </select>
                     <div className="flex relative rounded flex-col p-10 md:p-30 justify-center items-center dottedBorder">
-                        <input type="file" accept="image/*, video/*" className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
-
+                        <input type="file" accept={uploadMode === "image" ? "image/*" : "video/*"} className="absolute w-full inset-0 right-0 cursor-pointer opacity-0" onChange={handleChange} multiple />
                         <IoCloudUploadOutline className="text-[#1c2434] text-[100px] md:text-[150px]" />
                         <h3 className="mt-5 uploadText text-center"> Browse files to upload </h3>
                     </div>
                     <div>
 
                         <div className="mt-10 rounded bg-[rgb(240,240,240)] p-5 flex justify-between items-center">
-                            <FaFileImage size={30} />
+                            {uploadMode === "image" ? <FaFileImage size={30} /> : <FaFileVideo size={30} />}
                             <div className="flex gap-5 items-center">
                                 <p className="mt-0 hidden sm:block"> {uploadedPicturesDisplay.length === 0 ? "- No files selected -" : `- ${uploadedPicturesDisplay.length} ${uploadedPicturesDisplay.length === 1 ? 'picture' : 'pictures'} selected -`}  </p>
                                 <p className="mt-0 block sm:hidden text-[14px]"> {uploadedPicturesDisplay.length === 0 ? "0 selected" : `${uploadedPicturesDisplay.length} selected`}  </p>
@@ -212,8 +169,7 @@ const UploadDisplay = () => {
 
                     </div>
                     <div className="flex flex-col gap-2 justify-center mt-5">
-                        <div className="w-full" onClick={submitImages}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit Image</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
-                        <div className="w-full" onClick={submitVideo}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20}/> Submit Video</div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission failed'} </PrimaryButton></div>
+                        <div className="w-full" onClick={submitData}><PrimaryButton type="submit" classes={` w-full px-10 flex justify-center ${contextContainer.loading === 0 ? 'py-3' : 'py-5'} ${contextContainer.loading === 0 && 'opacity-50 pointer-events-none'} text-white rounded`}> {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? <div className="flex justify-center gap-2"> <MdFileUpload size={20} /> {uploadMode === "image" ? "Submit Image" : "Submit Video"} </div> : contextContainer.loading === 2 ? 'Submitted sucesfully, redirecting ...' : 'Submission/Detection failed'} </PrimaryButton></div>
                     </div>
                 </div>
                 <div className={`hidden lg:flex flex-col items-center ${uploadedPicturesDisplay.length > 0 ? '' : 'p-30 items-center'} max-w-[390px]`}>

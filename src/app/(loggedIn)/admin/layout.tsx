@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-import DashboardLayout from '../../../components/admin/pages/layouts/dashboardLayout/dashboardLayout'
-import SessionValidators from '../../../components/system/components/wrappers/sessionValidators/sessionValidators';
+import DashboardLayout from '../../../../components/admin/pages/layouts/dashboardLayout/dashboardLayout'
+import SessionValidators from '../../../../components/system/components/wrappers/sessionValidators/sessionValidators';
+import QueryClientWrapper from '../../../../components/system/components/wrappers/queryClient/queryClient';
 
 export const metadata: Metadata = {
   title: 'Admin Panel - Hamro Awaaj',
@@ -31,11 +32,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return ( 
+  return (
     <SessionValidators roleToValidate='[ADMIN]'>
-      <DashboardLayout>
-        {children}
-      </DashboardLayout>
+      <QueryClientWrapper>
+        <DashboardLayout>
+          {children}
+        </DashboardLayout>
+      </QueryClientWrapper>
     </SessionValidators>
 
   )

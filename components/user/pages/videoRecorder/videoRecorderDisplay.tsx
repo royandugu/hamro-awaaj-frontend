@@ -2,24 +2,20 @@
 
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { universalFilePost } from "../../../system/api/apiCallers";
-import { useRouter } from "next/router";
-
-import { FaArrowUp } from "react-icons/fa";
 import { RiFileSearchFill } from "react-icons/ri";
 import { FiCamera } from "react-icons/fi";
 import { VscDebugStart } from "react-icons/vsc";
 import { IoStopSharp } from "react-icons/io5";
 import { LuWebcam } from "react-icons/lu";
 import { IoMdRecording } from "react-icons/io";
+import { useSession } from "next-auth/react";
+import context from "../../../system/context/context";
 
 import userContext from "../../context/context";
-import context from "../../../system/context/context";
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import SecondaryButton from "../../../system/components/wrappers/secondaryButton/secondaryButton";
 
 import "../upload/upload.css";
-import PrimaryButtonFlexFormat from "../../../system/components/wrappers/primaryButton/primaryButtonFlexFormat";
-import { json, text } from "stream/consumers";
 
 const VideoRecorderPipeline = () => {
   const [mediaStream, setMediaStream] = useState<any>(null);
@@ -29,12 +25,13 @@ const VideoRecorderPipeline = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [stoppedRecording, setStoppedRecording] = useState<boolean>(false);
 
-  const [audio, setAudio] = useState("");
+  const session: any = useSession();
 
   const videoRef = useRef<any>(null);
   const mediaRecorderRef = useRef<any>(null);
 
-  const userContextContainer=useContext(userContext);
+  const userContextContainer = useContext(userContext);
+  const contextContainer=useContext(context);
 
   useEffect(() => {
     const initializeVideoCapture = async () => {
@@ -47,6 +44,7 @@ const VideoRecorderPipeline = () => {
         setMediaStream(stream);
         setWebcamOpened(true);
       } catch (error) {
+        contextContainer.setLoading(3);
         setWebcamOpened(false);
         console.error("Error initializing video capture:", error);
       }
@@ -105,63 +103,41 @@ const VideoRecorderPipeline = () => {
     formData.append("files", blob);
 
     try {
-      const response = await universalFilePost("getSLTest", formData);
+      contextContainer.setLoading(0);
+      const response = await universalFilePost("videoToAudio/1", formData, session?.data?.accessToken);
       const jsonResponse = await response?.json();
-      const base64Audio = jsonResponse.audio;
-      const binaryString = atob(base64Audio);
-      const len = binaryString.length;
-      const bytes = new Uint8Array(len);
-      for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
+      if (jsonResponse.audio && jsonResponse.text) {
+        const base64Audio = jsonResponse.audio;
+        const binaryString = atob(base64Audio);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        const audioBuffer = bytes.buffer;
+        // Create a Blob and Object URL
+        const blob = new Blob([audioBuffer], { type: jsonResponse.contentType });
+
+
+        const url = URL.createObjectURL(blob);
+        // Set the audio URL state
+        //contextContainer.setAudio(url);
+        //contextContainer.setText(jsonResponse.text);
+        userContextContainer.setAudio(url);
+        userContextContainer.setText(jsonResponse.text);
       }
-      const audioBuffer = bytes.buffer;
-      // Create a Blob and Object URL
-      const blob = new Blob([audioBuffer], { type: jsonResponse.contentType });
-
-
-      const url = URL.createObjectURL(blob);
-      // Set the audio URL state
-      //contextContainer.setAudio(url);
-      //contextContainer.setText(jsonResponse.text);
-      userContextContainer.setAudio(url);
-      userContextContainer.setText(jsonResponse.text);
-      } catch (error) {
+      else contextContainer.setLoading(3);
+    } catch (error) {
+      contextContainer.setLoading(3);
       console.error("Error uploading video:", error);
     }
   };
 
-  // const openWebCamButton=()=>{
-  //   return <PrimaryButtonFlexFormat functionToCall={() => {
-  //     setWebcamOpened(true);
-  //     webcamOpener();
-  //   }} icon={<LuWebcam size={20} />} text="Open Webcam"/>
-  // }
-
-  // const startRecordingButton=()=>{
-  //   return <PrimaryButtonFlexFormat functionToCall={startRecording} icon={<VscDebugStart size={20} />} text="Start Recording"/>
-  // }
-
-  // const recordingButton=()=>{
-  //   return <PrimaryButtonFlexFormat icon={<IoMdRecording size={20} />} text="Recording ..."/>
-  // }
-  
-  // const uploadButton=()=>{
-  //   return <PrimaryButtonFlexFormat  classes="pointer-events-none" icon={<LuWebcam size={20} />} text="Open Webcam"/>
-  // }
-
-  // const stopRecordingButton=()=>{
-
-  // }
-
-  // const discardRecordingButton=()=>{
-
-  // }
-
   return (
     <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
-      <div className="bg-white flex gap-10 routruended shadow-2xl p-10 pb-20 lg:p-10">
+      <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
         <div>
-          <div className={`flex relative rounded flex-col ${webcamOpened ? 'p-0' : 'p-10 md:p-30'} justify-center items-center dottedBorder w-[500px] h-[394px]`}>
+          <div className={`flex relative rounded flex-col ${webcamOpened ? 'p-0' : 'p-10 md:p-30'} justify-center items-center dottedBorder md:w-[500px] h-[394px]`}>
             {(stoppedRecording && recordedChunks.length > 0) ? (
               <div>
                 <video
@@ -183,7 +159,7 @@ const VideoRecorderPipeline = () => {
           <div>
           </div>
           <PrimaryButton classes="w-full mt-10">
-            {stoppedRecording ? <div className="flex justify-center gap-2" onClick={handleUpload}> Upload video </div> : webcamOpened ? isRecording ? <div className="flex justify-center gap-2 pointer-events-none">
+            {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px] m-auto" /> : contextContainer.loading === 3 ?  <div> Error encountered.. </div> : stoppedRecording ? <div className="flex justify-center gap-2" onClick={handleUpload}> Upload video </div> : webcamOpened ? isRecording ? <div className="flex justify-center gap-2 pointer-events-none">
               <IoMdRecording size={20} /> Recording ...
             </div> : <div className="flex justify-center gap-2" onClick={startRecording}>
               <VscDebugStart size={20} /> Start Recording
@@ -201,7 +177,6 @@ const VideoRecorderPipeline = () => {
           </SecondaryButton>
         </div>
       </div>
-      <FaArrowUp size={30} className="absolute bottom-[60px] block lg:hidden opacity-75 hover:opacity-100 cursor-pointer" />
       <div className={`smallScreenImagesPopUp rounded block bg-white z-9 lg:hidden`}>
         <RiFileSearchFill size={150} className="text-[rgb(200,200,200)]" />
       </div>

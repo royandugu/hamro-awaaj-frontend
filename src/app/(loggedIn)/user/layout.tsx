@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
-import SessionValidators from '../../../components/system/components/wrappers/sessionValidators/sessionValidators';
-import ClientHeader from '../../../components/user/sections/global/header/header'
-import ClientFooter from '../../../components/user/sections/global/footer/footer'
-import QueryClientWrapper from '../../../components/system/components/wrappers/queryClient/queryClient';
+import SessionValidators from '../../../../components/system/components/wrappers/sessionValidators/sessionValidators';
+import ClientHeader from '../../../../components/user/sections/global/header/header';
+import ClientFooter from '../../../../components/user/sections/global/footer/footer';
+import QueryClientWrapper from '../../../../components/system/components/wrappers/queryClient/queryClient';
 
 export const metadata: Metadata = {
   title: 'User Dashboard - Hamro Awaaj',

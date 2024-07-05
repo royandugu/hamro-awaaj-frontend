@@ -26,7 +26,7 @@ export const options: NextAuthOptions = {
       async authorize(credentials, req) {
         const response: any = await universalJSONPost({ email: credentials?.email, password: credentials?.password }, "login");
         const jsonVersion = await response.json();
-        console.log(jsonVersion);
+        
         if (jsonVersion?.response === "SUCCESS") {
           return JSON.parse(JSON.stringify(jsonVersion));
         }

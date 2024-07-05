@@ -4,7 +4,7 @@ import { RiAdminFill } from "react-icons/ri";
 
 import Link from "next/link";
 
-const Header = ({setSidebarOpen}:{setSidebarOpen?:Dispatch<SetStateAction<boolean>>}) => {
+const Header = ({ setSidebarOpen }: { setSidebarOpen?: Dispatch<SetStateAction<boolean>> }) => {
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1">
       <div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
@@ -12,10 +12,10 @@ const Header = ({setSidebarOpen}:{setSidebarOpen?:Dispatch<SetStateAction<boolea
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
             aria-controls="sidebar"
-            
+
             className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm lg:hidden"
-          onClick={()=>setSidebarOpen ? setSidebarOpen(true) : ""}>
-            <RxHamburgerMenu size={30}/>
+            onClick={() => setSidebarOpen ? setSidebarOpen(true) : ""}>
+            <RxHamburgerMenu size={30} />
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
@@ -26,7 +26,13 @@ const Header = ({setSidebarOpen}:{setSidebarOpen?:Dispatch<SetStateAction<boolea
         <div className="w-full">
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="float-right">
-            <Link href="/admin/settings/account"><RiAdminFill size={30}/> </Link>
+              <Link href="/admin/settings/account"> <div>
+                <Link href="/admin/settings/account" className="mt-0">
+                  <span className="flex gap-2 h-[35px] w-[35px] rounded-full justify-center items-center bg-primary">
+                    <p className="text-white"> R </p>
+                  </span>
+                </Link>
+              </div></Link>
             </div>
           </form>
         </div>

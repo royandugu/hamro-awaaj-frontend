@@ -1,7 +1,6 @@
 "use client"
 
 import { ApexOptions } from 'apexcharts';
-import { useState } from 'react';
 
 import ReactApexChart from 'react-apexcharts';
 
@@ -86,20 +85,7 @@ const options: ApexOptions = {
   },
   xaxis: {
     type: 'category',
-    categories: [
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-    ],
+    categories:["उनी", "काम", "घर", "छ", "त्यो", "नेपाली", "म", "मेरो", "रुख", "शिक्षक", "साथी", "हो"],
     axisBorder: {
       show: false,
     },
@@ -125,21 +111,8 @@ interface ChartOneState {
   }[];
 }
 
-const ChartOne: React.FC = () => {
-  const [state, setState] = useState<ChartOneState>({
-    series: [
-      {
-        name: 'Product One',
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
-      },
-
-      {
-        name: 'Product Two',
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
-      },
-    ],
-  });
-
+const ChartOne = ({state}:{state:any}) => {
+  
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7 pb-5 shadow-default sm:px-7 xl:col-span-8">
       <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
@@ -149,8 +122,7 @@ const ChartOne: React.FC = () => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">Total Revenue</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="font-semibold text-primary">Total Audio Conversion</p>
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -158,8 +130,7 @@ const ChartOne: React.FC = () => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-secondary">Total Sales</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="font-semibold text-secondary">Total text Conversion</p>
             </div>
           </div>
         </div>

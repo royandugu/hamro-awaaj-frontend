@@ -12,33 +12,19 @@ const ChartOne = dynamic(() => import('../../../system/components/dashboard/char
 const ChartTwo = dynamic(() => import('../../../system/components/dashboard/charts/chartTwo'), {
     ssr: false,
 });
- 
+
 const Dashboard = () => {
     return (
         <section className="haSection pt-10 pb-20">
-            <div className="flex gap-10">
-                <div className="w-1/4">
-                    <CardOne />
-                </div>
-                <div className="w-1/4">
-                    <CardTwo />
-                </div>
-
-                <div className="w-1/4">
-                    <CardThree />
-                </div>
-
-                <div className="w-1/4">
-                    <CardFour />
-                </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+                <CardOne/>
+                <CardTwo />
+                <CardThree />
+                <CardFour />
             </div>
-            <div className="flex gap-10 mt-10">
-                <div className="w-2/3">
-                    <ChartOne />
-                </div>
-                <div className="w-1/3">
-                    <ChartTwo />
-                </div>
+
+            <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+                
             </div>
         </section>
     )

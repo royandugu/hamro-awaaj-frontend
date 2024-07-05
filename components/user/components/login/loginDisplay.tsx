@@ -8,7 +8,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { signIn, useSession } from "next-auth/react";
 
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
-import SecondaryButton from "../../../system/components/wrappers/secondaryButton/secondaryButton";
+
 import context from "../../../system/context/context";
 
 const registerData = [
@@ -28,6 +28,7 @@ const Login = () => {
     const [formDetails, setFormDetails] = useState({ email: "", password: "" })
     const [errorDetails, setErrorDetails] = useState<any>({ email: { error: false, message: "" }, password: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
+    const [message,setMessage]=useState("");
 
     const contextContainer = useContext(context);
 
@@ -44,11 +45,18 @@ const Login = () => {
             })
             if (response?.ok) {
                 contextContainer.setLoading(2);
+                setMessage("");
                 if (session?.data?.user?.role === "[ADMIN]") router.push("/admin/dashboard");
                 else if (session?.data?.user?.role === "[USER]") router.push("/user/upload");
             }
+            else{
+                setMessage("Incorrect email or password");
+                contextContainer.setLoading(3);
+            }
         }
         catch (err) {
+            setMessage("Failed to login user");
+            contextContainer.setLoading(3);
             console.log(err);
         }
     }
@@ -81,18 +89,21 @@ const Login = () => {
                     </div>
                 ))}
                 <div className="flex items-center gap-3 my-5 mb-10">
-                    <p className="smallPara cursor-pointer hover:underline"> Forgot password </p>
+                    {contextContainer.loading !==2 ? <p className="smallPara cursor-pointer hover:underline" onClick={()=>contextContainer.setPopUpNumber(4)}> Forgot password </p> : null}
+                </div>
+                <div className="max-w-[280px] m-auto">
+                    {message ? <p className="text-red-300 mb-5"> {message ?? "no message"} </p> : null}
                 </div>
                 <PrimaryButton type="submit" classes="w-full mb-3 flex justify-center items-center h-[64px]" onClick={sendLoginRequest}>
                     {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[40px] w-[40px]" /> : contextContainer.loading === 1 ? 'Login your account' : contextContainer.loading === 2 ? 'Redirecting you...' : 'Login failed'}
                 </PrimaryButton>
-                <SecondaryButton type="submit" classes={`w-full mb-5 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
+                {/* <SecondaryButton type="submit" classes={`w-full mb-5 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
                     Login with google
-                </SecondaryButton>
+                </SecondaryButton> */}
 
-                <div className="flex mb-5 justify-between fpAndNoAccountContainer">
+                {contextContainer.loading !==2 ? <div className="flex mb-5 justify-between fpAndNoAccountContainer">
                     <p className="cursor-pointer hover:underline smallPara" onClick={() => contextContainer.setPopUpNumber(1)}> Don&apos;t have an account ? </p>
-                </div>
+                </div> : null}
             </form>
             <Tooltip id="my-tooltip" />
         </div>

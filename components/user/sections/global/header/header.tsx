@@ -6,13 +6,15 @@ import { FaXTwitter } from "react-icons/fa6";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Dispatch, SetStateAction, useContext } from "react";
+import { usePathname } from 'next/navigation';
+
 
 import Link from "next/link";
 import context from "../../../../system/context/context";
 
 const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?: Dispatch<SetStateAction<boolean>>, isLoggedIn?: boolean }) => {
     const contextContainer = useContext(context);
-
+    const pathname = usePathname();
 
     return (
         <header id="header" className="z-9 shadow-xl">
@@ -56,15 +58,12 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                     </Link>
                 </li>
             </ul> :
-                <ul className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
+                <ul className="hidden md:flex justify-center items-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
                     <li>
-                        <Link href="/user/dashboard" className="mt-0 hover:text-primary"> Dashboard </Link>
+                        <Link href="/user/upload" className={`mt-0 hover:text-primary ${pathname === '/user/upload' ? 'text-primary' : ''}`}> Upload </Link>
                     </li>
                     <li>
-                        <Link href="/user/upload" className="mt-0 hover:text-primary"> Upload </Link>
-                    </li>
-                    <li>
-                        <Link href="/user/video-recorder" className="mt-0 hover:text-primary"> Realtime </Link>
+                        <Link href="/user/video-recorder" className={`mt-0 hover:text-primary ${pathname === '/user/video-recorder' ? 'text-primary' : ''}`}> Realtime </Link>
                     </li>
                     <li>
                         <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
@@ -72,8 +71,8 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                     <li>
                         <Link href="/user/account-info" className="mt-0 hover:text-primary">
                             <span className="flex gap-2 items-center">
-                                <FaRegUserCircle />
-                                Account
+                                <FaRegUserCircle size={25}/>
+                                
                             </span>
                         </Link>
                     </li>

@@ -4,29 +4,12 @@ import { FormEvent, useState, useEffect, useContext } from "react";
 import { universalJSONPost } from "../../../system/api/apiCallers";
 import { IoIosInformationCircle } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
-import { useRouter } from "next/navigation";
 import { FaRegEye,FaRegEyeSlash } from "react-icons/fa6";
 
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 import context from "../../../system/context/context";
 
 const registerData = [
-    {
-        placeholder: "Enter your full name",
-        name: "fullName",
-        type: "text"
-    },
-    {
-        placeholder: "Enter your user name",
-        name: "userName",
-        type: "text"
-    },
-    {
-        placeholder: "Enter your Email",
-        name: "email",
-        type: "text",
-        validateText: "Make sure your email follows the standart format"
-    },
     {
         placeholder: "Enter your password",
         name: "password",
@@ -35,15 +18,14 @@ const registerData = [
     }
 ]
 
-const Register = () => {
+const EnterNewPassword = () => {
     const [retryPassword, setRetryPassword] = useState("");
-    const [formDetails, setFormDetails] = useState({ userName: [""], email: [""], password: [""], fullName: [""] })
-    const [errorDetails, setErrorDetails] = useState<any>({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
+    const [formDetails, setFormDetails] = useState({ password: [""] })
+    const [errorDetails, setErrorDetails] = useState<any>({ password: { error: false, message: "" }, rePassword: { error: false, message: "" } });
     const [passwordShown, setPasswordShown] = useState({ password: false, retry: false });
     
     const contextContainer = useContext(context);
     
-    const router = useRouter();
     
     useEffect(() => {
         contextContainer.setLoading(1);
@@ -51,43 +33,13 @@ const Register = () => {
     
     const validateForm = () => {
 
-        const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
         let noMistakes = true;
 
-        if (formDetails.fullName[0] === "") {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                fullName: { error: true, message: "You must enter the first name" }
-            }));
-        }
-        if (formDetails.email[0] === "") {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                email: { error: true, message: "You must enter your email" }
-            }));
-        }
-        if (!emailRegEx.test(formDetails.email[0])) {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                email: { error: true, message: "You must enter your email" }
-            }));
-        }
         if (formDetails.password[0] === "" || formDetails.password[0].length < 8) {
             noMistakes = false;
             setErrorDetails((prevState: any) => ({
                 ...prevState,
                 password: { error: true, message: "Make sure your passwords have minimum of 8 characters" }
-            }));
-        }
-        if (formDetails.userName[0] === "") {
-            noMistakes = false;
-            setErrorDetails((prevState: any) => ({
-                ...prevState,
-                userName: { error: true, message: "You must enter your user name" }
             }));
         }
         if (formDetails.password[0] !== retryPassword) {
@@ -101,24 +53,22 @@ const Register = () => {
     }
 
 
-    const registerUser = async (e: FormEvent) => {
+    const changePassword = async (e: FormEvent) => {
         e.preventDefault();
         if (validateForm()) {
             contextContainer.setLoading(0);
             const body = {
-                username: formDetails.userName[0],
-                password: formDetails.password[0],
-                email: formDetails.email[0],
-                fullName: formDetails.fullName[0]
+                newPassword: formDetails.password[0],
             }
-            const res: any = await universalJSONPost(body, "register/user");
+            console.log(contextContainer.popButtonLabel.actionData);
+            const res: any = await universalJSONPost(body, `register/change_password/${contextContainer.popButtonLabel.actionData}`);
             const data = await res.text();
 
             console.log(data);
             
-            if (data.toString() === '"Confirm_OTP"') {
+            if (data.toString() === '"SUCCESS"') {
                 contextContainer.setLoading(1);
-                contextContainer.setPopUpNumber(3);
+                contextContainer.setPopUpNumber(0);
             }
             else contextContainer.setLoading(3);
 
@@ -133,8 +83,8 @@ const Register = () => {
 
     return (
         <>
-            <h4 className="mb-5 text-center sm:text-left normal-case"> Register your account </h4>
-            <form className="normalInputContainer" onSubmit={registerUser}>
+            <p className="mb-5 text-center sm:text-left normal-case"> Change your password </p>
+            <form className="normalInputContainer" onSubmit={changePassword}>
                 {registerData.map((rd, index) => (
                     <div key={index} className="flex relative items-center gap-5 mt-[25px]">
                         <input type={rd.type === "password" ? passwordShown.password ? "text" : "password" : rd.type} placeholder={rd.placeholder} name={rd.name} className={`${errorDetails[rd.name].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={handleChange} />
@@ -148,7 +98,7 @@ const Register = () => {
                         <IoIosInformationCircle title={errorDetails[rd.name].message !== "" ? errorDetails[rd.name].message : rd.validateText ?? ""} size={30} className={`${(!rd.validateText && errorDetails[rd.name].message === "") ? "invisible" : ""} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails[rd.name].error ? 'text-red-500' : ''}`} />
                     </div>
                 ))}
-                <div className="flex relative items-center gap-5 mt-[25px]">
+                <div className="flex relative items-center gap-5 mt-[25px] mb-10">
                     <input type={passwordShown.retry ? 'text' : 'password'} placeholder="Re enter your password" className={`${errorDetails["rePassword"].error ? 'border border-red-500' : 'border border-[rgb(225,225,225)]'} applyInputDesign rounded-xl outline-none`} onChange={(e: any) => {
                         setErrorDetails({ userName: { error: false, message: "" }, email: { error: false, message: "" }, password: { error: false, message: "" }, fullName: { error: false, message: "" }, rePassword: { error: false, message: "" } });
                         setRetryPassword(e.target.value);
@@ -162,12 +112,9 @@ const Register = () => {
 
                     {<IoIosInformationCircle title={errorDetails?.rePassword?.message ?? ""} size={30} className={`${errorDetails?.rePassword?.message === "" ? 'invisible ' : ''} opacity-50 hover:opacity-100 cursor-pointer ${errorDetails?.fullName?.error ? 'text-red-500' : ''}`} />}
                 </div>
-                <div className="flex items-center gap-3 mt-10 mb-10">
-                    <input type="checkbox" className="cursor-pointer" />
-                    <p className="smallPara"> I agree all statements in <span className="underline cursor-pointer"> Terms of service </span> </p>
-                </div>
+               
                 <PrimaryButton type="submit" classes={`w-full flex justify-center items-center mb-3 h-[64px] ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
-                    {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Register your account' : contextContainer.loading === 2 ? 'Registered sucesfully, redirecting ...' : 'User registration failed'}
+                    {contextContainer.loading === 0 ? <img src="/spinner.svg" className="h-[50px] w-[50px]" /> : contextContainer.loading === 1 ? 'Change your password' : contextContainer.loading === 2 ? 'Password changed sucesfully, redirecting ...' : 'Password changing failed'}
                 </PrimaryButton>
                 {/* <SecondaryButton type="submit" classes={`w-full mb-5 ${contextContainer.loading === 0 ? 'opacity-50 pointer-events-none' : ''}`}>
                     Login with google
@@ -175,8 +122,7 @@ const Register = () => {
 
             </form>
             <Tooltip id="my-tooltip" />
-            <p className="smallPara"> Already have an account? <span className="text-primary hover:underline cursor-pointer" onClick={() => contextContainer.setPopUpNumber(0)}> Login </span> </p>
         </>
     )
 }
-export default Register;
+export default EnterNewPassword;
