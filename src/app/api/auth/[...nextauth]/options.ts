@@ -1,22 +1,15 @@
 import { NextAuthOptions } from "next-auth";
 import { universalJSONPost } from "../../../../../components/system/api/apiCallers";
 
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const clientId = process.env.GOOGLE_CLIENT_ID;
-const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
 
-if (!clientId || !clientSecret || !nextAuthSecret) {
-  throw new Error("CLIENT_ID or CLIENT_SECRET or NEXT AUTH SECRET must be defined in the environment");
+if (!nextAuthSecret) {
+  throw new Error("NEXT AUTH SECRET must be defined in the environment");
 }
 export const options: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: clientId,
-      clientSecret: clientSecret
-    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
