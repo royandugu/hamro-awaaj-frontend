@@ -5,7 +5,6 @@ import { IoWarningOutline } from "react-icons/io5";
 import { universalDelete } from "../../../system/api/apiCallers";
 import { useSession } from "next-auth/react";
 
-import Spinner from "../../../system/sections/spinner/spinner";
 import context from "../../../system/context/context";
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
 
@@ -16,9 +15,9 @@ const PopMessage = () => {
 
     return (
         <div className="pt-5 pb-5">
-            <IoWarningOutline size={130} className="text-red-400 m-auto mb-10" />
+            {contextContainer.popButtonLabel?.actionNumber === 0 ?<IoWarningOutline size={130} className="text-red-400 m-auto mb-10" /> : ""}
             <p className="mb-5"> {contextContainer.popMessage.textMessage} </p>
-            <PrimaryButton classes="w-full redButton h-[64px]" onClick={async () => {
+            <PrimaryButton classes={`w-full redButton h-[64px] ${contextContainer.popMessage?.buttonText?.length>0 ? '':'hidden'}`} onClick={async () => {
                 if (contextContainer.popButtonLabel?.actionNumber === 0) {
                     contextContainer.setLoading(0);
                     const deleteResponse = await universalDelete(`admin/deleteUser/${contextContainer.popButtonLabel?.actionData}`, session?.data?.accessToken)

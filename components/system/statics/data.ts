@@ -23,6 +23,6 @@ export const aboutSectionEnglish = {
 
 export const servicesSectionEnglish={
     subtitle:"Services",
-    description:'"Hamro awaaj" web application provides communication facilities for people with hearing and speaking disabilities by recognizing Nepali sign language and converting it into artificial speech.'
+    description:'"Hamro aawaj" web application provides communication facilities for people with hearing and speaking disabilities by recognizing Nepali sign language and converting it into artificial speech.'
 }
 

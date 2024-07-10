@@ -93,13 +93,18 @@ For open source projects, say how it is licensed.
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
 --user
-royan9864@gmail.com
-123456789
+royandugu99009@gmail.com
+12345678
+
+--admin
+
 
 --admin
 {
-  "email":"jenish@gmail.com",
-  "password":"jennyBa@123"
+  "username": "john_doe",
+  "password": "secretpassword123",
+  "email": "john.doe@example.com",
+  "fullName": "John Doe"
 }
 
  "email":"admin@gmail.com",

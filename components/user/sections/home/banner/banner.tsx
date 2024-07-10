@@ -20,7 +20,7 @@ const Banner = () => {
             <div className="flex justify-between items-center overflow-hidden">
                 <div className="bannerContentContainer pt-15 pb-15 sm:pt-20 sm:pb-20 lg:pt-0 lg:pb-0">
                     <h1> Bridging Silence </h1>
-                    <h2 className="mb-5"><span className="text-primary xl:whitespace-nowrap">With </span>Communication .</h2>
+                    <h2 className="mb-5"><span className="text-primary xl:whitespace-nowrap">With </span>Communication&nbsp;.</h2>
                     
                     <p className="max-w-[650px] text-black mb-10"> The project ”Hamro Aawaj” addresses the communication challenges faced by individuals with hearing and vocal impairments in Nepal by harnessing the power of hand gesture recognition, text conversion, and speech synthesis technologies. </p>
                     <div className="flex flex-col sm:flex-row gap-3">

@@ -45,10 +45,10 @@
 
                  <div className="border-[1px] border-[#eae9ee] shadow-2xl bg-opacity-50 p-8 rounded mt-10 lg:mt-0 lg:w-1/2">
                      <div className="h-[200px] overflow-auto">
-                         <p className="mt-0"> {userContextContainer.text} </p>
+                         <p className="mt-0"> मेरो शिक्षक साथी हो </p>
                      </div>
                      <div className="border-t-[2px] border-[#eae9ee] mt-5 pt-5">
-                         <audio src={userContextContainer.audio} controls className="rounded w-full">
+                         <audio src="/game-countdown-62-199828.mp3" controls className="rounded w-full">
                          </audio>
                      </div>
                  </div>

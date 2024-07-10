@@ -121,16 +121,14 @@ const ChartOne = ({state}:{state:any}) => {
             <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-primary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
-            <div className="w-full">
-              <p className="font-semibold text-primary">Total Audio Conversion</p>
-            </div>
+          
           </div>
           <div className="flex min-w-47.5">
             <span className="mt-1 mr-2 flex h-4 w-full max-w-4 items-center justify-center rounded-full border border-secondary">
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-secondary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-secondary">Total text Conversion</p>
+              <p className="font-semibold text-secondary">Total Conversion logs</p>
             </div>
           </div>
         </div>

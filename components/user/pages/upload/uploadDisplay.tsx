@@ -13,6 +13,7 @@ import { MdFileUpload } from "react-icons/md";
 import { useSession } from "next-auth/react";
 
 import context from "../../../system/context/context";
+import loggedInContext from "../../../system/context/loggedInContext";
 import userContext from "../../context/context";
 
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
@@ -29,6 +30,7 @@ const UploadDisplay = () => {
     const session: any = useSession();
 
     const contextContainer = useContext(context);
+    const loggedInContextContainer=useContext(loggedInContext);
     const userContextContainer = useContext(userContext);
 
     const router = useRouter();
@@ -56,7 +58,7 @@ const UploadDisplay = () => {
             }
             try {
                 if (session && session?.data?.accessToken) {
-                    const res = await universalFilePost(uploadMode === "image" ? "imgToAudio/1" : "videoToAudio/1", formData, session?.data?.accessToken);
+                    const res = await universalFilePost(uploadMode === "image" ? `imgToAudio` : `videoToAudio`, formData, session?.data?.accessToken);
                     if (res?.ok) {
                         const data = await res.json();
 
@@ -160,7 +162,7 @@ const UploadDisplay = () => {
                         <div className="mt-10 rounded bg-[rgb(240,240,240)] p-5 flex justify-between items-center">
                             {uploadMode === "image" ? <FaFileImage size={30} /> : <FaFileVideo size={30} />}
                             <div className="flex gap-5 items-center">
-                                <p className="mt-0 hidden sm:block"> {uploadedPicturesDisplay.length === 0 ? "- No files selected -" : `- ${uploadedPicturesDisplay.length} ${uploadedPicturesDisplay.length === 1 ? 'picture' : 'pictures'} selected -`}  </p>
+                                <p className="mt-0 hidden sm:block"> {uploadedPicturesDisplay.length === 0 ? "- No files selected -" : `- ${uploadedPicturesDisplay.length} ${uploadMode === "video" ? 'Video': uploadedPicturesDisplay.length === 1 ? 'picture' : 'pictures'} selected -`}  </p>
                                 <p className="mt-0 block sm:hidden text-[14px]"> {uploadedPicturesDisplay.length === 0 ? "0 selected" : `${uploadedPicturesDisplay.length} selected`}  </p>
                                 <MdDelete size={30} className="hover:text-red-400 cursor-pointer" onClick={deleteAll} />
                             </div>

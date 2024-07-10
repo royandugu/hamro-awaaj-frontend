@@ -7,7 +7,7 @@ import Image from "next/image";
 const Services = () => {
 
     const text='"हाम्रो आवाज" वेबको अनुप्रयोगको नेपालीमा सुन्न र बोल्न अक्षम व्यक्तिहरुलाई नेपाली साङ्‌केतिक भाषाको पहिचान गरि कृतिम आवाजमा संवादको सुविधा प्रदान गर्दछ ।.'
-    const englishText='"Hamro awaaj" web application provides communication facilities for people with hearing and speaking disabilities by recognizing Nepali sign language and converting it into artificial speech.'
+    const englishText='"Hamro aawaj" web application provides communication facilities for people with hearing and speaking disabilities by recognizing Nepali sign language and converting it into artificial speech.'
 
     return (
         <section id="services" className=" pb-10 pt-10 sm:pb-20">

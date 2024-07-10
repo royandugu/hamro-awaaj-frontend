@@ -9,7 +9,10 @@ import { IoStopSharp } from "react-icons/io5";
 import { LuWebcam } from "react-icons/lu";
 import { IoMdRecording } from "react-icons/io";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import context from "../../../system/context/context";
+import loggedInContext from "../../../system/context/loggedInContext";
 
 import userContext from "../../context/context";
 import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
@@ -25,6 +28,8 @@ const VideoRecorderPipeline = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [stoppedRecording, setStoppedRecording] = useState<boolean>(false);
 
+  const router=useRouter();
+
   const session: any = useSession();
 
   const videoRef = useRef<any>(null);
@@ -38,7 +43,6 @@ const VideoRecorderPipeline = () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: { width: 1920, height: 1080, facingMode: "user" },
-
         });
         if (videoRef && videoRef.current) videoRef.current.srcObject = stream;
         setMediaStream(stream);
@@ -58,6 +62,10 @@ const VideoRecorderPipeline = () => {
       }
     };
   }, [openWebcam]);
+
+  useEffect(()=>{
+    contextContainer.setLoading(1);
+  },[])
 
   const startRecording = () => {
     setStoppedRecording(false);
@@ -104,7 +112,7 @@ const VideoRecorderPipeline = () => {
 
     try {
       contextContainer.setLoading(0);
-      const response = await universalFilePost("videoToAudio/1", formData, session?.data?.accessToken);
+      const response = await universalFilePost(`videoToAudio`, formData, session?.data?.accessToken);
       const jsonResponse = await response?.json();
       if (jsonResponse.audio && jsonResponse.text) {
         const base64Audio = jsonResponse.audio;
@@ -125,6 +133,7 @@ const VideoRecorderPipeline = () => {
         //contextContainer.setText(jsonResponse.text);
         userContextContainer.setAudio(url);
         userContextContainer.setText(jsonResponse.text);
+        router.push("/user/output")
       }
       else contextContainer.setLoading(3);
     } catch (error) {
@@ -171,7 +180,14 @@ const VideoRecorderPipeline = () => {
             </div>}
           </PrimaryButton>
           <SecondaryButton classes={`w-full mt-3 ${(!isRecording && !stoppedRecording) ? 'pointer-events-none' : ''}`}>
-            {stoppedRecording ? <div className="flex justify-center gap-2"> Discard video </div> : <div className="flex justify-center gap-2" onClick={stopRecording}>
+            {stoppedRecording ? <div className="flex justify-center gap-2" onClick={()=>{
+              setMediaStream(null);
+              setRecordedChunks([]);
+              setOpenWebcam(false);
+              setWebcamOpened(false);
+              setIsRecording(false);
+              setStoppedRecording(false);
+            }}> Discard video </div> : <div className="flex justify-center gap-2" onClick={stopRecording}>
               <IoStopSharp size={20} /> Stop Recording
             </div>}
           </SecondaryButton>

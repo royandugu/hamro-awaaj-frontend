@@ -22,19 +22,19 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                 <div className="haContainer">
                     <ul className="flex items-center gap-2">
                         <li>
-                            <TiSocialFacebook className="text-white" size={20} />
+                            <Link href="#"><TiSocialFacebook className="text-white" size={20} /></Link>
                         </li>
                         <li>
-                            <GrInstagram className="text-white" size={15} />
+                            <Link href="#"><GrInstagram className="text-white" size={15} /></Link>
                         </li>
                         <li>
-                            <FaXTwitter className="text-white" size={15} />
+                            <Link href="#"><FaXTwitter className="text-white" size={15} /></Link>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="py-4 flex bg-white justify-center">
-                <h2> Hamro <span className="text-[#ff9c85]">Aawaj</span> </h2>
+            <div className="py-7 flex bg-white justify-center">
+                <img src="/Hamro(3)(1).png" className="w-[250px]"/>
             </div>
             {!isLoggedIn ? <ul className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
                 <li>

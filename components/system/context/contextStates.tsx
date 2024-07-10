@@ -9,6 +9,7 @@ const ContextState=(props:any)=>{
     const [popUpNumber,setPopUpNumber]=useState(-1);
     const [popMessage,setPopMessage]=useState({textMessage:"",buttonText:""});
     const [popButtonLabel,setPopButtonLabel]=useState<{actionNumber:number,actionData:any}>({actionNumber:0,actionData:""});
+    const [modelChoice,setModelChoice]=useState<{audioModel:string,videoModel:string}>({audioModel:"1",videoModel:"1"});
     
     const collection={
         loading:loading,

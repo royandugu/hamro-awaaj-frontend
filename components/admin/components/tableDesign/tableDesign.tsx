@@ -26,14 +26,14 @@ const TableDesign = (props: Table) => {
                 </td>
               ))}
               <td className="p-5 border border-[rgb(200,200,200)]">
-                <div className="flex justify-center">
+                {item.role==="ADMIN" ? <></> : <div className="flex justify-center">
                   {!props.eye ? <>
                     <MdDelete size={30} className="text-grad-two cursor-pointer hover:text-red-400" onClick={async ()=>{
                       if (props.deletionClick) {
                         props.deletionClick(item?.[props.focusItem ?? ""]);
                       }
                     }} /></> : <FaRegEye size={30} className="text-green-400 hover:text-green-500 cursor-pointer"/>}
-                </div>
+                </div>}
               </td>
             </tr>
           )) : ""}

@@ -10,19 +10,24 @@ import TableDesign from "../../components/tableDesign/tableDesign";
 import Spinner from "../../../system/sections/spinner/spinner";
 
 const UserList = () => {
+    const [loading,setLoading]=useState(true);
     const [userList,setUserList]=useState<any>([]);
     const [email,setEmail]=useState("");
 
     const contextContainer=useContext(context);
 
     const session: any = useSession();
-    
-    const { data, status } = useQuery("all-users", () => universalProtectedGet("admin/getAllUsers", session?.data?.accessToken));
 
     useEffect(()=>{
-        if(status === "success") setUserList(data);
-    },[status])
-
+        const fetchUserList=async ()=>{
+            const response = await universalProtectedGet("admin/getAllUsers", session?.data?.accessToken) 
+            console.log(response);
+            setUserList(response);
+            setLoading(false);
+        }
+        if(session?.data?.accessToken) fetchUserList();
+    },[session])
+    
     useEffect(()=>{
         if(contextContainer.loading === 2){
             let dummyArray=[...userList];
@@ -39,9 +44,8 @@ const UserList = () => {
         contextContainer.setPopButtonLabel({actionNumber:0,actionData:email});
     }   
 
-    if (status === "loading") return <Spinner />
-    else if (status === "error") return <h5> Error fetching data</h5>
-    else if (status === "success") {
+    if (loading) return <Spinner />
+    else {
         return <TableDesign title="All users" tableRows={["Name", "Username", "Email", "Action"]} dataKeys={["fullName", "username", "email"]} tableCols={userList} deletionClick={deletionClick} focusItem="email"/>
     }
 }

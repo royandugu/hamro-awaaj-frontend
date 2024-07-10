@@ -1,6 +1,6 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const aboutText = "We are Hamro Aawaj, a bridge for communication in Nepal. We believe everyone deserves to be heard and understood. Thats why were developing a web app that uses hand gesture recognition for Nepali Sign Language and Nepali speech synthesis. This technology will empower deaf and vocally impaired communities. The team of hamro awaaj comprises of :-";
+const aboutText = "We are Hamro Aawaj, a bridge for communication in Nepal. We believe everyone deserves to be heard and understood. Thats why were developing a web app that uses hand gesture recognition for Nepali Sign Language and Nepali speech synthesis. This technology will empower deaf and vocally impaired communities. The team of hamro aawaj comprises of :-";
 
 const About = () => {
     return (

@@ -6,13 +6,13 @@ import ClientFooter from '../../../../components/user/sections/global/footer/foo
 import QueryClientWrapper from '../../../../components/system/components/wrappers/queryClient/queryClient';
 
 export const metadata: Metadata = {
-  title: 'User Dashboard - Hamro Awaaj',
-  description: 'Welcome to your dashboard on Hamro Awaaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
-  keywords: 'Hamro Awaaj, user dashboard, Nepal Sign Language, NSL, upload images, upload videos, real-time detection, AI hand sign detection, assistive technology',
-  authors: { name: "Hamro Awaaj team", url: "" },
+  title: 'User Dashboard - Hamro Aawaj',
+  description: 'Welcome to your dashboard on Hamro Aawaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
+  keywords: 'Hamro Aawaj, user dashboard, Nepal Sign Language, NSL, upload images, upload videos, real-time detection, AI hand sign detection, assistive technology',
+  authors: { name: "Hamro Aawaj team", url: "" },
   openGraph: {
-    title: 'User Dashboard - Hamro Awaaj',
-    description: 'Welcome to your dashboard on Hamro Awaaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
+    title: 'User Dashboard - Hamro Aawaj',
+    description: 'Welcome to your dashboard on Hamro Aawaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
     url: 'URL_to_dashboard',
     images: [
       {
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'User Dashboard - Hamro Awaaj',
-    description: 'Welcome to your dashboard on Hamro Awaaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
+    title: 'User Dashboard - Hamro Aawaj',
+    description: 'Welcome to your dashboard on Hamro Aawaj. Here you can upload images and videos for real-time Nepal Sign Language detection and communication assistance.',
     images: 'URL_to_dashboard_image',
   },
 };

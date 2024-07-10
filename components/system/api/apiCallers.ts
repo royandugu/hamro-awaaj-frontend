@@ -131,6 +131,7 @@ export const universalDelete=async (url:string, token:string)=>{
         method:'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
     };
 

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { RiAdminFill } from "react-icons/ri";
+import { FaRegUserCircle } from "react-icons/fa";
 
 import Link from "next/link";
 
@@ -26,13 +26,13 @@ const Header = ({ setSidebarOpen }: { setSidebarOpen?: Dispatch<SetStateAction<b
         <div className="w-full">
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="float-right">
-              <Link href="/admin/settings/account"> <div>
-                <Link href="/admin/settings/account" className="mt-0">
-                  <span className="flex gap-2 h-[35px] w-[35px] rounded-full justify-center items-center bg-primary">
-                    <p className="text-white"> R </p>
+              <Link href="/admin/settings/account" className="mt-0">
+                <span className="flex gap-2 h-[35px] w-[35px] rounded-full justify-center items-center">
+                  <span className="flex gap-2 items-center">
+                    <FaRegUserCircle size={25} />
                   </span>
-                </Link>
-              </div></Link>
+                </span>
+              </Link>
             </div>
           </form>
         </div>

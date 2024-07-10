@@ -12,13 +12,13 @@ import './fonts.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Hamro Awaaj - Bridging Silence with Communication',
-  description: 'Hamro Awaaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
-  keywords: 'Hamro Awaaj, Nepal Sign Language, NSL, deaf communication, AI hand sign detection, text and voice output, assistive technology',
-  authors: { name: "Hamro Awaaj team", url: "" },
+  title: 'Hamro Aawaj - Bridging Silence with Communication',
+  description: 'Hamro Aawaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
+  keywords: 'Hamro Aawaj, Nepal Sign Language, NSL, deaf communication, AI hand sign detection, text and voice output, assistive technology',
+  authors: { name: "Hamro Aawaj team", url: "" },
   openGraph: {
-    title: 'Hamro Awaaj - Bridging Silence with Communication',
-    description: 'Hamro Awaaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
+    title: 'Hamro Aawaj - Bridging Silence with Communication',
+    description: 'Hamro Aawaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
     url: 'URL_to_landing_page',
     images: [
       {
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hamro Awaaj - Bridging Silence with Communication',
-    description: 'Hamro Awaaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
+    title: 'Hamro Aawaj - Bridging Silence with Communication',
+    description: 'Hamro Aawaj uses AI to detect Nepal Sign Language (NSL) hand signs, rendering text and voice output to help the deaf community in Nepal communicate more effectively.',
     images: 'URL_to_landing_page_image',
   },
 };

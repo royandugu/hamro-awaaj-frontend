@@ -5,13 +5,13 @@ import SessionValidators from '../../../../components/system/components/wrappers
 import QueryClientWrapper from '../../../../components/system/components/wrappers/queryClient/queryClient';
 
 export const metadata: Metadata = {
-  title: 'Admin Panel - Hamro Awaaj',
-  description: 'Admin panel for managing Hamro Awaaj. Oversee user activity, manage content, and configure AI detection settings.',
-  keywords: 'Hamro Awaaj, admin panel, user management, content management, AI settings, Nepal Sign Language, NSL, assistive technology',
-  authors: { name: "Hamro Awaaj team", url: "" },
+  title: 'Admin Panel - Hamro Aawaj',
+  description: 'Admin panel for managing Hamro Aawaj. Oversee user activity, manage content, and configure AI detection settings.',
+  keywords: 'Hamro Aawaj, admin panel, user management, content management, AI settings, Nepal Sign Language, NSL, assistive technology',
+  authors: { name: "Hamro Aawaj team", url: "" },
   openGraph: {
-    title: 'Admin Panel - Hamro Awaaj',
-    description: 'Admin panel for managing Hamro Awaaj. Oversee user activity, manage content, and configure AI detection settings.',
+    title: 'Admin Panel - Hamro Aawaj',
+    description: 'Admin panel for managing Hamro Aawaj. Oversee user activity, manage content, and configure AI detection settings.',
     url: 'URL_to_admin_panel',
     images: [
       {
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Admin Panel - Hamro Awaaj',
-    description: 'Admin panel for managing Hamro Awaaj. Oversee user activity, manage content, and configure AI detection settings.',
+    title: 'Admin Panel - Hamro Aawaj',
+    description: 'Admin panel for managing Hamro Aawaj. Oversee user activity, manage content, and configure AI detection settings.',
     images: 'URL_to_admin_panel_image',
   },
 };
