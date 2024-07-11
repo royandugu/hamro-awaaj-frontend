@@ -1,8 +1,5 @@
 "use client"
 
-import { TiSocialFacebook } from "react-icons/ti";
-import { GrInstagram } from "react-icons/gr";
-import { FaXTwitter } from "react-icons/fa6";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Dispatch, SetStateAction, useContext } from "react";
@@ -17,8 +14,8 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
     const pathname = usePathname();
 
     return (
-        <header id="header" className="z-9 shadow-xl">
-            <div className="w-full flex bg-black py-3 pl-[15%]">
+        <header id="header" className="z-9 fixed top-0 left-0 right-0">
+            {/* <div className="w-full flex bg-black py-3 pl-[15%]">
                 <div className="haContainer">
                     <ul className="flex items-center gap-2">
                         <li>
@@ -32,56 +29,60 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div className="py-7 flex bg-white justify-center">
-                <img src="/Hamro(3)(1).png" className="w-[250px]"/>
-            </div>
-            {!isLoggedIn ? <ul className="hidden md:flex justify-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
-                <li>
-                    <Link href="#hero" className="mt-0 hover:text-primary"> Home </Link>
-                </li>
-                <li>
-                    <Link href="#about" className="mt-0 hover:text-primary"> About </Link>
-                </li>
-                <li>
-                    <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
-                </li>
-                <li>
-                    <Link href="" className="mt-0 hover:text-primary">
-                        <span className="flex gap-2 items-center" onClick={(e) => {
-                            e.preventDefault();
-                            contextContainer.setPopUpNumber(0);
-                        }}>
-                            <FaRegUserCircle />
-                            Account
-                        </span>
-                    </Link>
-                </li>
-            </ul> :
-                <ul className="hidden md:flex justify-center items-center w-full z-9 py-3 gap-20 border-t-[2px] bg-white border-[#e7e7e7]">
-                    <li>
-                        <Link href="/user/upload" className={`mt-0 hover:text-primary ${pathname === '/user/upload' ? 'text-primary' : ''}`}> Upload </Link>
-                    </li>
-                    <li>
-                        <Link href="/user/video-recorder" className={`mt-0 hover:text-primary ${pathname === '/user/video-recorder' ? 'text-primary' : ''}`}> Realtime </Link>
-                    </li>
-                    <li>
-                        <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
-                    </li>
-                    <li>
-                        <Link href="/user/account-info" className="mt-0 hover:text-primary">
-                            <span className="flex gap-2 items-center">
-                                <FaRegUserCircle size={25}/>
-                                
-                            </span>
-                        </Link>
-                    </li>
-                </ul>
-            }
+            </div> */}
+            <div className="py-7 z-9 flex bg-[#1c2434] text-white items-center justify-between pl-[5%] pr-[5%] md:pl-[15%] md:pr-[15%]">
+                <div>
+                    <img src="/Hamro(3)-Photoroom(1).png" className="w-[200px]" />
+                </div>
+                <div>
+                    {!isLoggedIn ? <ul className="hidden lg:flex justify-end w-full gap-20">
+                        <li>
+                            <Link href="#hero" className="mt-0 hover:text-primary"> Home </Link>
+                        </li>
+                        <li>
+                            <Link href="#about" className="mt-0 hover:text-primary"> About </Link>
+                        </li>
+                        <li>
+                            <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
+                        </li>
+                        <li>
+                            <Link href="" className="mt-0 hover:text-primary">
+                                <span className="flex gap-2 items-center" onClick={(e) => {
+                                    e.preventDefault();
+                                    contextContainer.setPopUpNumber(0);
+                                }}>
+                                    <FaRegUserCircle />
+                                    Account
+                                </span>
+                            </Link>
+                        </li>
+                    </ul> :
+                        <ul className="hidden lg:flex items-center justify-end w-full gap-20">
+                            <li>
+                                <Link href="/user/upload" className={`mt-0 hover:text-primary ${pathname === '/user/upload' ? 'text-primary' : ''}`}> Upload </Link>
+                            </li>
+                            <li>
+                                <Link href="/user/video-recorder" className={`mt-0 hover:text-primary ${pathname === '/user/video-recorder' ? 'text-primary' : ''}`}> Realtime </Link>
+                            </li>
+                            <li>
+                                <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
+                            </li>
+                            <li>
+                                <Link href="/user/account-info" className="mt-0 hover:text-primary">
+                                    <span className="flex gap-2 items-center">
+                                        <FaRegUserCircle size={25} />
 
-            <div className="md:hidden w-full py-3 px-5 border-t-[2px] border-[#e7e7e7] cursor-pointer" onClick={() => setIsSmallMenuOpen ? setIsSmallMenuOpen(true) : ""}>
-                <RxHamburgerMenu size={30} />
+                                    </span>
+                                </Link>
+                            </li>
+                        </ul>
+                    }
+                    <div className="lg:hidden w-full px-5 cursor-pointer" onClick={() => setIsSmallMenuOpen ? setIsSmallMenuOpen(true) : ""}>
+                        <RxHamburgerMenu size={30} />
+                    </div>
+                </div>
             </div>
+
 
         </header>
 
