@@ -1,14 +1,25 @@
  "use client"
 
- import { useContext } from "react";
+ import { useContext, useEffect, useState } from "react";
+ import { useRouter } from "next/navigation";
 
  import PrimaryButton from "../../../system/components/wrappers/primaryButton/primaryButton";
- import context from "../../../system/context/context";
  import userContext from "../../context/context";
+ import Spinner from "../../../system/sections/spinner/spinner";
+
 
  const OutputDisplay = ({ noMaxWidth }: { noMaxWidth?: boolean }) => {
-     const contextContainer = useContext(context);
+    const [loading,setLoading]=useState(true);
+
      const userContextContainer=useContext(userContext);
+     const router=useRouter();
+
+     useEffect(()=>{
+        if(userContextContainer.audio.length>0 && userContextContainer.text.length>0){
+            setLoading(false);
+        }
+        else router.push("/");
+     },[])
 
      const downloadAudio = () => {
          const anchor = document.createElement('a');
@@ -28,6 +39,7 @@
          document.body.removeChild(a);
      };
 
+     if(loading) return <Spinner/>
      return (
          <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 ${noMaxWidth ? '' : 'max-w-screen-2xl'}`}>
              {/* <div className="">
