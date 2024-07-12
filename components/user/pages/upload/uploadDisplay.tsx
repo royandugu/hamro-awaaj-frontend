@@ -142,7 +142,7 @@ const UploadDisplay = () => {
 
 
     return (
-        <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
+        <section className="pt-30 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
             <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10 ">
                 <div>
                     <select className="mb-5 p-5 rounded cursor-pointer" onChange={(e) => {

@@ -41,7 +41,7 @@
 
      if(loading) return <Spinner/>
      return (
-         <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-10 pb-20 ${noMaxWidth ? '' : 'max-w-screen-2xl'}`}>
+         <section className={`pl-[5%] pr-[5%] lg:pl-[15%] lg:pr-[15%] pt-30 pb-20 ${noMaxWidth ? '' : 'max-w-screen-2xl'}`}>
              {/* <div className="">
                  <Image src={OutputBlob2} alt="output-blob" width={500} className="absolute top-0 left-[100px]"/>
             

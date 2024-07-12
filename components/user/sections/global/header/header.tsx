@@ -37,16 +37,16 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                 <div>
                     {!isLoggedIn ? <ul className="hidden lg:flex justify-end w-full gap-20">
                         <li>
-                            <Link href="#hero" className="mt-0 hover:text-primary"> Home </Link>
+                            <Link href="#hero" className="mt-0 hover:text-[#ff9c85]"> Home </Link>
                         </li>
                         <li>
-                            <Link href="#about" className="mt-0 hover:text-primary"> About </Link>
+                            <Link href="#about" className="mt-0 hover:text-[#ff9c85]"> About </Link>
                         </li>
                         <li>
-                            <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
+                            <Link href="#contact" className="mt-0 hover:text-[#ff9c85]"> Contact </Link>
                         </li>
                         <li>
-                            <Link href="" className="mt-0 hover:text-primary">
+                            <Link href="" className="mt-0 hover:text-[#ff9c85]">
                                 <span className="flex gap-2 items-center" onClick={(e) => {
                                     e.preventDefault();
                                     contextContainer.setPopUpNumber(0);
@@ -59,16 +59,16 @@ const ClientHeader = ({ setIsSmallMenuOpen, isLoggedIn }: { setIsSmallMenuOpen?:
                     </ul> :
                         <ul className="hidden lg:flex items-center justify-end w-full gap-20">
                             <li>
-                                <Link href="/user/upload" className={`mt-0 hover:text-primary ${pathname === '/user/upload' ? 'text-primary' : ''}`}> Upload </Link>
+                                <Link href="/user/upload" className={`mt-0 hover:text-[#ff9c85] ${pathname === '/user/upload' ? 'text-[#ff9c85]' : ''}`}> Upload </Link>
                             </li>
                             <li>
-                                <Link href="/user/video-recorder" className={`mt-0 hover:text-primary ${pathname === '/user/video-recorder' ? 'text-primary' : ''}`}> Realtime </Link>
+                                <Link href="/user/video-recorder" className={`mt-0 hover:text-[#ff9c85] ${pathname === '/user/video-recorder' ? 'text-[#ff9c85]' : ''}`}> Realtime </Link>
                             </li>
                             <li>
-                                <Link href="#contact" className="mt-0 hover:text-primary"> Contact </Link>
+                                <Link href="#contact" className="mt-0 hover:text-[#ff9c85]"> Contact </Link>
                             </li>
                             <li>
-                                <Link href="/user/account-info" className="mt-0 hover:text-primary">
+                                <Link href="/user/account-info" className={`${pathname === "/user/account-info" ? 'text-[#ff9c85]':""} mt-0 hover:text-[#ff9c85]`}>
                                     <span className="flex gap-2 items-center">
                                         <FaRegUserCircle size={25} />
 

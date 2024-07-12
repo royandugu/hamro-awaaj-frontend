@@ -143,7 +143,7 @@ const VideoRecorderPipeline = () => {
   };
 
   return (
-    <section className="pt-10 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
+    <section className="pt-30 pb-10 bg-[rgb(220,220,220)] relative w-screen flex justify-center items-center overflow-hidden">
       <div className="bg-white flex gap-10 rounded shadow-2xl p-10 pb-20 lg:p-10">
         <div>
           <div className={`flex relative rounded flex-col ${webcamOpened ? 'p-0' : 'p-10 md:p-30'} justify-center items-center dottedBorder md:w-[500px] h-[394px]`}>
